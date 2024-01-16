@@ -63,7 +63,7 @@ This is a 3-unit course. The definition of a unit is one credit hour:
 
 [Source](https://catalog.sdsu.edu/content.php?catoid=5&navoid=388)
 
-As such, you should allocate six hours of time for working on course
+As such, you should allocate six hours of time per week for working on course
 related materials outside of our in-class meetings.
 
 ## Grading
@@ -132,16 +132,28 @@ For Step 1, the base grade is determined as follows
 | A    | Demonstrates competency on 4 of 4 exercises        |
 |      | Obtained a valued contributor in evaluation        |
 |      | Pass 90% of the quizzes                            |
+|      | Group project achieves competency in all 10 areas  |
 | B    | Demonstrates competency on 3 of 4 exercises        |
 |      | Obtained a team player ranking in evaluation       |
 |      | Pass 80% of the quizzes                            |
+|      | Group project achieves competency in 8  areas      |
 | C    | Demonstrates competency on 2 of 4 exercises        |
 |      | Obtained a free rider ranking in evaluation        |
 |      | Pass 70% of the quizzes                            |
+|      | Group project achieves competency in 6 areas       |
 | D    | Demonstrates competency on 1 of 4 exercises        |
 |      | Obtained a missing in action ranking in evaluation |
 |      | Pass 60% of the quizzes                            |
+|      | Group project achieves competency in 4  areas      |
 | F    | Failure to clear all D hurdles                     |
+|      |                                                    |
+
+Your base grade is the highest grade for which you clear *all* the hurdles.
+For example, a student who demonstrated competency on 3 of the four exercises,
+worked on a group project that achieved competency in 9 of the 10 areas, passed
+85% of the quizzes, and obtained a free rider ranking in their peer evaluation
+would have a C base grade.
+
 
 For Step 2, your final course grade is determined as follows:
 
@@ -157,40 +169,41 @@ For Step 2, your final course grade is determined as follows:
 
 ## Course Schedule (Planned)
 
-| Week |     Dates | Topic               | Readings                                              |
-|-----:|----------:|:--------------------|-------------------------------------------------------|
-|    1 |    Jan-18 | Course Introduction |                                                       |
-|    2 |    Jan-23 | *CSU Strike*        |                                                       |
-|      |    Jan-25 | *CSU Strike*        |                                                       |
-|    3 |    Jan-30 | Pandas              | [pandas][pandas]                                      |
-|      |    Feb-01 | GeoPandas           | [geopandas I][geopandas I]                            |
-|    4 |    Feb-06 | Geovisualizaiton    | [choropleths][choropleths]                            |
-|      |    Feb-08 | Exercise 1          |                                                       |
-|    5 |    Feb-13 | Projections         | [projections][projections]                            |
-|      |    Feb-15 | Spatial Joins       | [spatial joins][spatial joins]                        |
-|    6 |    Feb-20 | Spatial Inequality  | [spatial inequality][spatial inequality]              |
-|      |    Feb-22 | Exercise 2          |                                                       |
-|    7 |    Feb-27 | GeoSnap             | [geosnap][geosnap]                                    |
-|      |    Feb-29 | Isochrones          | [isochrones][isochrones]                              |
-|    8 |    Mar-05 | Accessibility       | [accessibility][accessibility]                        |
-|      |    Mar-07 | Exercise 3          |                                                       |
-|    9 |    Mar-12 | Clustering          | [clustering][clustering]-[clusteringII][clusteringII] |
-|      |    Mar-14 | Spatial Clustering  | [regionalization][regionalization]                    |
-|   10 |    Mar-19 | Geodemographics     | [geodemographics][geodemographics]                    |
-|      |    Mar-21 | Exercise 4          |                                                       |
-|   11 |    Mar-26 | Review              |                                                       |
-|      |    Mar-28 | Exam                |                                                       |
-|      |    Apr-02 | *Spring Break*      |                                                       |
-|      |    Apr-04 | *Spring Break*      |                                                       |
-|   12 |    Apr-09 | Studio              |                                                       |
-|      |    Apr-11 | Studio              |                                                       |
-|   13 |    Apr-16 | Studio (AAG)        |                                                       |
-|      |    Apr-18 | Studio (AAG)        |                                                       |
-|   14 |    Apr-23 | Studio              |                                                       |
-|      |    Apr-25 | Studio              |                                                       |
-|   15 |    Apr-30 | Studio              |                                                       |
-|      |    May-02 | Studio              |                                                       |
-|   16 | May-03-09 | Final Exam Week     | Final Projects                                        |
+| Week |     Dates | Topic                       | Readings                                              |
+|-----:|----------:|:----------------------------|-------------------------------------------------------|
+|    1 |    Jan-18 | Course Introduction         |                                                       |
+|    2 |    Jan-23 | *CSU Strike*                |                                                       |
+|      |    Jan-25 | *CSU Strike*                |                                                       |
+|    3 |    Jan-30 | Pandas                      | [pandas][pandas]                                      |
+|      |    Feb-01 | GeoPandas                   | [geopandas I][geopandas I]                            |
+|    4 |    Feb-06 | Geovisualizaiton            | [choropleths][choropleths]                            |
+|      |    Feb-08 | Exercise 1                  |                                                       |
+|    5 |    Feb-13 | Projections                 | [projections][projections]                            |
+|      |    Feb-15 | Spatial Joins               | [spatial joins][spatial joins]                        |
+|    6 |    Feb-20 | Spatial Inequality          | [spatial inequality][spatial inequality]              |
+|      |    Feb-22 | Exercise 2                  |                                                       |
+|    7 |    Feb-27 | GeoSnap                     | [geosnap][geosnap]                                    |
+|      |    Feb-29 | Isochrones                  | [isochrones][isochrones]                              |
+|    8 |    Mar-05 | Accessibility               | [accessibility][accessibility]                        |
+|      |    Mar-07 | Exercise 3                  |                                                       |
+|    9 |    Mar-12 | Clustering                  | [clustering][clustering]-[clusteringII][clusteringII] |
+|      |    Mar-14 | Spatial Clustering          | [regionalization][regionalization]                    |
+|   10 |    Mar-19 | Geodemographics             | [geodemographics][geodemographics]                    |
+|      |    Mar-21 | Exercise 4                  |                                                       |
+|   11 |    Mar-26 | Review                      |                                                       |
+|      |    Mar-28 | Exam                        |                                                       |
+|      |    Apr-02 | *Spring Break*              |                                                       |
+|      |    Apr-04 | *Spring Break*              |                                                       |
+|   12 |    Apr-09 | Studio: Problem Definition  |                                                       |
+|      |    Apr-11 | Studio: Data Identification |                                                       |
+|   13 |    Apr-16 | Studio: Data Acquisition    |                                                       |
+|      |    Apr-18 | Studio: Data Processing     |                                                       |
+|   14 |    Apr-23 | Studio: Analysis            |                                                       |
+|      |    Apr-25 | Studio: Analysis            |                                                       |
+|   15 |    Apr-30 | Studio: Drafting            |                                                       |
+|      |    May-02 | Studio: Final Essay         |                                                       |
+|   16 | May-03-09 | Final Exam Week             | Presentations                                         |
+
 
 
 ## Additional Readings
@@ -262,7 +275,7 @@ accommodation letter from Student Ability Success Center.
 Student Privacy and Intellectual Property: The Family Educational
 Rights and Privacy Act (FERPA) mandates the protection of student
 information, including contact information, grades, and graded
-assignments. I will use [Canvas / Blackboard] to communicate with you,
+assignments. I will use Canvas to communicate with you,
 and I will not post grades or leave graded assignments in public
 places. Students will be notified at the time of an assignment if
 copies of student work will be retained beyond the end of the semester

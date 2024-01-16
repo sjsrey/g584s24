@@ -1,0 +1,91 @@
+# Project
+
+## Project Teams
+
+A team will consist of 3-4 members.
+
+## Requirements
+
+Your GIS Application will be delivered as a [computational essay][essay].
+The essay will be in the form of a Jupyter Notebook that blends narrative
+together with the supporting code.
+
+The requirements are as follows
+
+- The essay should run 3000-5000 words, inclusive of narrative and text.
+- 5-10 figures and or tables are required.
+- A maximum of 2 tables.
+- A minimum of 3 references from the relevant scientific literature are cited
+- A supplementary data processing notebook must document data sources and any
+  data manipulation and preparation.
+
+
+
+## Topics
+
+### Spatial Demographic Analysis of CSU Enrollments and Regions
+Develop a counterfactual where students go to their closest csu
+
+Estimate the ethnic/racial composition of that counterfactual
+
+Analyze the actual ethnic/racial composition of the campuses
+
+Measure the concordance between the diversity rankings of the actual and
+counterfactual enrollments
+
+### Neighborhoods: What's in a Name?
+Obtain the official, or commercial, definitions of neighborhoods for a city of
+your choosing.
+
+Apply a Geodemographic analysis to the same city.
+
+Contrast the two sets of results.
+
+### Spatial Disparities of Spatial Disparities
+Examine exposure to highway pollution across racial/ethnic groups
+Compare spatial patterns in disparties across california Counties
+
+
+### Where is the 15 minute City?
+Implement a 15 minute city algorithm in 8 cities of your choosing.
+Compare the "15 minute-ness" of the 8 cities
+
+## Evaluation Criteria
+
+### Computational Essay Rubric
+The computational essay (and supplmentary data notebooks) will be evaluated as
+follows:
+
+| Rubric Criteria                    | Compentency | Unsatisfactory |
+|------------------------------------|-------------|----------------|
+| Data sources are documented        |             |                |
+| Data processing is reproducible    |             |                |
+| Essay is grammatically correct     |             |                |
+| Code cells are hidden              |             |                |
+| Code cell runs correctly           |             |                |
+| Narrative explains code logic      |             |                |
+| Scientific interpretation is sound |             |                |
+| Relevant literature is cited       |             |                |
+| Project Renders Correctly          |             |                |
+| Presentation Quality               |             |                |
+
+
+
+### Peer Evaluation Rubric
+
+Each project member is required to complete an evaluation of each of their team
+members (including themselves) using the following rubric
+
+
+| Ranking           | Collaboration                                             | Contributions                                        |
+|-------------------|-----------------------------------------------------------|------------------------------------------------------|
+| Valued Contributor | Actively pushes the project forward by taking initiative, demonstrates strong teamwork, and consistently engages with the team. | Makes exceptional contributions both in coding and writing, demonstrating a high level of skill and creativity. |
+| Team Player       | Participates regularly in team activities and discussions, supports teammates, and shares responsibilities equally. | Makes solid and satisfactory contributions in both coding and writing, fulfilling expectations reliably.        |
+| Free Rider        | Shows little to no initiative in the project, rarely contributes in team discussions or activities.             | Minimal or no significant contributions in coding or writing, work is often incomplete or below expectations.  |
+| Missing in Action | Absent or almost non-existent participation in the project, does not communicate or collaborate with the team.  | No contributions made in coding or writing, fails to meet the basic requirements of the project.              |
+
+The final peer evaluation ranking for each student will be determined by the
+instructor after considering all the individual evaluations.
+
+
+[essay]: https://urbangrammarai.xyz/age_capsule/
