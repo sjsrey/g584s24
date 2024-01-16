@@ -5,23 +5,40 @@
   -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
   Instructor     Sergio Rey                                                                                 Lecture Meetings   Tue 11:00-12:40
                                                                                                                                Thu 11:00-13:40
-  Office Hours   Thu 3:30-4:30 [by appointment](https://calendly.com/sjsrey/office-hours)                  Classroom          SH 324
-  Office         PFSA 316G                                                                                  Course LMS         [Canvas](https://sdsu.instructure.com/courses/121345)
+  Office Hours   Thu 12:40-13:40 [by appointment](https://calendly.com/sjsrey/office-hours)                  Classroom          SH 324
+  Office         PFSA 316G                                                                                  Course LMS         [Canvas](https://sdsu.instructure.com/courses/146451)
   -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
 
 
 
 ## Introduction
 
-This course offers an introduction to open source tools and practices for geographic information system  (GIS) applications. Much of today’s world is dominated by “big data”, data science, machine learning, and artificial intelligence, and GIS is no exception. This requires that GIS students have the capacity to understand and analyze quantitative information. At the same time, there are increasing demands for openness and transparency in both GIS applications and GIS in science.
+This course offers an introduction to open source tools and practices for
+geographic information system (GIS) applications. Much of today’s world is
+dominated by “big data”, data science, machine learning, and artificial
+intelligence, and GIS is no exception. This requires that GIS students have the
+capacity to understand and analyze quantitative information. At the same time,
+there are increasing demands for openness and transparency in both GIS
+applications and GIS in science.
 
-This course is designed to equip students with the skills and practices to fully engage with, and contribute to, these developments. It relies on open source software which is essential since it provides access to free, high-quality, cross-platform tools. At the same time, free availability does not necessarily translate into skill acquisition, and a key goal of this course is to flatten the learning curve for students discovering these new tools and practices.
+This course is designed to equip students with the skills and practices to fully
+engage with, and contribute to, these developments. It relies on open source
+software which is essential since it provides access to free, high-quality,
+cross-platform tools. At the same time, free availability does not necessarily
+translate into skill acquisition, and a key goal of this course is to flatten
+the learning curve for students discovering these new tools and practices.
 
 In addition to open science methods, particular spatial analysis methods in GIS include terrain, raster, network analysis,  feature distributions and patterns, spatial interpolation, geocoding, and dynamic segmentation.  
 
 ## Organization
 
-The course is structured as a blending of a lecture and studio. In the studio component of the course, students will be exposed to open source tools (software), technologies (github, CI/CD), and practices (collaborative development) in GIS projects. In the lecture component of the course, the literature surrounding the course project will be discussed and evaluated to shape the empirical project which will form the key focus of the second half of the semester.
+The course is structured as a blending of a lecture and studio. In the studio
+component of the course, students will be exposed to open source tools
+(software), technologies (github, CI/CD), and practices (collaborative
+development) in GIS projects. In the lecture component of the course, the
+literature surrounding the course project will be discussed and evaluated to
+shape the empirical project which will form the key focus of the second half of
+the semester.
 
 ## Learning Outcomes
 
@@ -76,14 +93,13 @@ Rubrics for peer evaluation of project work will be given out in week 11.
 ### Quizzes
 Starting the second week of sessions, quizzes will be given on the assigned
 reading material.
-Quizzes will run through week 9 of the semester.
+Quizzes will run through week 8 of the semester.
 Quizzes are graded on a pass/fail basis.
 
 ### Final Course Grade
 
 Your final course grade is determined using
-[https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay][specification
-grading]].
+[specification grading](https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay).
 Your course grade will be based on the quality and quantity of the work that you
 submit that is evaluated to be of an acceptable level of quality.
 The acceptable level of quality demonstrates competency in the concepts and
@@ -121,7 +137,7 @@ For Step 2, your final course grade is determined as follows:
 - If you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).
 - If you score between 70-85% on the exam, your base grade becomes your course grade.
 - If you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.
--  If you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.
+- If you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.
 
 
 
