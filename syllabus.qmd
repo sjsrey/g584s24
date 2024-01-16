@@ -10,7 +10,6 @@
   -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
 
 
-
 ## Introduction
 
 This course offers an introduction to open source tools and practices for
@@ -28,17 +27,16 @@ cross-platform tools. At the same time, free availability does not necessarily
 translate into skill acquisition, and a key goal of this course is to flatten
 the learning curve for students discovering these new tools and practices.
 
-In addition to open science methods, particular spatial analysis methods in GIS include terrain, raster, network analysis,  feature distributions and patterns, spatial interpolation, geocoding, and dynamic segmentation.  
 
 ## Organization
 
-The course is structured as a blending of a lecture and studio. In the studio
-component of the course, students will be exposed to open source tools
-(software), technologies (github, CI/CD), and practices (collaborative
-development) in GIS projects. In the lecture component of the course, the
-literature surrounding the course project will be discussed and evaluated to
-shape the empirical project which will form the key focus of the second half of
-the semester.
+The course is structured as a blending of a lecture and studio.  In the lecture
+component of the course, the literature surrounding the course project will be
+discussed and evaluated to shape the empirical project which will form the key
+focus of the second half of the semester.  In the studio component of the
+course, students will be exposed to open source tools (software), technologies
+(github, CI/CD), and practices (collaborative development) in GIS projects.
+
 
 ## Learning Outcomes
 
@@ -72,19 +70,19 @@ related materials outside of our in-class meetings.
 
 ### Exercises 
 
-A series of  exercises will be assigned that provide opportunities to further develop skills in open source tooling and practices.  Each student will be evaluated individually on all five exercises. You
-can view these exercises as practice for the skills that go into the
-final project.
+A series of exercises will be assigned that provide opportunities to further
+develop skills in open source tooling and practices.  Each student will be
+evaluated individually on all five exercises. You can view these exercises as
+practice for the skills that go into the final project.
 
 ### Exam 
-There will be one exam on week 9 covering the materials from the first part of
+There will be one exam on week 11 covering the materials from the first part of
 the course.
 
 ### Project 
-This course is organized as a studio in which each student will contribute to a
+The last 5 weeks of the  course are organized as a studio in which each student will contribute to a
 final project that requires the application of the various open source
-technologies, packages, and practices that are introduced. The projects will
-form the main focus of the course in weeks 11-15. 
+technologies, packages, and practices that are introduced. 
 
 Rubrics for peer evaluation of project work will be given out in week 11.
 
@@ -93,8 +91,22 @@ Rubrics for peer evaluation of project work will be given out in week 11.
 ### Quizzes
 Starting the second week of sessions, quizzes will be given on the assigned
 reading material.
-Quizzes will run through week 8 of the semester.
+Quizzes will run through week 10 of the semester.
 Quizzes are graded on a pass/fail basis.
+Quizzes will be given during the first 5 minutes of a class meeting.
+
+
+### Tokens
+Each student is provided with three *tokens* at the beginning of the semester.
+Tokens can be used in the following ways:
+
+- One token can be used for a one-week extension on an exercise.
+- One token can be used to resubmit an exercise that does not demonstrate
+  competency.
+- Two tokens can be used to request a make-up date for the exam.
+(Requests have to be submitted by **March 14 5pm**.)
+
+Each token that remains unused by May 2 will be counted as a passed quiz.
 
 ### Final Course Grade
 
@@ -145,44 +157,83 @@ For Step 2, your final course grade is determined as follows:
 
 ## Course Schedule (Planned)
 
-| Week |     Dates | Topic/Reading             | Activities     |
-|-----:|----------:|:--------------------------|----------------|
-|    1 |    Jan-18 | Course Introduction       |                |
-|    2 |    Jan-23 | *CSU Strike*              |                |
-|      |    Jan-25 | *CSU Strike*              |                |
-|    3 |    Jan-30 | Computational Environment |                |
-|      |    Feb-01 | Python Introduction       | Exercise 1 Out |
-|    4 |    Feb-06 | Data Types and Structures |                |
-|      |    Feb-08 | Files                     |                |
-|    5 |    Feb-13 | Program Control           |                |
-|      |    Feb-15 | Shells                    | Exercise 1 Due |
-|      |           |                           | Exercise 2 Out |
-|    6 |    Feb-20 | Shell Utilities           |                |
-|      |    Feb-22 | Git Introduction          |                |
-|    7 |    Feb-27 | Git Branch and Merge      |                |
-|      |    Feb-29 | GitHub Introduction       | Exercise 2 Due |
-|      |           |                           | Exercise 3 Out |
-|    8 |    Mar-05 | GitHub Pull Requests      |                |
-|      |    Mar-07 | Documentation             |                |
-|    9 |    Mar-12 | Review                    |                |
-|      |    Mar-14 | Exam                      | Exercise 3 Due |
-|      |           |                           | Exercise 4 Out |
-|   10 |    Mar-19 | Studio                    |                |
-|      |    Mar-21 | Studio                    |                |
-|   11 |    Mar-26 | Studio                    |                |
-|      |    Mar-28 | Studio                    | Exercise 4 Due |
-|      |    Apr-02 | *Spring Break*            |                |
-|      |    Apr-04 | *Spring Break*            |                |
-|   12 |    Apr-09 | Studio                    |                |
-|      |    Apr-11 | Studio                    |                |
-|   13 |    Apr-16 | AAG                       |                |
-|      |    Apr-18 | AAG                       |                |
-|   14 |    Apr-23 | Studio                    |                |
-|      |    Apr-25 | Studio                    |                |
-|   15 |    Apr-30 | Studio                    |                |
-|      |    May-02 | Studio                    |                |
-|   16 | May-03-09 | Final Exam Week           | Final Projects |
+| Week |     Dates | Topic               | Readings                                              |
+|-----:|----------:|:--------------------|-------------------------------------------------------|
+|    1 |    Jan-18 | Course Introduction |                                                       |
+|    2 |    Jan-23 | *CSU Strike*        |                                                       |
+|      |    Jan-25 | *CSU Strike*        |                                                       |
+|    3 |    Jan-30 | Pandas              | [pandas][pandas]                                      |
+|      |    Feb-01 | GeoPandas           | [geopandas I][geopandas I]                            |
+|    4 |    Feb-06 | Geovisualizaiton    | [choropleths][choropleths]                            |
+|      |    Feb-08 | Exercise 1          |                                                       |
+|    5 |    Feb-13 | Projections         | [projections][projections]                            |
+|      |    Feb-15 | Spatial Joins       | [spatial joins][spatial joins]                        |
+|    6 |    Feb-20 | Spatial Inequality  | [spatial inequality][spatial inequality]              |
+|      |    Feb-22 | Exercise 2          |                                                       |
+|    7 |    Feb-27 | GeoSnap             | [geosnap][geosnap]                                    |
+|      |    Feb-29 | Isochrones          | [isochrones][isochrones]                              |
+|    8 |    Mar-05 | Accessibility       | [accessibility][accessibility]                        |
+|      |    Mar-07 | Exercise 3          |                                                       |
+|    9 |    Mar-12 | Clustering          | [clustering][clustering]-[clusteringII][clusteringII] |
+|      |    Mar-14 | Spatial Clustering  | [regionalization][regionalization]                    |
+|   10 |    Mar-19 | Geodemographics     | [geodemographics][geodemographics]                    |
+|      |    Mar-21 | Exercise 4          |                                                       |
+|   11 |    Mar-26 | Review              |                                                       |
+|      |    Mar-28 | Exam                |                                                       |
+|      |    Apr-02 | *Spring Break*      |                                                       |
+|      |    Apr-04 | *Spring Break*      |                                                       |
+|   12 |    Apr-09 | Studio              |                                                       |
+|      |    Apr-11 | Studio              |                                                       |
+|   13 |    Apr-16 | Studio (AAG)        |                                                       |
+|      |    Apr-18 | Studio (AAG)        |                                                       |
+|   14 |    Apr-23 | Studio              |                                                       |
+|      |    Apr-25 | Studio              |                                                       |
+|   15 |    Apr-30 | Studio              |                                                       |
+|      |    May-02 | Studio              |                                                       |
+|   16 | May-03-09 | Final Exam Week     | Final Projects                                        |
 
+
+## Additional Readings
+
+As we are learning Python through GIS, and assuming students already posses an
+understanding of GIS fundamentals, supplementary readings on Python should
+be consulted for further understanding:
+
+"[Think Python: How to Think Like a Computer
+Scientist](https://greenteapress.com/wp/think-python-2e/)" is an insightful and
+approachable guide designed for beginners looking to learn Python
+programming. Authored by Allen B. Downey, this book simplifies the process of
+learning Python by breaking down its core concepts into manageable sections,
+making it ideal for those new to programming. Emphasizing the importance of
+computational thinking, the book gradually builds from simple topics, like
+variables and basic operations, to more complex subjects such as data
+structures, algorithms, and debugging. Throughout the text, Downey encourages a
+problem-solving approach, reinforcing key programming concepts with practical
+examples and exercises that challenge the reader to think critically and apply
+their learning. This book is renowned for its clear, concise, and
+reader-friendly style, making the often-daunting task of learning a new
+programming language both manageable and engaging.
+
+
+The book "[A Whirlwind Tour of
+Python](https://jakevdp.github.io/WhirlwindTourOfPython/)" by Jake VanderPlas
+can also be accessed online for free. . This book is a fast-paced introduction to
+essential features of the Python language, aimed at researchers and developers
+who are already familiar with programming in another language.
+
+[pandas]: https://pandas.pydata.org/docs/user_guide/10min.html
+[geopandas I]: https://geopandas.org/en/v0.14.2/getting_started/introduction.html
+[choropleths]: https://geographicdata.science/book/notebooks/05_choropleth.html
+[projections]: https://geopandas.org/en/v0.14.2/docs/user_guide/projections.html
+[spatial joins]: https://geopandas.org/en/stable/gallery/spatial_joins.html
+[spatial inequality]: https://econwpa.ub.uni-muenchen.de/econ-wp/urb/papers/0110/0110002.pdf
+[geosnap]: https://oturns.github.io/geosnap/
+[isochrones]: https://www.mapbox.com/insights/isochrones
+[accessibility]: https://www.sciencedirect.com/science/article/abs/pii/S1361920921004077
+[clustering]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html
+[clusteringII]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html#hierarchical-clustering
+[regionalization]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html#regionalization-spatially-constrained-hierarchical-clustering
+[geodemographics]: https://www.tandfonline.com/doi/full/10.1080/00330124.2013.848764
 
 [geocoding]: https://pythongis.org/part2/chapter-06/nb/01-data-io.html?highlight=geocoding#geocoding
 [gitI]: https://swcarpentry.github.io/git-novice/
