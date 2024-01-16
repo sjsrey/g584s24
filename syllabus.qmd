@@ -1,0 +1,240 @@
+# Syllabus {.unnumbered}
+
+## Logistics
+
+  -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
+  Instructor     Sergio Rey                                                                                 Lecture Meetings   Tue 11:00-12:40
+                                                                                                                               Thu 11:00-13:40
+  Office Hours   Thu 3:30-4:30 [by appointment](https://calendly.com/sjsrey/office-hours)                  Classroom          SH 324
+  Office         PFSA 316G                                                                                  Course LMS         [Canvas](https://sdsu.instructure.com/courses/121345)
+  -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
+
+
+
+## Introduction
+
+This course offers an introduction to open source tools and practices for geographic information system  (GIS) applications. Much of today’s world is dominated by “big data”, data science, machine learning, and artificial intelligence, and GIS is no exception. This requires that GIS students have the capacity to understand and analyze quantitative information. At the same time, there are increasing demands for openness and transparency in both GIS applications and GIS in science.
+
+This course is designed to equip students with the skills and practices to fully engage with, and contribute to, these developments. It relies on open source software which is essential since it provides access to free, high-quality, cross-platform tools. At the same time, free availability does not necessarily translate into skill acquisition, and a key goal of this course is to flatten the learning curve for students discovering these new tools and practices.
+
+In addition to open science methods, particular spatial analysis methods in GIS include terrain, raster, network analysis,  feature distributions and patterns, spatial interpolation, geocoding, and dynamic segmentation.  
+
+## Organization
+
+The course is structured as a blending of a lecture and studio. In the studio component of the course, students will be exposed to open source tools (software), technologies (github, CI/CD), and practices (collaborative development) in GIS projects. In the lecture component of the course, the literature surrounding the course project will be discussed and evaluated to shape the empirical project which will form the key focus of the second half of the semester.
+
+## Learning Outcomes
+
+By the end of the semester, students will
+
+- acquire competency in using open source software and tools for their own GIS research projects
+- gain experience in collaborative open source and open science best practices
+- apply these skill sets to contribute to a reproducible empirical GIS project
+
+## Prerequisites
+
+[GEOG 484](https://catalog.sdsu.edu/preview_course.php?catoid=3&coid=10149&print) or equivalent.
+
+
+> Courses numbered 500 through 599 are in the upper division and are also acceptable for advanced degrees when taken by students admitted to graduate standing;
+
+[Source](https://catalog.sdsu.edu/content.php?catoid=5&navoid=388)
+
+
+## Credit Hours and Course Work
+This is a 3-unit course. The definition of a unit is one credit hour:
+
+> One hour of direct faculty instruction and a minimum of two hours of out-of-class student work each week for approximately 15 weeks for one semester or equivalent amount of work over a different amount of time; 
+
+[Source](https://catalog.sdsu.edu/content.php?catoid=5&navoid=388)
+
+As such, you should allocate six hours of time for working on course
+related materials outside of our in-class meetings.
+
+## Grading
+
+### Exercises 
+
+A series of  exercises will be assigned that provide opportunities to further develop skills in open source tooling and practices.  Each student will be evaluated individually on all five exercises. You
+can view these exercises as practice for the skills that go into the
+final project.
+
+### Exam 
+There will be one exam on week 9 covering the materials from the first part of
+the course.
+
+### Project 
+This course is organized as a studio in which each student will contribute to a
+final project that requires the application of the various open source
+technologies, packages, and practices that are introduced. The projects will
+form the main focus of the course in weeks 11-15. 
+
+Rubrics for peer evaluation of project work will be given out in week 11.
+
+
+
+### Quizzes
+Starting the second week of sessions, quizzes will be given on the assigned
+reading material.
+Quizzes will run through week 9 of the semester.
+Quizzes are graded on a pass/fail basis.
+
+### Final Course Grade
+
+Your final course grade is determined using
+[https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay][specification
+grading]].
+Your course grade will be based on the quality and quantity of the work that you
+submit that is evaluated to be of an acceptable level of quality.
+The acceptable level of quality demonstrates competency in the concepts and
+methods covered in the course.
+
+Three is a two-step process for determination of your final course grade at the
+end of the semester:
+
+1. Using your exercises, project and quiz grades, your **base grade** is determined.
+2. Using your exam grade to determine if your base grade is adjusted upwards,
+   downwards or remains as your final grade.
+  
+  
+For Step 1, the base grade is determined as follows
+
+| Base | Hurdles                                            |
+|------|----------------------------------------------------|
+| A    | Demonstrates competency on 4 of 4 exercises        |
+|      | Obtained a valued contributor in evaluation        |
+|      | Pass 90% of the quizzes                            |
+| B    | Demonstrates competency on 3 of 4 exercises        |
+|      | Obtained a team player ranking in evaluation       |
+|      | Pass 80% of the quizzes                            |
+| C    | Demonstrates competency on 2 of 4 exercises        |
+|      | Obtained a free rider ranking in evaluation        |
+|      | Pass 70% of the quizzes                            |
+| D    | Demonstrates competency on 1 of 4 exercises        |
+|      | Obtained a missing in action ranking in evaluation |
+|      | Pass 60% of the quizzes                            |
+| F    | Failure to clear all D hurdles                     |
+
+For Step 2, your final course grade is determined as follows:
+
+
+- If you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).
+- If you score between 70-85% on the exam, your base grade becomes your course grade.
+- If you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.
+-  If you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.
+
+
+
+
+
+## Course Schedule (Planned)
+
+| Week |     Dates | Topic/Reading             | Activities     |
+|-----:|----------:|:--------------------------|----------------|
+|    1 |    Jan-18 | Course Introduction       |                |
+|    2 |    Jan-23 | *CSU Strike*              |                |
+|      |    Jan-25 | *CSU Strike*              |                |
+|    3 |    Jan-30 | Computational Environment |                |
+|      |    Feb-01 | Python Introduction       | Exercise 1 Out |
+|    4 |    Feb-06 | Data Types and Structures |                |
+|      |    Feb-08 | Files                     |                |
+|    5 |    Feb-13 | Program Control           |                |
+|      |    Feb-15 | Shells                    | Exercise 1 Due |
+|      |           |                           | Exercise 2 Out |
+|    6 |    Feb-20 | Shell Utilities           |                |
+|      |    Feb-22 | Git Introduction          |                |
+|    7 |    Feb-27 | Git Branch and Merge      |                |
+|      |    Feb-29 | GitHub Introduction       | Exercise 2 Due |
+|      |           |                           | Exercise 3 Out |
+|    8 |    Mar-05 | GitHub Pull Requests      |                |
+|      |    Mar-07 | Documentation             |                |
+|    9 |    Mar-12 | Review                    |                |
+|      |    Mar-14 | Exam                      | Exercise 3 Due |
+|      |           |                           | Exercise 4 Out |
+|   10 |    Mar-19 | Studio                    |                |
+|      |    Mar-21 | Studio                    |                |
+|   11 |    Mar-26 | Studio                    |                |
+|      |    Mar-28 | Studio                    | Exercise 4 Due |
+|      |    Apr-02 | *Spring Break*            |                |
+|      |    Apr-04 | *Spring Break*            |                |
+|   12 |    Apr-09 | Studio                    |                |
+|      |    Apr-11 | Studio                    |                |
+|   13 |    Apr-16 | AAG                       |                |
+|      |    Apr-18 | AAG                       |                |
+|   14 |    Apr-23 | Studio                    |                |
+|      |    Apr-25 | Studio                    |                |
+|   15 |    Apr-30 | Studio                    |                |
+|      |    May-02 | Studio                    |                |
+|   16 | May-03-09 | Final Exam Week           | Final Projects |
+
+
+[geocoding]: https://pythongis.org/part2/chapter-06/nb/01-data-io.html?highlight=geocoding#geocoding
+[gitI]: https://swcarpentry.github.io/git-novice/
+[gitc]: https://swcarpentry.github.io/git-novice/08-collab/index.html
+[ra]: https://pythongis.org/part2/chapter-07/index.html#
+[gsa]: https://geographicdata.science/book/notebooks/06_spatial_autocorrelation.html
+[pi]: http://mbakker7.github.io/exploratory_computing_with_python
+[shellI]: https://swcarpentry.github.io/shell-novice/ 
+[shellII]: https://swcarpentry.github.io/shell-novice/04-pipefilter/index.html
+[smtc]: https://mpra.ub.uni-muenchen.de/9260/1/MPRA_paper_9260.pdf
+[testing]: https://github.com/krother/python_testing_tutorial
+[tobler]: https://pysal.org/tobler/
+[va]:  https://pythongis.org/part2/chapter-05/index.html#
+[networks]: https://pysal.org/spaghetti/ 
+
+## Policies
+### Accommodations
+If you are a student with a disability and are in need of
+accommodations for this class, please contact Student Ability
+Success Center at (619) 594-6473 as soon as possible.  Please know
+accommodations are not retroactive, and I cannot provide
+accommodations based upon disability until I have received an
+accommodation letter from Student Ability Success Center.
+
+### Privacy and Intellectual Property
+Student Privacy and Intellectual Property: The Family Educational
+Rights and Privacy Act (FERPA) mandates the protection of student
+information, including contact information, grades, and graded
+assignments. I will use [Canvas / Blackboard] to communicate with you,
+and I will not post grades or leave graded assignments in public
+places. Students will be notified at the time of an assignment if
+copies of student work will be retained beyond the end of the semester
+or used as examples for future students or the wider public. Students
+maintain intellectual property rights to work products they create as
+part of this course unless they are formally notified otherwise.
+
+
+### Academic Integrity
+
+The SDSU student academic integrity policy lists violations in detail.
+These violations fall into eight broad areas that include but are not
+limited to: cheating, fabrication, plagiarism, facilitating academic
+misconduct, unauthorized collaboration, interference or sabotage,
+non-compliance with research regulations and retaliation. For more
+information about the SDSU student academic integrity policy, please see
+the following: <https://sacd.sdsu.edu/student-rights/academic-dishonesty>.
+
+
+### Code of Conduct
+
+As course instructor, I am dedicated to providing a harassment-free
+learning experience for all students, regardless of gender, sexual
+orientation, disability, physical appearance, body size, race, religion,
+or choice of operating system. All course participants are expected to
+show respect and courtesy to other students throughout the semester. As
+a learning community we do not tolerate harassment of participants in
+any form.
+
+-   All communication should be appropriate for a professional audience
+    including people of many different backgrounds. Sexual language and
+    imagery are not appropriate in this course.
+
+-   Be kind to others. Do not insult or put down other students. Behave
+    professionally. Remember that harassment and sexist, racist, or
+    exclusionary jokes are not appropriate for this course.
+
+-   Students violating these rules may be asked to leave the course, and
+    their violations will be reported to the SDSU administration.
+
+This code of conduct is an adaptation of the [SciPy 2018 Code of
+Conduct](https://scipy2018.scipy.org/ehome/299527/648147/index9a04.html).
