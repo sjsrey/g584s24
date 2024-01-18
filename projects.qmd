@@ -50,6 +50,9 @@ Compare spatial patterns in disparties across california Counties
 Implement a 15 minute city algorithm in 8 cities of your choosing.
 Compare the "15 minute-ness" of the 8 cities
 
+### Spatial Mismatch
+- LODES
+
 ## Evaluation Criteria
 
 ### Computational Essay Rubric

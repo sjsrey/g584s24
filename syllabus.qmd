@@ -145,8 +145,9 @@ For Step 1, the base grade is determined as follows
 |      | Obtained a missing in action ranking in evaluation |
 |      | Pass 60% of the quizzes                            |
 |      | Group project achieves competency in 4  areas      |
-| F    | Failure to clear all D hurdles                     |
-|      |                                                    |
+| F    | Failure to clear all D-level  hurdles              |
+
+
 
 Your base grade is the highest grade for which you clear *all* the hurdles.
 For example, a student who demonstrated competency on 3 of the four exercises,
@@ -240,7 +241,7 @@ who are already familiar with programming in another language.
 [projections]: https://geopandas.org/en/v0.14.2/docs/user_guide/projections.html
 [spatial joins]: https://geopandas.org/en/stable/gallery/spatial_joins.html
 [spatial inequality]: https://econwpa.ub.uni-muenchen.de/econ-wp/urb/papers/0110/0110002.pdf
-[geosnap]: https://oturns.github.io/geosnap/
+[geosnap]: https://oturns.github.io/geosnap-guide
 [isochrones]: https://www.mapbox.com/insights/isochrones
 [accessibility]: https://www.sciencedirect.com/science/article/abs/pii/S1361920921004077
 [clustering]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html
