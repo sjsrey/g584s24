@@ -1,0 +1,10 @@
+name: cogs-24s
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyterlab
+  - pysal
+  - geopandas
+  - seaborn
+
