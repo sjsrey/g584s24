@@ -80,12 +80,11 @@ There will be one exam on week 11 covering the materials from the first part of
 the course.
 
 ### Project 
-The last 5 weeks of the  course are organized as a studio in which each student will contribute to a
-final project that requires the application of the various open source
-technologies, packages, and practices that are introduced. 
+The last 5 weeks of the  course are organized as a studio in which each student
+will contribute to a final project that requires the application of the various
+open source technologies, packages, and practices that are introduced. 
 
 Rubrics for peer evaluation of project work will be given out in week 11.
-
 
 
 ### Quizzes
