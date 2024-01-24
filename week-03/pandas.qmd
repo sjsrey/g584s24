@@ -1,0 +1,64 @@
+---
+title: "Pandas: Introduction"
+author: "Sergio J. Rey"
+date: "January 30, 2024"
+format:
+  revealjs:
+    theme: simple
+    transition: fade
+    slide-number: false
+    incremental: false 
+    chalkboard: true
+    center: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+
+# Outline
+
+- Overview of Pandas 
+- Data Series and DataFrames
+- Files
+- Data Operations
+- Basic Data Anaysis
+
+# Overivew
+
+## What is Pandas?
+
+## Why Pandas is essential in (Spatial) Data Scienc?
+
+## Capabilities and Applications
+
+# Data Series and DataFrames
+
+## Data Series
+
+## DataFrames
+
+# Files
+
+## Reading Files with Pandas
+## Writing Files with Pandas
+
+# Data Operations: Cleaning
+## Inspection
+## Missing Values
+## Data Type Conversions
+## Renaming Columns
+
+# Data Operations: Manipulation
+## Selecting and filtering
+
+## Adding and deleting columns
+
+## Sorting and Grouping
+## GroupBy 
+# Data Analysis
+## Descriptive Statistics
+## Correlation
+## Simple Visualization
+
+# Hands on

@@ -46,3 +46,6 @@ website:
       - section: "Syllabus"
         contents:
           - syllabus.qmd
+      - section: "Week 3: 1/30, 2/01"
+        contents:
+          - week-03/pandas.qmd
