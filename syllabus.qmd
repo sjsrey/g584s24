@@ -172,8 +172,8 @@ For Step 2, your final course grade is determined as follows:
 | Week |     Dates | Topic                       | Readings                                              |
 |-----:|----------:|:----------------------------|-------------------------------------------------------|
 |    1 |    Jan-18 | Course Introduction         |                                                       |
-|    2 |    Jan-23 | *CSU Strike*                |                                                       |
-|      |    Jan-25 | *CSU Strike*                |                                                       |
+|    2 |    Jan-23 | Accounts                    |                                                       |
+|      |    Jan-25 | Computational Environment   |                                                       |
 |    3 |    Jan-30 | Pandas                      | [pandas][pandas]                                      |
 |      |    Feb-01 | GeoPandas                   | [geopandas I][geopandas I]                            |
 |    4 |    Feb-06 | Geovisualizaiton            | [choropleths][choropleths]                            |

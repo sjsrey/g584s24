@@ -1,0 +1,62 @@
+
+---
+title: "Computational Environment"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Outline
+
+- Accounts
+- Introduction to Jupyter Hub
+
+## Objective
+To introduce students to JupyterLab and help them become comformatible with its
+interface for the semester-long course.
+
+
+
+## Introduction
+This course is designed to equip students with the skills and practices to fully
+engage with, and contribute to, these developments. It relies on open source
+software which is essential since it provides access to free, high-quality,
+cross-platform tools. At the same time, free availability does not necessarily
+translate into skill acquisition, and a key goal of this course is to flatten
+the learning curve for students discovering these new tools and practices.
+
+
+
+The course is structured as a blending of a lecture and studio.  In the lecture
+component of the course, the literature surrounding the course project will be
+discussed and evaluated to shape the empirical project which will form the key
+focus of the second half of the semester.  In the studio component of the
+course, students will be exposed to open source tools (software), technologies
+(github, CI/CD), and practices (collaborative development) in GIS projects.
+
+
+## Accounts
+
+If you are in SH 324, you can use an account on the lab machines to get  to a
+browser. Today we will distribute your accounts.
+
+## Accessing the Course JupyterHub
+
+### On-campus access
+
+If you are on campus, use a browser to go to:
+[http://130.191.118.182](http://130.191.118.182)
+
+
+### Off-campus access
+If you are off campus, you will first have to connect using the required Virtual
+Private Network (VPN). Follow these [instructions](https://security.sdsu.edu/services/virtual-private-network) for setting up the vpn on your private computer.
+
+
+Either way (on- or off-campus) once you connect you should be greated with the
+Jupyter Hub Login Screen:
+
+![login](/lectures/figures/jupyterhublogin.png)
+
+

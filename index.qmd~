@@ -1,0 +1,320 @@
+# GEOG 584 {.unnumbered}
+
+## Logistics
+
+  -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
+  Instructor     Sergio Rey                                                                                 Lecture Meetings   Tue 11:00-12:40
+                                                                                                                               Thu 11:00-13:40
+  Office Hours   Thu 12:40-13:40 [and by appointment](https://calendly.com/sjsrey/office-hours)                  Classroom          SH 324
+  Office         PFSA 316G                                                                                  Course LMS         [Canvas](https://sdsu.instructure.com/courses/146451)
+  -------------- ------------------------------------------------------------------------------------------ ------------------ ------------------------------------------------
+
+
+## Introduction
+
+This course offers an introduction to open source tools and practices for
+geographic information system (GIS) applications. Much of today’s world is
+dominated by “big data”, data science, machine learning, and artificial
+intelligence, and GIS is no exception. This requires that GIS students have the
+capacity to understand and analyze quantitative information. At the same time,
+there are increasing demands for openness and transparency in both GIS
+applications and GIS in science.
+
+This course is designed to equip students with the skills and practices to fully
+engage with, and contribute to, these developments. It relies on open source
+software which is essential since it provides access to free, high-quality,
+cross-platform tools. At the same time, free availability does not necessarily
+translate into skill acquisition, and a key goal of this course is to flatten
+the learning curve for students discovering these new tools and practices.
+
+
+## Organization
+
+The course is structured as a blending of a lecture and studio.  In the lecture
+component of the course, the literature surrounding the course project will be
+discussed and evaluated to shape the empirical project which will form the key
+focus of the second half of the semester.  In the studio component of the
+course, students will be exposed to open source tools (software), technologies
+(github, CI/CD), and practices (collaborative development) in GIS projects.
+
+
+## Learning Outcomes
+
+By the end of the semester, students will
+
+- acquire competency in using open source software and tools for their own GIS research projects
+- gain experience in collaborative open source and open science best practices
+- apply these skill sets to contribute to a reproducible empirical GIS project
+
+## Prerequisites
+
+[GEOG 484](https://catalog.sdsu.edu/preview_course.php?catoid=3&coid=10149&print) or equivalent.
+
+
+> Courses numbered 500 through 599 are in the upper division and are also acceptable for advanced degrees when taken by students admitted to graduate standing;
+
+[Source](https://catalog.sdsu.edu/content.php?catoid=5&navoid=388)
+
+
+## Credit Hours and Course Work
+This is a 3-unit course. The definition of a unit is one credit hour:
+
+> One hour of direct faculty instruction and a minimum of two hours of out-of-class student work each week for approximately 15 weeks for one semester or equivalent amount of work over a different amount of time; 
+
+[Source](https://catalog.sdsu.edu/content.php?catoid=5&navoid=388)
+
+As such, you should allocate six hours of time per week for working on course
+related materials outside of our in-class meetings.
+
+## Grading
+
+### Exercises 
+
+A series of exercises will be assigned that provide opportunities to further
+develop skills in open source tooling and practices.  Each student will be
+evaluated individually on all four exercises. You can view these exercises as
+practice for the skills that go into the final project.
+
+### Exam 
+There will be one exam on week 11 covering the materials from the first part of
+the course.
+
+### Project 
+The last 5 weeks of the  course are organized as a studio in which each student
+will contribute to a final project that requires the application of the various
+open source technologies, packages, and practices that are introduced. 
+
+Rubrics for peer evaluation of project work will be given out in week 11.
+
+
+### Quizzes
+Starting the second week of sessions, quizzes will be given on the assigned
+reading material.
+Quizzes will run through week 10 of the semester.
+Quizzes are graded on a pass/fail basis.
+Quizzes will be given during the first 5 minutes of a class meeting.
+
+
+### Tokens
+Each student is provided with three *tokens* at the beginning of the semester.
+Tokens can be used in the following ways:
+
+- One token can be used for a one-week extension on an exercise.
+- One token can be used to resubmit an exercise that does not demonstrate
+  competency.
+- Two tokens can be used to request a make-up date for the exam.
+(Requests have to be submitted by **March 14 5pm**.)
+
+Each token that remains unused by May 2 will be counted as a passed quiz.
+
+### Final Course Grade
+
+Your final course grade is determined using
+[specification grading](https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay).
+Your course grade will be based on the quality and quantity of the work that you
+submit that is evaluated to be of an acceptable level of quality.
+The acceptable level of quality demonstrates competency in the concepts and
+methods covered in the course.
+
+Three is a two-step process for determination of your final course grade at the
+end of the semester:
+
+1. Using your exercises, project and quiz grades, your **base grade** is determined.
+2. Using your exam grade to determine if your base grade is adjusted upwards,
+   downwards or remains as your final grade.
+  
+  
+For Step 1, the base grade is determined as follows
+
+| Base | Hurdles                                            |
+|------|----------------------------------------------------|
+| A    | Demonstrates competency on 4 of 4 exercises        |
+|      | Obtained a valued contributor in evaluation        |
+|      | Pass 90% of the quizzes                            |
+|      | Group project achieves competency in all 10 areas  |
+| B    | Demonstrates competency on 3 of 4 exercises        |
+|      | Obtained a team player ranking in evaluation       |
+|      | Pass 80% of the quizzes                            |
+|      | Group project achieves competency in 8  areas      |
+| C    | Demonstrates competency on 2 of 4 exercises        |
+|      | Obtained a free rider ranking in evaluation        |
+|      | Pass 70% of the quizzes                            |
+|      | Group project achieves competency in 6 areas       |
+| D    | Demonstrates competency on 1 of 4 exercises        |
+|      | Obtained a missing in action ranking in evaluation |
+|      | Pass 60% of the quizzes                            |
+|      | Group project achieves competency in 4  areas      |
+| F    | Failure to clear all D-level  hurdles              |
+
+
+
+Your base grade is the highest grade for which you clear *all* the hurdles.
+For example, a student who demonstrated competency on 3 of the four exercises,
+worked on a group project that achieved competency in 9 of the 10 areas, passed
+85% of the quizzes, and obtained a free rider ranking in their peer evaluation
+would have a C base grade.
+
+
+For Step 2, your final course grade is determined as follows:
+
+
+- If you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).
+- If you score between 70-85% on the exam, your base grade becomes your course grade.
+- If you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.
+- If you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.
+
+
+
+
+
+## Course Schedule (Planned)
+
+| Week |     Dates | Topic                       | Readings                                              |
+|-----:|----------:|:----------------------------|-------------------------------------------------------|
+|    1 |    Jan-18 | Course Introduction         |                                                       |
+|    2 |    Jan-23 | *CSU Strike*                |                                                       |
+|      |    Jan-25 | *CSU Strike*                |                                                       |
+|    3 |    Jan-30 | Pandas                      | [pandas][pandas]                                      |
+|      |    Feb-01 | GeoPandas                   | [geopandas I][geopandas I]                            |
+|    4 |    Feb-06 | Geovisualizaiton            | [choropleths][choropleths]                            |
+|      |    Feb-08 | Exercise 1                  |                                                       |
+|    5 |    Feb-13 | Projections                 | [projections][projections]                            |
+|      |    Feb-15 | Spatial Joins               | [spatial joins][spatial joins]                        |
+|    6 |    Feb-20 | Spatial Inequality          | [spatial inequality][spatial inequality]              |
+|      |    Feb-22 | Exercise 2                  |                                                       |
+|    7 |    Feb-27 | GeoSnap                     | [geosnap][geosnap]                                    |
+|      |    Feb-29 | Isochrones                  | [isochrones][isochrones]                              |
+|    8 |    Mar-05 | Accessibility               | [accessibility][accessibility]                        |
+|      |    Mar-07 | Exercise 3                  |                                                       |
+|    9 |    Mar-12 | Clustering                  | [clustering][clustering]-[clusteringII][clusteringII] |
+|      |    Mar-14 | Spatial Clustering          | [regionalization][regionalization]                    |
+|   10 |    Mar-19 | Geodemographics             | [geodemographics][geodemographics]                    |
+|      |    Mar-21 | Exercise 4                  |                                                       |
+|   11 |    Mar-26 | Review                      |                                                       |
+|      |    Mar-28 | Exam                        |                                                       |
+|      |    Apr-02 | *Spring Break*              |                                                       |
+|      |    Apr-04 | *Spring Break*              |                                                       |
+|   12 |    Apr-09 | Studio: Problem Definition  |                                                       |
+|      |    Apr-11 | Studio: Data Identification |                                                       |
+|   13 |    Apr-16 | Studio: Data Acquisition    |                                                       |
+|      |    Apr-18 | Studio: Data Processing     |                                                       |
+|   14 |    Apr-23 | Studio: Analysis            |                                                       |
+|      |    Apr-25 | Studio: Analysis            |                                                       |
+|   15 |    Apr-30 | Studio: Drafting            |                                                       |
+|      |    May-02 | Studio: Final Essay         |                                                       |
+|   16 | May-03-09 | Final Exam Week             | Presentations                                         |
+
+
+
+## Additional Readings
+
+As we are learning Python through GIS, and assuming students already posses an
+understanding of GIS fundamentals, supplementary readings on Python should
+be consulted for further understanding:
+
+"[Think Python: How to Think Like a Computer
+Scientist](https://greenteapress.com/wp/think-python-2e/)" is an insightful and
+approachable guide designed for beginners looking to learn Python
+programming. Authored by Allen B. Downey, this book simplifies the process of
+learning Python by breaking down its core concepts into manageable sections,
+making it ideal for those new to programming. Emphasizing the importance of
+computational thinking, the book gradually builds from simple topics, like
+variables and basic operations, to more complex subjects such as data
+structures, algorithms, and debugging. Throughout the text, Downey encourages a
+problem-solving approach, reinforcing key programming concepts with practical
+examples and exercises that challenge the reader to think critically and apply
+their learning. This book is renowned for its clear, concise, and
+reader-friendly style, making the often-daunting task of learning a new
+programming language both manageable and engaging.
+
+
+The book "[A Whirlwind Tour of
+Python](https://jakevdp.github.io/WhirlwindTourOfPython/)" by Jake VanderPlas
+can also be accessed online for free. . This book is a fast-paced introduction to
+essential features of the Python language, aimed at researchers and developers
+who are already familiar with programming in another language.
+
+[pandas]: https://pandas.pydata.org/docs/user_guide/10min.html
+[geopandas I]: https://geopandas.org/en/v0.14.2/getting_started/introduction.html
+[choropleths]: https://geographicdata.science/book/notebooks/05_choropleth.html
+[projections]: https://geopandas.org/en/v0.14.2/docs/user_guide/projections.html
+[spatial joins]: https://geopandas.org/en/stable/gallery/spatial_joins.html
+[spatial inequality]: https://econwpa.ub.uni-muenchen.de/econ-wp/urb/papers/0110/0110002.pdf
+[geosnap]: https://oturns.github.io/geosnap-guide
+[isochrones]: https://www.mapbox.com/insights/isochrones
+[accessibility]: https://www.sciencedirect.com/science/article/abs/pii/S1361920921004077
+[clustering]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html
+[clusteringII]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html#hierarchical-clustering
+[regionalization]: https://geographicdata.science/book/notebooks/10_clustering_and_regionalization.html#regionalization-spatially-constrained-hierarchical-clustering
+[geodemographics]: https://www.tandfonline.com/doi/full/10.1080/00330124.2013.848764
+
+[geocoding]: https://pythongis.org/part2/chapter-06/nb/01-data-io.html?highlight=geocoding#geocoding
+[gitI]: https://swcarpentry.github.io/git-novice/
+[gitc]: https://swcarpentry.github.io/git-novice/08-collab/index.html
+[ra]: https://pythongis.org/part2/chapter-07/index.html#
+[gsa]: https://geographicdata.science/book/notebooks/06_spatial_autocorrelation.html
+[pi]: http://mbakker7.github.io/exploratory_computing_with_python
+[shellI]: https://swcarpentry.github.io/shell-novice/ 
+[shellII]: https://swcarpentry.github.io/shell-novice/04-pipefilter/index.html
+[smtc]: https://mpra.ub.uni-muenchen.de/9260/1/MPRA_paper_9260.pdf
+[testing]: https://github.com/krother/python_testing_tutorial
+[tobler]: https://pysal.org/tobler/
+[va]:  https://pythongis.org/part2/chapter-05/index.html#
+[networks]: https://pysal.org/spaghetti/ 
+
+## Policies
+### Accommodations
+If you are a student with a disability and are in need of
+accommodations for this class, please contact Student Ability
+Success Center at (619) 594-6473 as soon as possible.  Please know
+accommodations are not retroactive, and I cannot provide
+accommodations based upon disability until I have received an
+accommodation letter from Student Ability Success Center.
+
+### Privacy and Intellectual Property
+Student Privacy and Intellectual Property: The Family Educational
+Rights and Privacy Act (FERPA) mandates the protection of student
+information, including contact information, grades, and graded
+assignments. I will use Canvas to communicate with you,
+and I will not post grades or leave graded assignments in public
+places. Students will be notified at the time of an assignment if
+copies of student work will be retained beyond the end of the semester
+or used as examples for future students or the wider public. Students
+maintain intellectual property rights to work products they create as
+part of this course unless they are formally notified otherwise.
+
+
+### Academic Integrity
+
+The SDSU student academic integrity policy lists violations in detail.
+These violations fall into eight broad areas that include but are not
+limited to: cheating, fabrication, plagiarism, facilitating academic
+misconduct, unauthorized collaboration, interference or sabotage,
+non-compliance with research regulations and retaliation. For more
+information about the SDSU student academic integrity policy, please see
+the following: <https://sacd.sdsu.edu/student-rights/academic-dishonesty>.
+
+
+### Code of Conduct
+
+As course instructor, I am dedicated to providing a harassment-free
+learning experience for all students, regardless of gender, sexual
+orientation, disability, physical appearance, body size, race, religion,
+or choice of operating system. All course participants are expected to
+show respect and courtesy to other students throughout the semester. As
+a learning community we do not tolerate harassment of participants in
+any form.
+
+-   All communication should be appropriate for a professional audience
+    including people of many different backgrounds. Sexual language and
+    imagery are not appropriate in this course.
+
+-   Be kind to others. Do not insult or put down other students. Behave
+    professionally. Remember that harassment and sexist, racist, or
+    exclusionary jokes are not appropriate for this course.
+
+-   Students violating these rules may be asked to leave the course, and
+    their violations will be reported to the SDSU administration.
+
+This code of conduct is an adaptation of the [SciPy 2018 Code of
+Conduct](https://scipy2018.scipy.org/ehome/299527/648147/index9a04.html).

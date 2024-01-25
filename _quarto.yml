@@ -5,6 +5,7 @@ project:
     - "*/data/*"
     - environment.yml
     - "*/slides/*"
+    - "*/lectures/*"
   output-dir: ./docs
 
 lang: en
@@ -46,3 +47,7 @@ website:
       - section: "Syllabus"
         contents:
           - syllabus.qmd
+      - section: "Week 2"
+        contents:
+          - week-02/intro.qmd
+          - week-02/files-dirs.qmd

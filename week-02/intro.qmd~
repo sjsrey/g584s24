@@ -1,0 +1,21 @@
+
+---
+title: "Introduction to Jupyter Lab"
+author: "Sergio J. Rey"
+date: "January 23, 2024"
+format: 
+  revealjs:
+    theme: simple
+    transition: fade
+    slide-number: false
+    incremental: false 
+    chalkboard: true
+    center: true
+execute:
+  freeze: auto
+  echo: true
+---
+# Overview {.slide: data-transition="none"}
+
+
+[Zoom Session](https://sdsu.zoom.us/rec/play/4YnY4bRL7pskxqcuzSpljAw4W16CRi1hr-XCHjRZI5IX5I8X61uOFheWIJy2BMCzhMOllQD_5oX9302a.cZY9_loBMEQO6MT3?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fsdsu.zoom.us%2Frec%2Fshare%2Fwi30URiBVL1iSe8128MXqI-L9ok2AMcbidodg0oRZth7p4RSeohB7rbjSsD_QAlI.3ywiI--VrRj64JnS)

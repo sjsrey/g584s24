@@ -1,0 +1,329 @@
+---
+title: "Introduction to Unix File System with Jupyter Lab"
+author: "Sergio J. Rey"
+date: "January 24, 2024"
+format: 
+  revealjs:
+    theme: simple
+    transition: fade
+    slide-number: false
+    incremental: false 
+    chalkboard: true
+    center: true
+execute:
+  freeze: auto
+  echo: true
+---
+# Overview {.slide: data-transition="none"}
+
+- Welcome to the lecture on Unix File System!
+- In this session, we'll learn about Unix, its file system, and how to work with it using Jupyter Lab.
+
+# Outline
+
+::: {.incremental}
+- File System Basics
+- Navigation
+- Creating and Managing Directories
+- File Operations
+- *Hands-on*
+::: 
+
+
+# File System Basics
+
+## What is Unix? {.slide: data-transition="none"}
+
+- Unix is a powerful operating system used in many fields, including data science and computer science.
+- Understanding its file system is crucial for efficient work.
+
+## Unix File System Basics {.slide: data-transition="none"}
+
+- The Unix file system is hierarchical.
+- It consists of directories and files organized in a tree-like structure.
+
+## Directory Structure {.slide: data-transition="none"}
+
+- The root directory is the top-level directory.
+- Home directories are where users have their own spaces.
+
+
+## Where am I?
+
+Using the File Browser
+
+::: {#fig-browser layout-ncol=2}
+
+![home](images/home.png){#fig-home}
+
+![data](images/data.png){#fig-data}
+
+:::
+
+## Where am I?
+
+Using the terminal
+
+::: {#fig-terminal layout-ncol=2}
+
+![terminal home](images/terminal1.png){#fig-t2}
+
+![terminal pwd](images/terminal2.png){#fig-t2}
+
+:::
+
+
+# Navigation
+## Navigating the File System {.slide: data-transition="none"}
+
+- Use `ls` to list the contents of a directory.
+- Use `tree` to list the hierarchical structure of the directory
+- Learn how to change directories using `cd`.
+
+## `ls` 
+
+`ls` lists the contents of the `pwd`
+
+![](images/ls.png)
+
+## `tree` 
+
+`tree` lists the directory structure/tree of the `pwd`
+
+![](images/tree.png)
+
+
+## First level tree of the root system
+
+
+![](images/tree1.png)
+
+## First level tree of the `/home` directory 
+
+
+![](images/tree2.png)
+
+
+
+## My Home
+
+![](images/home-jupyter.png)
+
+
+## All Home(s)
+
+![](images/allhome.png)
+
+
+## Clearing the terminal
+
+- `clear` will clear the terminal
+
+![](images/clear.png)
+
+## `history`
+
+To recall what you have done, use `history`
+
+![](images/history.png)
+
+## Rerunning a command
+After using `history` you can rerun a command without having to retype it:
+
+
+::: {#fig-recall layout-ncol=2}
+
+![recall](images/recall.png){#fig-t2}
+
+![result](images/clear.png){#fig-t2}
+
+:::
+
+## Tab completion
+Another efficiency feature is tab completion:
+
+
+
+
+::: {#fig-recall layout-ncol=2}
+
+![tab start](images/tab1.png){#fig-t2}
+
+![tab completion](images/tab2.png){#fig-t2}
+
+:::
+
+
+
+
+## Paths {.slide: data-transition="none"}
+
+- Paths are used to specify the location of files and directories.
+- There are relative and absolute paths.
+
+
+## `cd` change directory
+
+
+![](images/cd.png)
+
+## `cd` shortcuts
+
+
+![](images/cdsc.png)
+
+
+- `cd ..` moves up one directory to the parent of the current directory
+- `cd` will move you back to your `home`
+
+
+# Creating and Managing Directories
+
+## Creating and Managing Directories {.slide: data-transition="none"}
+
+- Learn how to create directories using `mkdir`.
+- Use `rmdir` and `rm -r` to remove directories.
+
+
+## `mkdir`
+
+
+::: {#fig-browser layout-nrow=2}
+
+![before](images/mkdir1.png){#fig-home}
+
+![after](images/mkdir2.png){#fig-data}
+
+:::
+
+# File Operations
+
+## File Operations {.slide: data-transition="none"}
+
+- Creating files with `touch`.
+- Copying, moving, and deleting files.
+
+
+
+## Creating a file in a directory
+
+`cd handson`
+
+`touch data.txt`
+
+
+![](images/touch.png){#fig-data}
+
+
+## Creating a file in a directory (2)
+
+You can also create a file in the current directory by selecting the `+` in the
+toolbar and selecting `Markdown File`
+
+
+![File Browser](images/readme1.png){#fig-home}
+
+
+## Creating a file in a directory (2)
+
+You can also create a file in the current directory by selecting the `+` in the
+toolbar and selecting `Markdown File`
+
+
+![README.md](images/readme2.png){#fig-home}
+
+
+## Copying Files
+
+`cp data.txt data.txt.bak`
+
+
+![](images/cp1.png){#fig-home}
+
+## Deleting Files
+
+`rm data.txt`
+
+
+![](images/rm.png){#fig-home}
+
+
+## Copying Again
+Let's restore our backup
+
+
+![](images/cp2.png){#fig-home}
+
+
+## Copying Between Directories
+
+
+![](images/cp3.png){#fig-home}
+
+## Moving Files Between Directories
+
+![](images/mv.png){#fig-home}
+
+## Creating and Removing Directories
+
+
+![](images/rmdir1.png){#fig-home}
+
+
+## Creating and Removing Directories
+
+![](images/rmdir2.png){#fig-home}
+
+# Practical Exercises {.slide: data-transition="none"}
+
+- Let's put what we've learned into practice.
+- Hands-on exercises to reinforce your understanding.
+- Get together with two-three colleagues
+- One person will "drive" and enter commands
+- Other members "navigate" by giving instructions
+- Rotate through exercises
+- For all these exercises you should record notes in a juptyer notebook for
+  future reference
+
+
+## Exercise 0
+1. Create a directory called `notes`
+2. In that directory create a new jupyter notebook and rename it to
+   `files.ipynb`
+3. Practice using Markdown in `files.ipynb` to structure your notes with headings
+4. Practice taking screenshots and dragging the images into your notebook.
+5. Practice formatting code in Markdown cells.
+
+You will use this notebook to take notes on the remaining exercises. 
+
+
+## Exercise 2 
+Using the File Browser, delete your handson directory and the files living in there
+
+## Exercise 3
+Using a terminal:
+
+1. Create a directory called `handson` in your `home` directory
+2. Select the new directory in the File Browser
+3. From the Launcher create a new Markdown file with the name `README.md`
+4. Add some content (using Markdown) inside the `README.md` file
+5. Before using any unix commands, ask youself what the path is for the
+   `README.md` file. 
+
+## Exercise 4
+
+Using a terminal:
+
+1. Create a directory called `week_2` inside your `handson` directory
+2. Copy the `README.md` file into the `week_2` directory.
+
+## Exercise 5 
+
+Using a terminal
+
+1. Create a directory called `temp` in  the `week_2` directory.
+2. Create a file in the `temp` directory called `data.txt`
+3. Delete the directory `temp` in the `week_2` directory
+
+
+# Questions? {.slide: data-transition="none"}
