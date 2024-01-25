@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Unix File System with Jupyter Lab"
 author: "Sergio J. Rey"
-date: "January 24, 2024"
+date: "January 25, 2024"
 format: 
   revealjs:
     theme: simple
