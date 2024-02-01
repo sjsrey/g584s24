@@ -47,7 +47,10 @@ website:
       - section: "Syllabus"
         contents:
           - syllabus.qmd
-      - section: "Week 2"
+      - section: "Week 2 1/23 1/25"
         contents:
           - week-02/intro.qmd
           - week-02/files-dirs.qmd
+      - section: "Week 3 1/30 2/01"
+        contents:
+          - week-03/pandas.ipynb

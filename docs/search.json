@@ -42,411 +42,60 @@
     "text": "Accessing the Course JupyterHub\n\nOn-campus access\nIf you are on campus, use a browser to go to: http://130.191.118.182\n\n\nOff-campus access\nIf you are off campus, you will first have to connect using the required Virtual Private Network (VPN). Follow these instructions for setting up the vpn on your private computer.\nEither way (on- or off-campus) once you connect you should be greated with the Jupyter Hub Login Screen:\n\n\n\nlogin"
   },
   {
-    "objectID": "week-02/files-dirs.html#what-is-unix",
-    "href": "week-02/files-dirs.html#what-is-unix",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "What is Unix?",
-    "text": "What is Unix?\n\nUnix is a powerful operating system used in many fields, including data science and computer science.\nUnderstanding its file system is crucial for efficient work.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html",
+    "href": "week-03/pandas.html",
+    "title": "Introduction to Pandas",
+    "section": "",
+    "text": "# sample data\n\ndata = {\n    \"Name\" : [ 'Alice', 'Bob', 'Charlie', 'David', 'Eva'],\n    \"Age\" : [ 25, 30, 35, 40, 45 ],\n    \"City\" : [ 'New York', 'Los Angeles', 'Chicago',  'Houston',\n              'Phoenix' ]\n}\ndata\n\n{'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],\n 'Age': [25, 30, 35, 40, 45],\n 'City': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']}\ntype(data)\n\ndict\nimport pandas as pd\ndf = pd.DataFrame(data)\ndf.head()\n\n\n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n0\nAlice\n25\nNew York\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago\n\n\n3\nDavid\n40\nHouston\n\n\n4\nEva\n45\nPhoenix\ntype(df)\n\npandas.core.frame.DataFrame\ndf.shape\n\n(5, 3)\ndf.columns\n\nIndex(['Name', 'Age', 'City'], dtype='object')\ndf.index\n\nRangeIndex(start=0, stop=5, step=1)\ndf.dtypes\n\nName    object\nAge      int64\nCity    object\ndtype: object"
   },
   {
-    "objectID": "week-02/files-dirs.html#unix-file-system-basics",
-    "href": "week-02/files-dirs.html#unix-file-system-basics",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Unix File System Basics",
-    "text": "Unix File System Basics\n\nThe Unix file system is hierarchical.\nIt consists of directories and files organized in a tree-like structure.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html#data-series",
+    "href": "week-03/pandas.html#data-series",
+    "title": "Introduction to Pandas",
+    "section": "Data Series",
+    "text": "Data Series\n\ndf.Age\n\n0    25\n1    30\n2    35\n3    40\n4    45\nName: Age, dtype: int64\n\n\n\ntype(df.Age)\n\npandas.core.series.Series\n\n\n\ntype(df)\n\npandas.core.frame.DataFrame"
   },
   {
-    "objectID": "week-02/files-dirs.html#directory-structure",
-    "href": "week-02/files-dirs.html#directory-structure",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Directory Structure",
-    "text": "Directory Structure\n\nThe root directory is the top-level directory.\nHome directories are where users have their own spaces.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html#data-cleaning",
+    "href": "week-03/pandas.html#data-cleaning",
+    "title": "Introduction to Pandas",
+    "section": "Data Cleaning",
+    "text": "Data Cleaning\n\nimport numpy as np\n\n\n# create a dataframe with missing values\n\ndata = {\n    \"Name\": ['Alice', 'Bob', None, 'David', 'Eva'], \n    \"Age\" : [ 25, None, 35, 40, 'Unknown' ],\n    \"Salary\": [50000,  60000, 55000, None, 45000],\n    \"City\": ['New York', 'Los Angeles', np.nan, 'Houston',\n             'Phoenix' ]\n}\n\n\ndf = pd.DataFrame(data)\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\n\n\n\n\n0\nAlice\n25\n50000.0\nNew York\n\n\n1\nBob\nNone\n60000.0\nLos Angeles\n\n\n2\nNone\n35\n55000.0\nNaN\n\n\n3\nDavid\n40\nNaN\nHouston\n\n\n4\nEva\nUnknown\n45000.0\nPhoenix\n\n\n\n\n\n\n\n\ndf['Name'].fillna('Unknown', inplace=True)\ndf['City'].fillna('Unknown', inplace=True)\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\n\n\n\n\n0\nAlice\n25\n50000.0\nNew York\n\n\n1\nBob\nNone\n60000.0\nLos Angeles\n\n\n2\nUnknown\n35\n55000.0\nUnknown\n\n\n3\nDavid\n40\nNaN\nHouston\n\n\n4\nEva\nUnknown\n45000.0\nPhoenix\n\n\n\n\n\n\n\n\ndf['Age'] = pd.to_numeric(df['Age'], errors='coerce')\n\n\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\n\n\n\n\n0\nAlice\n25.0\n50000.0\nNew York\n\n\n1\nBob\nNaN\n60000.0\nLos Angeles\n\n\n2\nUnknown\n35.0\n55000.0\nUnknown\n\n\n3\nDavid\n40.0\nNaN\nHouston\n\n\n4\nEva\nNaN\n45000.0\nPhoenix\n\n\n\n\n\n\n\n\ndf['Age'].fillna(df['Age'].mean(), inplace=True)\ndf['Salary'].fillna(df['Salary'].mean(), inplace=True)\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix"
   },
   {
-    "objectID": "week-02/files-dirs.html#where-am-i",
-    "href": "week-02/files-dirs.html#where-am-i",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Where am I?",
-    "text": "Where am I?\nUsing the File Browser\n\n\n\n\n\n\n\n\n\n\n\n(a) home\n\n\n\n\n\n\n\n\n\n\n\n(b) data\n\n\n\n\n\n\n\nFigure 1",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html#handling-dtypes",
+    "href": "week-03/pandas.html#handling-dtypes",
+    "title": "Introduction to Pandas",
+    "section": "Handling dtypes",
+    "text": "Handling dtypes\n\nfips_codes = {\n    'New York': '36061',\n    'Los Angeles': '06037',\n    'Unknown': '00000',\n    'Houston': '48201',\n    'Phoenix': '04013'\n}\nfips_codes\n\n{'New York': '36061',\n 'Los Angeles': '06037',\n 'Unknown': '00000',\n 'Houston': '48201',\n 'Phoenix': '04013'}\n\n\n\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n\n\n\n\n\n\n\n\ndf['FIPS'] = df['City'].map(fips_codes)\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n\n\n\n\n\n\n\n\nfips_int = df.FIPS.astype(int)\nfips_int\n    \n\n0    36061\n1     6037\n2        0\n3    48201\n4     4013\nName: FIPS, dtype: int64\n\n\n\ndf.FIPS\n\n0    36061\n1    06037\n2    00000\n3    48201\n4    04013\nName: FIPS, dtype: object\n\n\n\ndf['fips_int'] = fips_int\n\n\ndf.head()\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n\n\n\n\n\n\n\n\ndf['new_fips'] = df.fips_int.astype(str).str.zfill(5)\ndf.head()\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013"
   },
   {
-    "objectID": "week-02/files-dirs.html#where-am-i-1",
-    "href": "week-02/files-dirs.html#where-am-i-1",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Where am I?",
-    "text": "Where am I?\nUsing the terminal\n\n\n\n\n\n\n\n\n\n\n\n(a) terminal home\n\n\n\n\n\n\n\n\n\n\n\n(b) terminal pwd\n\n\n\n\n\n\n\nFigure 2",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html#indexing",
+    "href": "week-03/pandas.html#indexing",
+    "title": "Introduction to Pandas",
+    "section": "Indexing",
+    "text": "Indexing\n\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n\n\n\n\n\n\ndf.loc[3]\n\nName          David\nAge            40.0\nSalary      52500.0\nCity        Houston\nFIPS          48201\nfips_int      48201\nnew_fips      48201\nName: 3, dtype: object\n\n\n\ndf.iloc[3]\n\nName          David\nAge            40.0\nSalary      52500.0\nCity        Houston\nFIPS          48201\nfips_int      48201\nnew_fips      48201\nName: 3, dtype: object\n\n\n\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n\n\n\n\n\n\ndf.sort_values(by='Name')\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n\n\n\n\n\n\ndfsorted = df.sort_values(by='Name')\ndfsorted\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n\n\n\n\n\n\ndfsorted.loc[3]\n\nName          David\nAge            40.0\nSalary      52500.0\nCity        Houston\nFIPS          48201\nfips_int      48201\nnew_fips      48201\nName: 3, dtype: object\n\n\n\ndfsorted.iloc[3]\n\nName              Eva\nAge         33.333333\nSalary        45000.0\nCity          Phoenix\nFIPS            04013\nfips_int         4013\nnew_fips        04013\nName: 4, dtype: object\n\n\n\ndfsorted\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n\n\n\n\n\n\ndfsorted.reset_index(inplace=True, drop=True)\ndfsorted\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n3\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n4\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n\n\n\n\n\n\ndf.iloc[[0,1], [2, 3]]\n\n\n\n\n\n\n\n\nSalary\nCity\n\n\n\n\n0\n50000.0\nNew York\n\n\n1\n60000.0\nLos Angeles\n\n\n\n\n\n\n\n\ndf.iloc[[0,1], [0, 4]]\n\n\n\n\n\n\n\n\nName\nFIPS\n\n\n\n\n0\nAlice\n36061\n\n\n1\nBob\n06037\n\n\n\n\n\n\n\n\ndf.iloc[[0,2]]\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.0\n50000.0\nNew York\n36061\n36061\n36061\n\n\n2\nUnknown\n35.0\n55000.0\nUnknown\n00000\n0\n00000\n\n\n\n\n\n\n\n\ndf.iloc[[0,2]].loc[:, ['City','FIPS']]\n\n\n\n\n\n\n\n\nCity\nFIPS\n\n\n\n\n0\nNew York\n36061\n\n\n2\nUnknown\n00000"
   },
   {
-    "objectID": "week-02/files-dirs.html#navigating-the-file-system",
-    "href": "week-02/files-dirs.html#navigating-the-file-system",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Navigating the File System",
-    "text": "Navigating the File System\n\nUse ls to list the contents of a directory.\nUse tree to list the hierarchical structure of the directory\nLearn how to change directories using cd.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html#filtering",
+    "href": "week-03/pandas.html#filtering",
+    "title": "Introduction to Pandas",
+    "section": "Filtering",
+    "text": "Filtering\n\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n\n\n\n\n\n\ndf[df.Salary &gt; 50000]\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n\n\n\n\n\n\ndf.Salary &gt; 50000\n\n0    False\n1     True\n2     True\n3     True\n4    False\nName: Salary, dtype: bool\n\n\n\ndf[df.Age &gt;= 35]\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n2\nUnknown\n35.0\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.0\n52500.0\nHouston\n48201\n48201\n48201\n\n\n\n\n\n\n\n\ndf[ (df['Age'] &gt;= 35) & (df['Salary'] &gt; 53000) ]\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n2\nUnknown\n35.0\n55000.0\nUnknown\n00000\n0\n00000\n\n\n\n\n\n\n\n\ndf[ (df['Age'] &gt;= 35) | (df['Salary'] &gt; 53000) ]\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201"
   },
   {
-    "objectID": "week-02/files-dirs.html#ls",
-    "href": "week-02/files-dirs.html#ls",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "ls",
-    "text": "ls\nls lists the contents of the pwd",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "week-03/pandas.html#dropping",
+    "href": "week-03/pandas.html#dropping",
+    "title": "Introduction to Pandas",
+    "section": "Dropping",
+    "text": "Dropping\n\ndf\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n2\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n\n\n\n\n\n\ndf[df.Name != 'Unknown']\n\n\n\n\n\n\n\n\nName\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\n\n\n0\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\n1\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\n3\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\n4\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n\n\n\n\n\n\ndf.set_index('Name', inplace=True)\ndf\n\n\n\n\n\n\n\n\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\nName\n\n\n\n\n\n\n\n\n\n\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\nUnknown\n35.000000\n55000.0\nUnknown\n00000\n0\n00000\n\n\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013\n\n\n\n\n\n\n\n\ndf.drop(index='Unknown')\n\n\n\n\n\n\n\n\nAge\nSalary\nCity\nFIPS\nfips_int\nnew_fips\n\n\nName\n\n\n\n\n\n\n\n\n\n\nAlice\n25.000000\n50000.0\nNew York\n36061\n36061\n36061\n\n\nBob\n33.333333\n60000.0\nLos Angeles\n06037\n6037\n06037\n\n\nDavid\n40.000000\n52500.0\nHouston\n48201\n48201\n48201\n\n\nEva\n33.333333\n45000.0\nPhoenix\n04013\n4013\n04013"
   },
   {
-    "objectID": "week-02/files-dirs.html#tree",
-    "href": "week-02/files-dirs.html#tree",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "tree",
-    "text": "tree\ntree lists the directory structure/tree of the pwd",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#first-level-tree-of-the-root-system",
-    "href": "week-02/files-dirs.html#first-level-tree-of-the-root-system",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "First level tree of the root system",
-    "text": "First level tree of the root system",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#first-level-tree-of-the-home-directory",
-    "href": "week-02/files-dirs.html#first-level-tree-of-the-home-directory",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "First level tree of the /home directory",
-    "text": "First level tree of the /home directory",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#my-home",
-    "href": "week-02/files-dirs.html#my-home",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "My Home",
-    "text": "My Home",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#all-homes",
-    "href": "week-02/files-dirs.html#all-homes",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "All Home(s)",
-    "text": "All Home(s)",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#clearing-the-terminal",
-    "href": "week-02/files-dirs.html#clearing-the-terminal",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Clearing the terminal",
-    "text": "Clearing the terminal\n\nclear will clear the terminal",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#history",
-    "href": "week-02/files-dirs.html#history",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "history",
-    "text": "history\nTo recall what you have done, use history",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#rerunning-a-command",
-    "href": "week-02/files-dirs.html#rerunning-a-command",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Rerunning a command",
-    "text": "Rerunning a command\nAfter using history you can rerun a command without having to retype it:\n\n\n\n\n\n\n\n\n\n\n\n(a) recall\n\n\n\n\n\n\n\n\n\n\n\n(b) result\n\n\n\n\n\n\n\nFigure 3",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#tab-completion",
-    "href": "week-02/files-dirs.html#tab-completion",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Tab completion",
-    "text": "Tab completion\nAnother efficiency feature is tab completion:\n\n\n\n\n\n\n\n\n\n\n\n(a) tab start\n\n\n\n\n\n\n\n\n\n\n\n(b) tab completion\n\n\n\n\n\n\n\nFigure 4",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#paths",
-    "href": "week-02/files-dirs.html#paths",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Paths",
-    "text": "Paths\n\nPaths are used to specify the location of files and directories.\nThere are relative and absolute paths.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#cd-change-directory",
-    "href": "week-02/files-dirs.html#cd-change-directory",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "cd change directory",
-    "text": "cd change directory",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#cd-shortcuts",
-    "href": "week-02/files-dirs.html#cd-shortcuts",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "cd shortcuts",
-    "text": "cd shortcuts\n\n\ncd .. moves up one directory to the parent of the current directory\ncd will move you back to your home",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#creating-and-managing-directories-1",
-    "href": "week-02/files-dirs.html#creating-and-managing-directories-1",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Creating and Managing Directories",
-    "text": "Creating and Managing Directories\n\nLearn how to create directories using mkdir.\nUse rmdir and rm -r to remove directories.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#mkdir",
-    "href": "week-02/files-dirs.html#mkdir",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "mkdir",
-    "text": "mkdir\n\n\n\n\n\n\n\n\n\n\n\n(a) before\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) after\n\n\n\n\n\n\n\nFigure 5",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#file-operations-1",
-    "href": "week-02/files-dirs.html#file-operations-1",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "File Operations",
-    "text": "File Operations\n\nCreating files with touch.\nCopying, moving, and deleting files.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#creating-a-file-in-a-directory",
-    "href": "week-02/files-dirs.html#creating-a-file-in-a-directory",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Creating a file in a directory",
-    "text": "Creating a file in a directory\ncd handson\ntouch data.txt\n\n\nFigure 6",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#creating-a-file-in-a-directory-2",
-    "href": "week-02/files-dirs.html#creating-a-file-in-a-directory-2",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Creating a file in a directory (2)",
-    "text": "Creating a file in a directory (2)\nYou can also create a file in the current directory by selecting the + in the toolbar and selecting Markdown File\n\n\nFigure 7: File Browser",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#creating-a-file-in-a-directory-2-1",
-    "href": "week-02/files-dirs.html#creating-a-file-in-a-directory-2-1",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Creating a file in a directory (2)",
-    "text": "Creating a file in a directory (2)\nYou can also create a file in the current directory by selecting the + in the toolbar and selecting Markdown File\n\n\nFigure 8: README.md",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#copying-files",
-    "href": "week-02/files-dirs.html#copying-files",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Copying Files",
-    "text": "Copying Files\ncp data.txt data.txt.bak\n\n\nFigure 9",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#deleting-files",
-    "href": "week-02/files-dirs.html#deleting-files",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Deleting Files",
-    "text": "Deleting Files\nrm data.txt\n\n\nFigure 10",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#copying-again",
-    "href": "week-02/files-dirs.html#copying-again",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Copying Again",
-    "text": "Copying Again\nLet’s restore our backup\n\n\nFigure 11",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#copying-between-directories",
-    "href": "week-02/files-dirs.html#copying-between-directories",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Copying Between Directories",
-    "text": "Copying Between Directories\n\n\nFigure 12",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#moving-files-between-directories",
-    "href": "week-02/files-dirs.html#moving-files-between-directories",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Moving Files Between Directories",
-    "text": "Moving Files Between Directories\n\n\nFigure 13",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#creating-and-removing-directories",
-    "href": "week-02/files-dirs.html#creating-and-removing-directories",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Creating and Removing Directories",
-    "text": "Creating and Removing Directories\n\n\nFigure 14",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#creating-and-removing-directories-1",
-    "href": "week-02/files-dirs.html#creating-and-removing-directories-1",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Creating and Removing Directories",
-    "text": "Creating and Removing Directories\n\n\nFigure 15",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#exercise-0",
-    "href": "week-02/files-dirs.html#exercise-0",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Exercise 0",
-    "text": "Exercise 0\n\nCreate a directory called notes\nIn that directory create a new jupyter notebook and rename it to files.ipynb\nPractice using Markdown in files.ipynb to structure your notes with headings\nPractice taking screenshots and dragging the images into your notebook.\nPractice formatting code in Markdown cells.\n\nYou will use this notebook to take notes on the remaining exercises.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#exercise-2",
-    "href": "week-02/files-dirs.html#exercise-2",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Exercise 2",
-    "text": "Exercise 2\nUsing the File Browser, delete your handson directory and the files living in there",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#exercise-3",
-    "href": "week-02/files-dirs.html#exercise-3",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Exercise 3",
-    "text": "Exercise 3\nUsing a terminal:\n\nCreate a directory called handson in your home directory\nSelect the new directory in the File Browser\nFrom the Launcher create a new Markdown file with the name README.md\nAdd some content (using Markdown) inside the README.md file\nBefore using any unix commands, ask youself what the path is for the README.md file.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#exercise-4",
-    "href": "week-02/files-dirs.html#exercise-4",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Exercise 4",
-    "text": "Exercise 4\nUsing a terminal:\n\nCreate a directory called week_2 inside your handson directory\nCopy the README.md file into the week_2 directory.",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
-  },
-  {
-    "objectID": "week-02/files-dirs.html#exercise-5",
-    "href": "week-02/files-dirs.html#exercise-5",
-    "title": "Introduction to Unix File System with Jupyter Lab",
-    "section": "Exercise 5",
-    "text": "Exercise 5\nUsing a terminal\n\nCreate a directory called temp in the week_2 directory.\nCreate a file in the temp directory called data.txt\nDelete the directory temp in the week_2 directory",
-    "crumbs": [
-      "Week 2",
-      "Introduction to Unix File System with Jupyter Lab"
-    ]
+    "objectID": "accounts.html",
+    "href": "accounts.html",
+    "title": "Geographic Information Systems Applications",
+    "section": "",
+    "text": "import pandas\n\n\ndf = pandas.read_csv('2024-01-23T1031_Grades-GEOG584-01-Spr2024.csv')\n\n\ndf.head()\n\n\n\n\n\n\n\n\nStudent\nID\nSIS User ID\nSIS Login ID\nSection\nAssignments Current Points\nAssignments Final Points\nAssignments Current Score\nAssignments Unposted Current Score\nAssignments Final Score\nAssignments Unposted Final Score\nCurrent Points\nFinal Points\nCurrent Score\nUnposted Current Score\nFinal Score\nUnposted Final Score\n\n\n\n\n0\nPoints Possible\nNaN\nNaN\nNaN\nNaN\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n\n\n1\nBartel, Gracie\n139140.0\n828408289.0\ngbartel2616@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n2\nCarr, Daniel\n46212.0\n824409957.0\ndcarr6178@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n3\nFlores, Christopher\n147495.0\n827625962.0\ncflores3051@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n4\nHigashi, Cara\n137945.0\n822856457.0\nchigashi1194@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n\n\n\n\npandas.read_csv?\n\n\n\nSignature:\npandas.read_csv(\n    filepath_or_buffer: 'FilePath | ReadCsvBuffer[bytes] | ReadCsvBuffer[str]',\n    *,\n    sep: 'str | None | lib.NoDefault' = &lt;no_default&gt;,\n    delimiter: 'str | None | lib.NoDefault' = None,\n    header: \"int | Sequence[int] | None | Literal['infer']\" = 'infer',\n    names: 'Sequence[Hashable] | None | lib.NoDefault' = &lt;no_default&gt;,\n    index_col: 'IndexLabel | Literal[False] | None' = None,\n    usecols: 'list[HashableT] | Callable[[Hashable], bool] | None' = None,\n    dtype: 'DtypeArg | None' = None,\n    engine: 'CSVEngine | None' = None,\n    converters: 'Mapping[Hashable, Callable] | None' = None,\n    true_values: 'list | None' = None,\n    false_values: 'list | None' = None,\n    skipinitialspace: 'bool' = False,\n    skiprows: 'list[int] | int | Callable[[Hashable], bool] | None' = None,\n    skipfooter: 'int' = 0,\n    nrows: 'int | None' = None,\n    na_values: 'Sequence[str] | Mapping[str, Sequence[str]] | None' = None,\n    keep_default_na: 'bool' = True,\n    na_filter: 'bool' = True,\n    verbose: 'bool' = False,\n    skip_blank_lines: 'bool' = True,\n    parse_dates: 'bool | Sequence[Hashable] | None' = None,\n    infer_datetime_format: 'bool | lib.NoDefault' = &lt;no_default&gt;,\n    keep_date_col: 'bool' = False,\n    date_parser: 'Callable | lib.NoDefault' = &lt;no_default&gt;,\n    date_format: 'str | None' = None,\n    dayfirst: 'bool' = False,\n    cache_dates: 'bool' = True,\n    iterator: 'bool' = False,\n    chunksize: 'int | None' = None,\n    compression: 'CompressionOptions' = 'infer',\n    thousands: 'str | None' = None,\n    decimal: 'str' = '.',\n    lineterminator: 'str | None' = None,\n    quotechar: 'str' = '\"',\n    quoting: 'int' = 0,\n    doublequote: 'bool' = True,\n    escapechar: 'str | None' = None,\n    comment: 'str | None' = None,\n    encoding: 'str | None' = None,\n    encoding_errors: 'str | None' = 'strict',\n    dialect: 'str | csv.Dialect | None' = None,\n    on_bad_lines: 'str' = 'error',\n    delim_whitespace: 'bool' = False,\n    low_memory: 'bool' = True,\n    memory_map: 'bool' = False,\n    float_precision: \"Literal['high', 'legacy'] | None\" = None,\n    storage_options: 'StorageOptions | None' = None,\n    dtype_backend: 'DtypeBackend | lib.NoDefault' = &lt;no_default&gt;,\n) -&gt; 'DataFrame | TextFileReader'\nDocstring:\nRead a comma-separated values (csv) file into DataFrame.\nAlso supports optionally iterating or breaking of the file\ninto chunks.\nAdditional help can be found in the online docs for\n`IO Tools &lt;https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html&gt;`_.\nParameters\n----------\nfilepath_or_buffer : str, path object or file-like object\n    Any valid string path is acceptable. The string could be a URL. Valid\n    URL schemes include http, ftp, s3, gs, and file. For file URLs, a host is\n    expected. A local file could be: file://localhost/path/to/table.csv.\n    If you want to pass in a path object, pandas accepts any ``os.PathLike``.\n    By file-like object, we refer to objects with a ``read()`` method, such as\n    a file handle (e.g. via builtin ``open`` function) or ``StringIO``.\nsep : str, default ','\n    Character or regex pattern to treat as the delimiter. If ``sep=None``, the\n    C engine cannot automatically detect\n    the separator, but the Python parsing engine can, meaning the latter will\n    be used and automatically detect the separator from only the first valid\n    row of the file by Python's builtin sniffer tool, ``csv.Sniffer``.\n    In addition, separators longer than 1 character and different from\n    ``'\\s+'`` will be interpreted as regular expressions and will also force\n    the use of the Python parsing engine. Note that regex delimiters are prone\n    to ignoring quoted data. Regex example: ``'\\r\\t'``.\ndelimiter : str, optional\n    Alias for ``sep``.\nheader : int, Sequence of int, 'infer' or None, default 'infer'\n    Row number(s) containing column labels and marking the start of the\n    data (zero-indexed). Default behavior is to infer the column names: if no ``names``\n    are passed the behavior is identical to ``header=0`` and column\n    names are inferred from the first line of the file, if column\n    names are passed explicitly to ``names`` then the behavior is identical to\n    ``header=None``. Explicitly pass ``header=0`` to be able to\n    replace existing names. The header can be a list of integers that\n    specify row locations for a :class:`~pandas.MultiIndex` on the columns\n    e.g. ``[0, 1, 3]``. Intervening rows that are not specified will be\n    skipped (e.g. 2 in this example is skipped). Note that this\n    parameter ignores commented lines and empty lines if\n    ``skip_blank_lines=True``, so ``header=0`` denotes the first line of\n    data rather than the first line of the file.\nnames : Sequence of Hashable, optional\n    Sequence of column labels to apply. If the file contains a header row,\n    then you should explicitly pass ``header=0`` to override the column names.\n    Duplicates in this list are not allowed.\nindex_col : Hashable, Sequence of Hashable or False, optional\n  Column(s) to use as row label(s), denoted either by column labels or column\n  indices.  If a sequence of labels or indices is given, :class:`~pandas.MultiIndex`\n  will be formed for the row labels.\n  Note: ``index_col=False`` can be used to force pandas to *not* use the first\n  column as the index, e.g., when you have a malformed file with delimiters at\n  the end of each line.\nusecols : list of Hashable or Callable, optional\n    Subset of columns to select, denoted either by column labels or column indices.\n    If list-like, all elements must either\n    be positional (i.e. integer indices into the document columns) or strings\n    that correspond to column names provided either by the user in ``names`` or\n    inferred from the document header row(s). If ``names`` are given, the document\n    header row(s) are not taken into account. For example, a valid list-like\n    ``usecols`` parameter would be ``[0, 1, 2]`` or ``['foo', 'bar', 'baz']``.\n    Element order is ignored, so ``usecols=[0, 1]`` is the same as ``[1, 0]``.\n    To instantiate a :class:`~pandas.DataFrame` from ``data`` with element order\n    preserved use ``pd.read_csv(data, usecols=['foo', 'bar'])[['foo', 'bar']]``\n    for columns in ``['foo', 'bar']`` order or\n    ``pd.read_csv(data, usecols=['foo', 'bar'])[['bar', 'foo']]``\n    for ``['bar', 'foo']`` order.\n    If callable, the callable function will be evaluated against the column\n    names, returning names where the callable function evaluates to ``True``. An\n    example of a valid callable argument would be ``lambda x: x.upper() in\n    ['AAA', 'BBB', 'DDD']``. Using this parameter results in much faster\n    parsing time and lower memory usage.\ndtype : dtype or dict of {Hashable : dtype}, optional\n    Data type(s) to apply to either the whole dataset or individual columns.\n    E.g., ``{'a': np.float64, 'b': np.int32, 'c': 'Int64'}``\n    Use ``str`` or ``object`` together with suitable ``na_values`` settings\n    to preserve and not interpret ``dtype``.\n    If ``converters`` are specified, they will be applied INSTEAD\n    of ``dtype`` conversion.\n    .. versionadded:: 1.5.0\n        Support for ``defaultdict`` was added. Specify a ``defaultdict`` as input where\n        the default determines the ``dtype`` of the columns which are not explicitly\n        listed.\nengine : {'c', 'python', 'pyarrow'}, optional\n    Parser engine to use. The C and pyarrow engines are faster, while the python engine\n    is currently more feature-complete. Multithreading is currently only supported by\n    the pyarrow engine.\n    .. versionadded:: 1.4.0\n        The 'pyarrow' engine was added as an *experimental* engine, and some features\n        are unsupported, or may not work correctly, with this engine.\nconverters : dict of {Hashable : Callable}, optional\n    Functions for converting values in specified columns. Keys can either\n    be column labels or column indices.\ntrue_values : list, optional\n    Values to consider as ``True`` in addition to case-insensitive variants of 'True'.\nfalse_values : list, optional\n    Values to consider as ``False`` in addition to case-insensitive variants of 'False'.\nskipinitialspace : bool, default False\n    Skip spaces after delimiter.\nskiprows : int, list of int or Callable, optional\n    Line numbers to skip (0-indexed) or number of lines to skip (``int``)\n    at the start of the file.\n    If callable, the callable function will be evaluated against the row\n    indices, returning ``True`` if the row should be skipped and ``False`` otherwise.\n    An example of a valid callable argument would be ``lambda x: x in [0, 2]``.\nskipfooter : int, default 0\n    Number of lines at bottom of file to skip (Unsupported with ``engine='c'``).\nnrows : int, optional\n    Number of rows of file to read. Useful for reading pieces of large files.\nna_values : Hashable, Iterable of Hashable or dict of {Hashable : Iterable}, optional\n    Additional strings to recognize as ``NA``/``NaN``. If ``dict`` passed, specific\n    per-column ``NA`` values.  By default the following values are interpreted as\n    ``NaN``: \" \", \"#N/A\", \"#N/A N/A\", \"#NA\", \"-1.#IND\", \"-1.#QNAN\", \"-NaN\", \"-nan\",\n    \"1.#IND\", \"1.#QNAN\", \"&lt;NA&gt;\", \"N/A\", \"NA\", \"NULL\", \"NaN\", \"None\",\n    \"n/a\", \"nan\", \"null \".\nkeep_default_na : bool, default True\n    Whether or not to include the default ``NaN`` values when parsing the data.\n    Depending on whether ``na_values`` is passed in, the behavior is as follows:\n    * If ``keep_default_na`` is ``True``, and ``na_values`` are specified, ``na_values``\n      is appended to the default ``NaN`` values used for parsing.\n    * If ``keep_default_na`` is ``True``, and ``na_values`` are not specified, only\n      the default ``NaN`` values are used for parsing.\n    * If ``keep_default_na`` is ``False``, and ``na_values`` are specified, only\n      the ``NaN`` values specified ``na_values`` are used for parsing.\n    * If ``keep_default_na`` is ``False``, and ``na_values`` are not specified, no\n      strings will be parsed as ``NaN``.\n    Note that if ``na_filter`` is passed in as ``False``, the ``keep_default_na`` and\n    ``na_values`` parameters will be ignored.\nna_filter : bool, default True\n    Detect missing value markers (empty strings and the value of ``na_values``). In\n    data without any ``NA`` values, passing ``na_filter=False`` can improve the\n    performance of reading a large file.\nverbose : bool, default False\n    Indicate number of ``NA`` values placed in non-numeric columns.\nskip_blank_lines : bool, default True\n    If ``True``, skip over blank lines rather than interpreting as ``NaN`` values.\nparse_dates : bool, list of Hashable, list of lists or dict of {Hashable : list}, default False\n    The behavior is as follows:\n    * ``bool``. If ``True`` -&gt; try parsing the index.\n    * ``list`` of ``int`` or names. e.g. If ``[1, 2, 3]`` -&gt; try parsing columns 1, 2, 3\n      each as a separate date column.\n    * ``list`` of ``list``. e.g.  If ``[[1, 3]]`` -&gt; combine columns 1 and 3 and parse\n      as a single date column.\n    * ``dict``, e.g. ``{'foo' : [1, 3]}`` -&gt; parse columns 1, 3 as date and call\n      result 'foo'\n    If a column or index cannot be represented as an array of ``datetime``,\n    say because of an unparsable value or a mixture of timezones, the column\n    or index will be returned unaltered as an ``object`` data type. For\n    non-standard ``datetime`` parsing, use :func:`~pandas.to_datetime` after\n    :func:`~pandas.read_csv`.\n    Note: A fast-path exists for iso8601-formatted dates.\ninfer_datetime_format : bool, default False\n    If ``True`` and ``parse_dates`` is enabled, pandas will attempt to infer the\n    format of the ``datetime`` strings in the columns, and if it can be inferred,\n    switch to a faster method of parsing them. In some cases this can increase\n    the parsing speed by 5-10x.\n    .. deprecated:: 2.0.0\n        A strict version of this argument is now the default, passing it has no effect.\nkeep_date_col : bool, default False\n    If ``True`` and ``parse_dates`` specifies combining multiple columns then\n    keep the original columns.\ndate_parser : Callable, optional\n    Function to use for converting a sequence of string columns to an array of\n    ``datetime`` instances. The default uses ``dateutil.parser.parser`` to do the\n    conversion. pandas will try to call ``date_parser`` in three different ways,\n    advancing to the next if an exception occurs: 1) Pass one or more arrays\n    (as defined by ``parse_dates``) as arguments; 2) concatenate (row-wise) the\n    string values from the columns defined by ``parse_dates`` into a single array\n    and pass that; and 3) call ``date_parser`` once for each row using one or\n    more strings (corresponding to the columns defined by ``parse_dates``) as\n    arguments.\n    .. deprecated:: 2.0.0\n       Use ``date_format`` instead, or read in as ``object`` and then apply\n       :func:`~pandas.to_datetime` as-needed.\ndate_format : str or dict of column -&gt; format, optional\n   Format to use for parsing dates when used in conjunction with ``parse_dates``.\n   For anything more complex, please read in as ``object`` and then apply\n   :func:`~pandas.to_datetime` as-needed.\n   .. versionadded:: 2.0.0\ndayfirst : bool, default False\n    DD/MM format dates, international and European format.\ncache_dates : bool, default True\n    If ``True``, use a cache of unique, converted dates to apply the ``datetime``\n    conversion. May produce significant speed-up when parsing duplicate\n    date strings, especially ones with timezone offsets.\niterator : bool, default False\n    Return ``TextFileReader`` object for iteration or getting chunks with\n    ``get_chunk()``.\n    .. versionchanged:: 1.2\n       ``TextFileReader`` is a context manager.\nchunksize : int, optional\n    Number of lines to read from the file per chunk. Passing a value will cause the\n    function to return a ``TextFileReader`` object for iteration.\n    See the `IO Tools docs\n    &lt;https://pandas.pydata.org/pandas-docs/stable/io.html#io-chunking&gt;`_\n    for more information on ``iterator`` and ``chunksize``.\n    .. versionchanged:: 1.2\n       ``TextFileReader`` is a context manager.\ncompression : str or dict, default 'infer'\n    For on-the-fly decompression of on-disk data. If 'infer' and 'filepath_or_buffer' is\n    path-like, then detect compression from the following extensions: '.gz',\n    '.bz2', '.zip', '.xz', '.zst', '.tar', '.tar.gz', '.tar.xz' or '.tar.bz2'\n    (otherwise no compression).\n    If using 'zip' or 'tar', the ZIP file must contain only one data file to be read in.\n    Set to ``None`` for no decompression.\n    Can also be a dict with key ``'method'`` set\n    to one of {``'zip'``, ``'gzip'``, ``'bz2'``, ``'zstd'``, ``'xz'``, ``'tar'``} and\n    other key-value pairs are forwarded to\n    ``zipfile.ZipFile``, ``gzip.GzipFile``,\n    ``bz2.BZ2File``, ``zstandard.ZstdDecompressor``, ``lzma.LZMAFile`` or\n    ``tarfile.TarFile``, respectively.\n    As an example, the following could be passed for Zstandard decompression using a\n    custom compression dictionary:\n    ``compression={'method': 'zstd', 'dict_data': my_compression_dict}``.\n    .. versionadded:: 1.5.0\n        Added support for `.tar` files.\n    .. versionchanged:: 1.4.0 Zstandard support.\nthousands : str (length 1), optional\n    Character acting as the thousands separator in numerical values.\ndecimal : str (length 1), default '.'\n    Character to recognize as decimal point (e.g., use ',' for European data).\nlineterminator : str (length 1), optional\n    Character used to denote a line break. Only valid with C parser.\nquotechar : str (length 1), optional\n    Character used to denote the start and end of a quoted item. Quoted\n    items can include the ``delimiter`` and it will be ignored.\nquoting : {0 or csv.QUOTE_MINIMAL, 1 or csv.QUOTE_ALL, 2 or csv.QUOTE_NONNUMERIC, 3 or csv.QUOTE_NONE}, default csv.QUOTE_MINIMAL\n    Control field quoting behavior per ``csv.QUOTE_*`` constants. Default is\n    ``csv.QUOTE_MINIMAL`` (i.e., 0) which implies that only fields containing special\n    characters are quoted (e.g., characters defined in ``quotechar``, ``delimiter``,\n    or ``lineterminator``.\ndoublequote : bool, default True\n   When ``quotechar`` is specified and ``quoting`` is not ``QUOTE_NONE``, indicate\n   whether or not to interpret two consecutive ``quotechar`` elements INSIDE a\n   field as a single ``quotechar`` element.\nescapechar : str (length 1), optional\n    Character used to escape other characters.\ncomment : str (length 1), optional\n    Character indicating that the remainder of line should not be parsed.\n    If found at the beginning\n    of a line, the line will be ignored altogether. This parameter must be a\n    single character. Like empty lines (as long as ``skip_blank_lines=True``),\n    fully commented lines are ignored by the parameter ``header`` but not by\n    ``skiprows``. For example, if ``comment='#'``, parsing\n    ``#empty\\na,b,c\\n1,2,3`` with ``header=0`` will result in ``'a,b,c'`` being\n    treated as the header.\nencoding : str, optional, default 'utf-8'\n    Encoding to use for UTF when reading/writing (ex. ``'utf-8'``). `List of Python\n    standard encodings\n    &lt;https://docs.python.org/3/library/codecs.html#standard-encodings&gt;`_ .\n    .. versionchanged:: 1.2\n       When ``encoding`` is ``None``, ``errors='replace'`` is passed to\n       ``open()``. Otherwise, ``errors='strict'`` is passed to ``open()``.\n       This behavior was previously only the case for ``engine='python'``.\n    .. versionchanged:: 1.3.0\n       ``encoding_errors`` is a new argument. ``encoding`` has no longer an\n       influence on how encoding errors are handled.\nencoding_errors : str, optional, default 'strict'\n    How encoding errors are treated. `List of possible values\n    &lt;https://docs.python.org/3/library/codecs.html#error-handlers&gt;`_ .\n    .. versionadded:: 1.3.0\ndialect : str or csv.Dialect, optional\n    If provided, this parameter will override values (default or not) for the\n    following parameters: ``delimiter``, ``doublequote``, ``escapechar``,\n    ``skipinitialspace``, ``quotechar``, and ``quoting``. If it is necessary to\n    override values, a ``ParserWarning`` will be issued. See ``csv.Dialect``\n    documentation for more details.\non_bad_lines : {'error', 'warn', 'skip'} or Callable, default 'error'\n    Specifies what to do upon encountering a bad line (a line with too many fields).\n    Allowed values are :\n    - ``'error'``, raise an Exception when a bad line is encountered.\n    - ``'warn'``, raise a warning when a bad line is encountered and skip that line.\n    - ``'skip'``, skip bad lines without raising or warning when they are encountered.\n    .. versionadded:: 1.3.0\n    .. versionadded:: 1.4.0\n        - Callable, function with signature\n          ``(bad_line: list[str]) -&gt; list[str] | None`` that will process a single\n          bad line. ``bad_line`` is a list of strings split by the ``sep``.\n          If the function returns ``None``, the bad line will be ignored.\n          If the function returns a new ``list`` of strings with more elements than\n          expected, a ``ParserWarning`` will be emitted while dropping extra elements.\n          Only supported when ``engine='python'``\ndelim_whitespace : bool, default False\n    Specifies whether or not whitespace (e.g. ``' '`` or ``'\\t'``) will be\n    used as the ``sep`` delimiter. Equivalent to setting ``sep='\\s+'``. If this option\n    is set to ``True``, nothing should be passed in for the ``delimiter``\n    parameter.\nlow_memory : bool, default True\n    Internally process the file in chunks, resulting in lower memory use\n    while parsing, but possibly mixed type inference.  To ensure no mixed\n    types either set ``False``, or specify the type with the ``dtype`` parameter.\n    Note that the entire file is read into a single :class:`~pandas.DataFrame`\n    regardless, use the ``chunksize`` or ``iterator`` parameter to return the data in\n    chunks. (Only valid with C parser).\nmemory_map : bool, default False\n    If a filepath is provided for ``filepath_or_buffer``, map the file object\n    directly onto memory and access the data directly from there. Using this\n    option can improve performance because there is no longer any I/O overhead.\nfloat_precision : {'high', 'legacy', 'round_trip'}, optional\n    Specifies which converter the C engine should use for floating-point\n    values. The options are ``None`` or ``'high'`` for the ordinary converter,\n    ``'legacy'`` for the original lower precision pandas converter, and\n    ``'round_trip'`` for the round-trip converter.\n    .. versionchanged:: 1.2\nstorage_options : dict, optional\n    Extra options that make sense for a particular storage connection, e.g.\n    host, port, username, password, etc. For HTTP(S) URLs the key-value pairs\n    are forwarded to ``urllib.request.Request`` as header options. For other\n    URLs (e.g. starting with \"s3://\", and \"gcs://\") the key-value pairs are\n    forwarded to ``fsspec.open``. Please see ``fsspec`` and ``urllib`` for more\n    details, and for more examples on storage options refer `here\n    &lt;https://pandas.pydata.org/docs/user_guide/io.html?\n    highlight=storage_options#reading-writing-remote-files&gt;`_.\n    .. versionadded:: 1.2\ndtype_backend : {'numpy_nullable', 'pyarrow'}, default 'numpy_nullable'\n    Back-end data type applied to the resultant :class:`DataFrame`\n    (still experimental). Behaviour is as follows:\n    * ``\"numpy_nullable\"``: returns nullable-dtype-backed :class:`DataFrame`\n      (default).\n    * ``\"pyarrow\"``: returns pyarrow-backed nullable :class:`ArrowDtype`\n      DataFrame.\n    .. versionadded:: 2.0\nReturns\n-------\nDataFrame or TextFileReader\n    A comma-separated values (csv) file is returned as two-dimensional\n    data structure with labeled axes.\nSee Also\n--------\nDataFrame.to_csv : Write DataFrame to a comma-separated values (csv) file.\nread_table : Read general delimited file into DataFrame.\nread_fwf : Read a table of fixed-width formatted lines into DataFrame.\nExamples\n--------\n&gt;&gt;&gt; pd.read_csv('data.csv')  # doctest: +SKIP\nFile:      ~/mambaforge/envs/courses_24s/lib/python3.11/site-packages/pandas/io/parsers/readers.py\nType:      function\n\n\n\n\ndf = pandas.read_csv('2024-01-23T1031_Grades-GEOG584-01-Spr2024.csv', skiprows=1)\n\n\ndf.head()\n\n\n\n\n\n\n\n\nPoints Possible\nUnnamed: 1\nUnnamed: 2\nUnnamed: 3\nUnnamed: 4\n(read only)\n(read only).1\n(read only).2\n(read only).3\n(read only).4\n(read only).5\n(read only).6\n(read only).7\n(read only).8\n(read only).9\n(read only).10\n(read only).11\n\n\n\n\n0\nBartel, Gracie\n139140\n828408289\ngbartel2616@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n1\nCarr, Daniel\n46212\n824409957\ndcarr6178@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n2\nFlores, Christopher\n147495\n827625962\ncflores3051@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n3\nHigashi, Cara\n137945\n822856457\nchigashi1194@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n4\nHuang, Jin\n181706\n130381469\njhuang7158@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n\n\n\n\ndf.iloc[:,3]\n\n0            gbartel2616@sdsu.edu\n1              dcarr6178@sdsu.edu\n2            cflores3051@sdsu.edu\n3           chigashi1194@sdsu.edu\n4             jhuang7158@sdsu.edu\n5               hlee5571@sdsu.edu\n6             rlopez0441@sdsu.edu\n7         cmckinstry0535@sdsu.edu\n8             solsen4673@sdsu.edu\n9           jornelas3843@sdsu.edu\n10    gramosgutierre6486@sdsu.edu\n11       msiebenthal9051@sdsu.edu\n12               jsy8036@sdsu.edu\n13             jwang0108@sdsu.edu\nName: Unnamed: 3, dtype: object\n\n\n\nnames = df.iloc[:,3].values\n\n\nnames\n\narray(['gbartel2616@sdsu.edu', 'dcarr6178@sdsu.edu',\n       'cflores3051@sdsu.edu', 'chigashi1194@sdsu.edu',\n       'jhuang7158@sdsu.edu', 'hlee5571@sdsu.edu', 'rlopez0441@sdsu.edu',\n       'cmckinstry0535@sdsu.edu', 'solsen4673@sdsu.edu',\n       'jornelas3843@sdsu.edu', 'gramosgutierre6486@sdsu.edu',\n       'msiebenthal9051@sdsu.edu', 'jsy8036@sdsu.edu',\n       'jwang0108@sdsu.edu'], dtype=object)\n\n\n\nnames = [ name.split(\"@\")[0] for name in names]\n\n\nnames\n\n['gbartel2616',\n 'dcarr6178',\n 'cflores3051',\n 'chigashi1194',\n 'jhuang7158',\n 'hlee5571',\n 'rlopez0441',\n 'cmckinstry0535',\n 'solsen4673',\n 'jornelas3843',\n 'gramosgutierre6486',\n 'msiebenthal9051',\n 'jsy8036',\n 'jwang0108']\n\n\n\nwith open('accounts.csv', 'w') as f:\n    f.write(\"\\n\".join(names))\n\n\n!cat accounts.csv\n\ngbartel2616\ndcarr6178\ncflores3051\nchigashi1194\njhuang7158\nhlee5571\nrlopez0441\ncmckinstry0535\nsolsen4673\njornelas3843\ngramosgutierre6486\nmsiebenthal9051\njsy8036\njwang0108"
   },
   {
     "objectID": "index.html",
@@ -526,131 +175,339 @@
     "text": "If you are a student with a disability and are in need of accommodations for this class, please contact Student Ability Success Center at (619) 594-6473 as soon as possible. Please know accommodations are not retroactive, and I cannot provide accommodations based upon disability until I have received an accommodation letter from Student Ability Success Center.\n\n\n\nStudent Privacy and Intellectual Property: The Family Educational Rights and Privacy Act (FERPA) mandates the protection of student information, including contact information, grades, and graded assignments. I will use Canvas to communicate with you, and I will not post grades or leave graded assignments in public places. Students will be notified at the time of an assignment if copies of student work will be retained beyond the end of the semester or used as examples for future students or the wider public. Students maintain intellectual property rights to work products they create as part of this course unless they are formally notified otherwise.\n\n\n\nThe SDSU student academic integrity policy lists violations in detail. These violations fall into eight broad areas that include but are not limited to: cheating, fabrication, plagiarism, facilitating academic misconduct, unauthorized collaboration, interference or sabotage, non-compliance with research regulations and retaliation. For more information about the SDSU student academic integrity policy, please see the following: https://sacd.sdsu.edu/student-rights/academic-dishonesty.\n\n\n\nAs course instructor, I am dedicated to providing a harassment-free learning experience for all students, regardless of gender, sexual orientation, disability, physical appearance, body size, race, religion, or choice of operating system. All course participants are expected to show respect and courtesy to other students throughout the semester. As a learning community we do not tolerate harassment of participants in any form.\n\nAll communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery are not appropriate in this course.\nBe kind to others. Do not insult or put down other students. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for this course.\nStudents violating these rules may be asked to leave the course, and their violations will be reported to the SDSU administration.\n\nThis code of conduct is an adaptation of the SciPy 2018 Code of Conduct."
   },
   {
-    "objectID": "accounts.html",
-    "href": "accounts.html",
-    "title": "Geographic Information Systems Applications",
-    "section": "",
-    "text": "import pandas\n\n\ndf = pandas.read_csv('2024-01-23T1031_Grades-GEOG584-01-Spr2024.csv')\n\n\ndf.head()\n\n\n\n\n\n\n\n\nStudent\nID\nSIS User ID\nSIS Login ID\nSection\nAssignments Current Points\nAssignments Final Points\nAssignments Current Score\nAssignments Unposted Current Score\nAssignments Final Score\nAssignments Unposted Final Score\nCurrent Points\nFinal Points\nCurrent Score\nUnposted Current Score\nFinal Score\nUnposted Final Score\n\n\n\n\n0\nPoints Possible\nNaN\nNaN\nNaN\nNaN\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n(read only)\n\n\n1\nBartel, Gracie\n139140.0\n828408289.0\ngbartel2616@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n2\nCarr, Daniel\n46212.0\n824409957.0\ndcarr6178@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n3\nFlores, Christopher\n147495.0\n827625962.0\ncflores3051@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n4\nHigashi, Cara\n137945.0\n822856457.0\nchigashi1194@sdsu.edu\nSection 01\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n0.00\n0.00\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n\n\n\n\npandas.read_csv?\n\n\nSignature:\npandas.read_csv(\n    filepath_or_buffer: 'FilePath | ReadCsvBuffer[bytes] | ReadCsvBuffer[str]',\n    *,\n    sep: 'str | None | lib.NoDefault' = &lt;no_default&gt;,\n    delimiter: 'str | None | lib.NoDefault' = None,\n    header: \"int | Sequence[int] | None | Literal['infer']\" = 'infer',\n    names: 'Sequence[Hashable] | None | lib.NoDefault' = &lt;no_default&gt;,\n    index_col: 'IndexLabel | Literal[False] | None' = None,\n    usecols: 'list[HashableT] | Callable[[Hashable], bool] | None' = None,\n    dtype: 'DtypeArg | None' = None,\n    engine: 'CSVEngine | None' = None,\n    converters: 'Mapping[Hashable, Callable] | None' = None,\n    true_values: 'list | None' = None,\n    false_values: 'list | None' = None,\n    skipinitialspace: 'bool' = False,\n    skiprows: 'list[int] | int | Callable[[Hashable], bool] | None' = None,\n    skipfooter: 'int' = 0,\n    nrows: 'int | None' = None,\n    na_values: 'Sequence[str] | Mapping[str, Sequence[str]] | None' = None,\n    keep_default_na: 'bool' = True,\n    na_filter: 'bool' = True,\n    verbose: 'bool' = False,\n    skip_blank_lines: 'bool' = True,\n    parse_dates: 'bool | Sequence[Hashable] | None' = None,\n    infer_datetime_format: 'bool | lib.NoDefault' = &lt;no_default&gt;,\n    keep_date_col: 'bool' = False,\n    date_parser: 'Callable | lib.NoDefault' = &lt;no_default&gt;,\n    date_format: 'str | None' = None,\n    dayfirst: 'bool' = False,\n    cache_dates: 'bool' = True,\n    iterator: 'bool' = False,\n    chunksize: 'int | None' = None,\n    compression: 'CompressionOptions' = 'infer',\n    thousands: 'str | None' = None,\n    decimal: 'str' = '.',\n    lineterminator: 'str | None' = None,\n    quotechar: 'str' = '\"',\n    quoting: 'int' = 0,\n    doublequote: 'bool' = True,\n    escapechar: 'str | None' = None,\n    comment: 'str | None' = None,\n    encoding: 'str | None' = None,\n    encoding_errors: 'str | None' = 'strict',\n    dialect: 'str | csv.Dialect | None' = None,\n    on_bad_lines: 'str' = 'error',\n    delim_whitespace: 'bool' = False,\n    low_memory: 'bool' = True,\n    memory_map: 'bool' = False,\n    float_precision: \"Literal['high', 'legacy'] | None\" = None,\n    storage_options: 'StorageOptions | None' = None,\n    dtype_backend: 'DtypeBackend | lib.NoDefault' = &lt;no_default&gt;,\n) -&gt; 'DataFrame | TextFileReader'\nDocstring:\nRead a comma-separated values (csv) file into DataFrame.\nAlso supports optionally iterating or breaking of the file\ninto chunks.\nAdditional help can be found in the online docs for\n`IO Tools &lt;https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html&gt;`_.\nParameters\n----------\nfilepath_or_buffer : str, path object or file-like object\n    Any valid string path is acceptable. The string could be a URL. Valid\n    URL schemes include http, ftp, s3, gs, and file. For file URLs, a host is\n    expected. A local file could be: file://localhost/path/to/table.csv.\n    If you want to pass in a path object, pandas accepts any ``os.PathLike``.\n    By file-like object, we refer to objects with a ``read()`` method, such as\n    a file handle (e.g. via builtin ``open`` function) or ``StringIO``.\nsep : str, default ','\n    Character or regex pattern to treat as the delimiter. If ``sep=None``, the\n    C engine cannot automatically detect\n    the separator, but the Python parsing engine can, meaning the latter will\n    be used and automatically detect the separator from only the first valid\n    row of the file by Python's builtin sniffer tool, ``csv.Sniffer``.\n    In addition, separators longer than 1 character and different from\n    ``'\\s+'`` will be interpreted as regular expressions and will also force\n    the use of the Python parsing engine. Note that regex delimiters are prone\n    to ignoring quoted data. Regex example: ``'\\r\\t'``.\ndelimiter : str, optional\n    Alias for ``sep``.\nheader : int, Sequence of int, 'infer' or None, default 'infer'\n    Row number(s) containing column labels and marking the start of the\n    data (zero-indexed). Default behavior is to infer the column names: if no ``names``\n    are passed the behavior is identical to ``header=0`` and column\n    names are inferred from the first line of the file, if column\n    names are passed explicitly to ``names`` then the behavior is identical to\n    ``header=None``. Explicitly pass ``header=0`` to be able to\n    replace existing names. The header can be a list of integers that\n    specify row locations for a :class:`~pandas.MultiIndex` on the columns\n    e.g. ``[0, 1, 3]``. Intervening rows that are not specified will be\n    skipped (e.g. 2 in this example is skipped). Note that this\n    parameter ignores commented lines and empty lines if\n    ``skip_blank_lines=True``, so ``header=0`` denotes the first line of\n    data rather than the first line of the file.\nnames : Sequence of Hashable, optional\n    Sequence of column labels to apply. If the file contains a header row,\n    then you should explicitly pass ``header=0`` to override the column names.\n    Duplicates in this list are not allowed.\nindex_col : Hashable, Sequence of Hashable or False, optional\n  Column(s) to use as row label(s), denoted either by column labels or column\n  indices.  If a sequence of labels or indices is given, :class:`~pandas.MultiIndex`\n  will be formed for the row labels.\n  Note: ``index_col=False`` can be used to force pandas to *not* use the first\n  column as the index, e.g., when you have a malformed file with delimiters at\n  the end of each line.\nusecols : list of Hashable or Callable, optional\n    Subset of columns to select, denoted either by column labels or column indices.\n    If list-like, all elements must either\n    be positional (i.e. integer indices into the document columns) or strings\n    that correspond to column names provided either by the user in ``names`` or\n    inferred from the document header row(s). If ``names`` are given, the document\n    header row(s) are not taken into account. For example, a valid list-like\n    ``usecols`` parameter would be ``[0, 1, 2]`` or ``['foo', 'bar', 'baz']``.\n    Element order is ignored, so ``usecols=[0, 1]`` is the same as ``[1, 0]``.\n    To instantiate a :class:`~pandas.DataFrame` from ``data`` with element order\n    preserved use ``pd.read_csv(data, usecols=['foo', 'bar'])[['foo', 'bar']]``\n    for columns in ``['foo', 'bar']`` order or\n    ``pd.read_csv(data, usecols=['foo', 'bar'])[['bar', 'foo']]``\n    for ``['bar', 'foo']`` order.\n    If callable, the callable function will be evaluated against the column\n    names, returning names where the callable function evaluates to ``True``. An\n    example of a valid callable argument would be ``lambda x: x.upper() in\n    ['AAA', 'BBB', 'DDD']``. Using this parameter results in much faster\n    parsing time and lower memory usage.\ndtype : dtype or dict of {Hashable : dtype}, optional\n    Data type(s) to apply to either the whole dataset or individual columns.\n    E.g., ``{'a': np.float64, 'b': np.int32, 'c': 'Int64'}``\n    Use ``str`` or ``object`` together with suitable ``na_values`` settings\n    to preserve and not interpret ``dtype``.\n    If ``converters`` are specified, they will be applied INSTEAD\n    of ``dtype`` conversion.\n    .. versionadded:: 1.5.0\n        Support for ``defaultdict`` was added. Specify a ``defaultdict`` as input where\n        the default determines the ``dtype`` of the columns which are not explicitly\n        listed.\nengine : {'c', 'python', 'pyarrow'}, optional\n    Parser engine to use. The C and pyarrow engines are faster, while the python engine\n    is currently more feature-complete. Multithreading is currently only supported by\n    the pyarrow engine.\n    .. versionadded:: 1.4.0\n        The 'pyarrow' engine was added as an *experimental* engine, and some features\n        are unsupported, or may not work correctly, with this engine.\nconverters : dict of {Hashable : Callable}, optional\n    Functions for converting values in specified columns. Keys can either\n    be column labels or column indices.\ntrue_values : list, optional\n    Values to consider as ``True`` in addition to case-insensitive variants of 'True'.\nfalse_values : list, optional\n    Values to consider as ``False`` in addition to case-insensitive variants of 'False'.\nskipinitialspace : bool, default False\n    Skip spaces after delimiter.\nskiprows : int, list of int or Callable, optional\n    Line numbers to skip (0-indexed) or number of lines to skip (``int``)\n    at the start of the file.\n    If callable, the callable function will be evaluated against the row\n    indices, returning ``True`` if the row should be skipped and ``False`` otherwise.\n    An example of a valid callable argument would be ``lambda x: x in [0, 2]``.\nskipfooter : int, default 0\n    Number of lines at bottom of file to skip (Unsupported with ``engine='c'``).\nnrows : int, optional\n    Number of rows of file to read. Useful for reading pieces of large files.\nna_values : Hashable, Iterable of Hashable or dict of {Hashable : Iterable}, optional\n    Additional strings to recognize as ``NA``/``NaN``. If ``dict`` passed, specific\n    per-column ``NA`` values.  By default the following values are interpreted as\n    ``NaN``: \" \", \"#N/A\", \"#N/A N/A\", \"#NA\", \"-1.#IND\", \"-1.#QNAN\", \"-NaN\", \"-nan\",\n    \"1.#IND\", \"1.#QNAN\", \"&lt;NA&gt;\", \"N/A\", \"NA\", \"NULL\", \"NaN\", \"None\",\n    \"n/a\", \"nan\", \"null \".\nkeep_default_na : bool, default True\n    Whether or not to include the default ``NaN`` values when parsing the data.\n    Depending on whether ``na_values`` is passed in, the behavior is as follows:\n    * If ``keep_default_na`` is ``True``, and ``na_values`` are specified, ``na_values``\n      is appended to the default ``NaN`` values used for parsing.\n    * If ``keep_default_na`` is ``True``, and ``na_values`` are not specified, only\n      the default ``NaN`` values are used for parsing.\n    * If ``keep_default_na`` is ``False``, and ``na_values`` are specified, only\n      the ``NaN`` values specified ``na_values`` are used for parsing.\n    * If ``keep_default_na`` is ``False``, and ``na_values`` are not specified, no\n      strings will be parsed as ``NaN``.\n    Note that if ``na_filter`` is passed in as ``False``, the ``keep_default_na`` and\n    ``na_values`` parameters will be ignored.\nna_filter : bool, default True\n    Detect missing value markers (empty strings and the value of ``na_values``). In\n    data without any ``NA`` values, passing ``na_filter=False`` can improve the\n    performance of reading a large file.\nverbose : bool, default False\n    Indicate number of ``NA`` values placed in non-numeric columns.\nskip_blank_lines : bool, default True\n    If ``True``, skip over blank lines rather than interpreting as ``NaN`` values.\nparse_dates : bool, list of Hashable, list of lists or dict of {Hashable : list}, default False\n    The behavior is as follows:\n    * ``bool``. If ``True`` -&gt; try parsing the index.\n    * ``list`` of ``int`` or names. e.g. If ``[1, 2, 3]`` -&gt; try parsing columns 1, 2, 3\n      each as a separate date column.\n    * ``list`` of ``list``. e.g.  If ``[[1, 3]]`` -&gt; combine columns 1 and 3 and parse\n      as a single date column.\n    * ``dict``, e.g. ``{'foo' : [1, 3]}`` -&gt; parse columns 1, 3 as date and call\n      result 'foo'\n    If a column or index cannot be represented as an array of ``datetime``,\n    say because of an unparsable value or a mixture of timezones, the column\n    or index will be returned unaltered as an ``object`` data type. For\n    non-standard ``datetime`` parsing, use :func:`~pandas.to_datetime` after\n    :func:`~pandas.read_csv`.\n    Note: A fast-path exists for iso8601-formatted dates.\ninfer_datetime_format : bool, default False\n    If ``True`` and ``parse_dates`` is enabled, pandas will attempt to infer the\n    format of the ``datetime`` strings in the columns, and if it can be inferred,\n    switch to a faster method of parsing them. In some cases this can increase\n    the parsing speed by 5-10x.\n    .. deprecated:: 2.0.0\n        A strict version of this argument is now the default, passing it has no effect.\nkeep_date_col : bool, default False\n    If ``True`` and ``parse_dates`` specifies combining multiple columns then\n    keep the original columns.\ndate_parser : Callable, optional\n    Function to use for converting a sequence of string columns to an array of\n    ``datetime`` instances. The default uses ``dateutil.parser.parser`` to do the\n    conversion. pandas will try to call ``date_parser`` in three different ways,\n    advancing to the next if an exception occurs: 1) Pass one or more arrays\n    (as defined by ``parse_dates``) as arguments; 2) concatenate (row-wise) the\n    string values from the columns defined by ``parse_dates`` into a single array\n    and pass that; and 3) call ``date_parser`` once for each row using one or\n    more strings (corresponding to the columns defined by ``parse_dates``) as\n    arguments.\n    .. deprecated:: 2.0.0\n       Use ``date_format`` instead, or read in as ``object`` and then apply\n       :func:`~pandas.to_datetime` as-needed.\ndate_format : str or dict of column -&gt; format, optional\n   Format to use for parsing dates when used in conjunction with ``parse_dates``.\n   For anything more complex, please read in as ``object`` and then apply\n   :func:`~pandas.to_datetime` as-needed.\n   .. versionadded:: 2.0.0\ndayfirst : bool, default False\n    DD/MM format dates, international and European format.\ncache_dates : bool, default True\n    If ``True``, use a cache of unique, converted dates to apply the ``datetime``\n    conversion. May produce significant speed-up when parsing duplicate\n    date strings, especially ones with timezone offsets.\niterator : bool, default False\n    Return ``TextFileReader`` object for iteration or getting chunks with\n    ``get_chunk()``.\n    .. versionchanged:: 1.2\n       ``TextFileReader`` is a context manager.\nchunksize : int, optional\n    Number of lines to read from the file per chunk. Passing a value will cause the\n    function to return a ``TextFileReader`` object for iteration.\n    See the `IO Tools docs\n    &lt;https://pandas.pydata.org/pandas-docs/stable/io.html#io-chunking&gt;`_\n    for more information on ``iterator`` and ``chunksize``.\n    .. versionchanged:: 1.2\n       ``TextFileReader`` is a context manager.\ncompression : str or dict, default 'infer'\n    For on-the-fly decompression of on-disk data. If 'infer' and 'filepath_or_buffer' is\n    path-like, then detect compression from the following extensions: '.gz',\n    '.bz2', '.zip', '.xz', '.zst', '.tar', '.tar.gz', '.tar.xz' or '.tar.bz2'\n    (otherwise no compression).\n    If using 'zip' or 'tar', the ZIP file must contain only one data file to be read in.\n    Set to ``None`` for no decompression.\n    Can also be a dict with key ``'method'`` set\n    to one of {``'zip'``, ``'gzip'``, ``'bz2'``, ``'zstd'``, ``'xz'``, ``'tar'``} and\n    other key-value pairs are forwarded to\n    ``zipfile.ZipFile``, ``gzip.GzipFile``,\n    ``bz2.BZ2File``, ``zstandard.ZstdDecompressor``, ``lzma.LZMAFile`` or\n    ``tarfile.TarFile``, respectively.\n    As an example, the following could be passed for Zstandard decompression using a\n    custom compression dictionary:\n    ``compression={'method': 'zstd', 'dict_data': my_compression_dict}``.\n    .. versionadded:: 1.5.0\n        Added support for `.tar` files.\n    .. versionchanged:: 1.4.0 Zstandard support.\nthousands : str (length 1), optional\n    Character acting as the thousands separator in numerical values.\ndecimal : str (length 1), default '.'\n    Character to recognize as decimal point (e.g., use ',' for European data).\nlineterminator : str (length 1), optional\n    Character used to denote a line break. Only valid with C parser.\nquotechar : str (length 1), optional\n    Character used to denote the start and end of a quoted item. Quoted\n    items can include the ``delimiter`` and it will be ignored.\nquoting : {0 or csv.QUOTE_MINIMAL, 1 or csv.QUOTE_ALL, 2 or csv.QUOTE_NONNUMERIC, 3 or csv.QUOTE_NONE}, default csv.QUOTE_MINIMAL\n    Control field quoting behavior per ``csv.QUOTE_*`` constants. Default is\n    ``csv.QUOTE_MINIMAL`` (i.e., 0) which implies that only fields containing special\n    characters are quoted (e.g., characters defined in ``quotechar``, ``delimiter``,\n    or ``lineterminator``.\ndoublequote : bool, default True\n   When ``quotechar`` is specified and ``quoting`` is not ``QUOTE_NONE``, indicate\n   whether or not to interpret two consecutive ``quotechar`` elements INSIDE a\n   field as a single ``quotechar`` element.\nescapechar : str (length 1), optional\n    Character used to escape other characters.\ncomment : str (length 1), optional\n    Character indicating that the remainder of line should not be parsed.\n    If found at the beginning\n    of a line, the line will be ignored altogether. This parameter must be a\n    single character. Like empty lines (as long as ``skip_blank_lines=True``),\n    fully commented lines are ignored by the parameter ``header`` but not by\n    ``skiprows``. For example, if ``comment='#'``, parsing\n    ``#empty\\na,b,c\\n1,2,3`` with ``header=0`` will result in ``'a,b,c'`` being\n    treated as the header.\nencoding : str, optional, default 'utf-8'\n    Encoding to use for UTF when reading/writing (ex. ``'utf-8'``). `List of Python\n    standard encodings\n    &lt;https://docs.python.org/3/library/codecs.html#standard-encodings&gt;`_ .\n    .. versionchanged:: 1.2\n       When ``encoding`` is ``None``, ``errors='replace'`` is passed to\n       ``open()``. Otherwise, ``errors='strict'`` is passed to ``open()``.\n       This behavior was previously only the case for ``engine='python'``.\n    .. versionchanged:: 1.3.0\n       ``encoding_errors`` is a new argument. ``encoding`` has no longer an\n       influence on how encoding errors are handled.\nencoding_errors : str, optional, default 'strict'\n    How encoding errors are treated. `List of possible values\n    &lt;https://docs.python.org/3/library/codecs.html#error-handlers&gt;`_ .\n    .. versionadded:: 1.3.0\ndialect : str or csv.Dialect, optional\n    If provided, this parameter will override values (default or not) for the\n    following parameters: ``delimiter``, ``doublequote``, ``escapechar``,\n    ``skipinitialspace``, ``quotechar``, and ``quoting``. If it is necessary to\n    override values, a ``ParserWarning`` will be issued. See ``csv.Dialect``\n    documentation for more details.\non_bad_lines : {'error', 'warn', 'skip'} or Callable, default 'error'\n    Specifies what to do upon encountering a bad line (a line with too many fields).\n    Allowed values are :\n    - ``'error'``, raise an Exception when a bad line is encountered.\n    - ``'warn'``, raise a warning when a bad line is encountered and skip that line.\n    - ``'skip'``, skip bad lines without raising or warning when they are encountered.\n    .. versionadded:: 1.3.0\n    .. versionadded:: 1.4.0\n        - Callable, function with signature\n          ``(bad_line: list[str]) -&gt; list[str] | None`` that will process a single\n          bad line. ``bad_line`` is a list of strings split by the ``sep``.\n          If the function returns ``None``, the bad line will be ignored.\n          If the function returns a new ``list`` of strings with more elements than\n          expected, a ``ParserWarning`` will be emitted while dropping extra elements.\n          Only supported when ``engine='python'``\ndelim_whitespace : bool, default False\n    Specifies whether or not whitespace (e.g. ``' '`` or ``'\\t'``) will be\n    used as the ``sep`` delimiter. Equivalent to setting ``sep='\\s+'``. If this option\n    is set to ``True``, nothing should be passed in for the ``delimiter``\n    parameter.\nlow_memory : bool, default True\n    Internally process the file in chunks, resulting in lower memory use\n    while parsing, but possibly mixed type inference.  To ensure no mixed\n    types either set ``False``, or specify the type with the ``dtype`` parameter.\n    Note that the entire file is read into a single :class:`~pandas.DataFrame`\n    regardless, use the ``chunksize`` or ``iterator`` parameter to return the data in\n    chunks. (Only valid with C parser).\nmemory_map : bool, default False\n    If a filepath is provided for ``filepath_or_buffer``, map the file object\n    directly onto memory and access the data directly from there. Using this\n    option can improve performance because there is no longer any I/O overhead.\nfloat_precision : {'high', 'legacy', 'round_trip'}, optional\n    Specifies which converter the C engine should use for floating-point\n    values. The options are ``None`` or ``'high'`` for the ordinary converter,\n    ``'legacy'`` for the original lower precision pandas converter, and\n    ``'round_trip'`` for the round-trip converter.\n    .. versionchanged:: 1.2\nstorage_options : dict, optional\n    Extra options that make sense for a particular storage connection, e.g.\n    host, port, username, password, etc. For HTTP(S) URLs the key-value pairs\n    are forwarded to ``urllib.request.Request`` as header options. For other\n    URLs (e.g. starting with \"s3://\", and \"gcs://\") the key-value pairs are\n    forwarded to ``fsspec.open``. Please see ``fsspec`` and ``urllib`` for more\n    details, and for more examples on storage options refer `here\n    &lt;https://pandas.pydata.org/docs/user_guide/io.html?\n    highlight=storage_options#reading-writing-remote-files&gt;`_.\n    .. versionadded:: 1.2\ndtype_backend : {'numpy_nullable', 'pyarrow'}, default 'numpy_nullable'\n    Back-end data type applied to the resultant :class:`DataFrame`\n    (still experimental). Behaviour is as follows:\n    * ``\"numpy_nullable\"``: returns nullable-dtype-backed :class:`DataFrame`\n      (default).\n    * ``\"pyarrow\"``: returns pyarrow-backed nullable :class:`ArrowDtype`\n      DataFrame.\n    .. versionadded:: 2.0\nReturns\n-------\nDataFrame or TextFileReader\n    A comma-separated values (csv) file is returned as two-dimensional\n    data structure with labeled axes.\nSee Also\n--------\nDataFrame.to_csv : Write DataFrame to a comma-separated values (csv) file.\nread_table : Read general delimited file into DataFrame.\nread_fwf : Read a table of fixed-width formatted lines into DataFrame.\nExamples\n--------\n&gt;&gt;&gt; pd.read_csv('data.csv')  # doctest: +SKIP\nFile:      ~/mambaforge/envs/courses_24s/lib/python3.11/site-packages/pandas/io/parsers/readers.py\nType:      function\n\n\n\n\ndf = pandas.read_csv('2024-01-23T1031_Grades-GEOG584-01-Spr2024.csv', skiprows=1)\n\n\ndf.head()\n\n\n\n\n\n\n\n\nPoints Possible\nUnnamed: 1\nUnnamed: 2\nUnnamed: 3\nUnnamed: 4\n(read only)\n(read only).1\n(read only).2\n(read only).3\n(read only).4\n(read only).5\n(read only).6\n(read only).7\n(read only).8\n(read only).9\n(read only).10\n(read only).11\n\n\n\n\n0\nBartel, Gracie\n139140\n828408289\ngbartel2616@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n1\nCarr, Daniel\n46212\n824409957\ndcarr6178@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n2\nFlores, Christopher\n147495\n827625962\ncflores3051@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n3\nHigashi, Cara\n137945\n822856457\nchigashi1194@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n4\nHuang, Jin\n181706\n130381469\njhuang7158@sdsu.edu\nSection 01\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n0.0\n0.0\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n\n\n\n\ndf.iloc[:,3]\n\n0            gbartel2616@sdsu.edu\n1              dcarr6178@sdsu.edu\n2            cflores3051@sdsu.edu\n3           chigashi1194@sdsu.edu\n4             jhuang7158@sdsu.edu\n5               hlee5571@sdsu.edu\n6             rlopez0441@sdsu.edu\n7         cmckinstry0535@sdsu.edu\n8             solsen4673@sdsu.edu\n9           jornelas3843@sdsu.edu\n10    gramosgutierre6486@sdsu.edu\n11       msiebenthal9051@sdsu.edu\n12               jsy8036@sdsu.edu\n13             jwang0108@sdsu.edu\nName: Unnamed: 3, dtype: object\n\n\n\nnames = df.iloc[:,3].values\n\n\nnames\n\narray(['gbartel2616@sdsu.edu', 'dcarr6178@sdsu.edu',\n       'cflores3051@sdsu.edu', 'chigashi1194@sdsu.edu',\n       'jhuang7158@sdsu.edu', 'hlee5571@sdsu.edu', 'rlopez0441@sdsu.edu',\n       'cmckinstry0535@sdsu.edu', 'solsen4673@sdsu.edu',\n       'jornelas3843@sdsu.edu', 'gramosgutierre6486@sdsu.edu',\n       'msiebenthal9051@sdsu.edu', 'jsy8036@sdsu.edu',\n       'jwang0108@sdsu.edu'], dtype=object)\n\n\n\nnames = [ name.split(\"@\")[0] for name in names]\n\n\nnames\n\n['gbartel2616',\n 'dcarr6178',\n 'cflores3051',\n 'chigashi1194',\n 'jhuang7158',\n 'hlee5571',\n 'rlopez0441',\n 'cmckinstry0535',\n 'solsen4673',\n 'jornelas3843',\n 'gramosgutierre6486',\n 'msiebenthal9051',\n 'jsy8036',\n 'jwang0108']\n\n\n\nwith open('accounts.csv', 'w') as f:\n    f.write(\"\\n\".join(names))\n\n\n!cat accounts.csv\n\ngbartel2616\ndcarr6178\ncflores3051\nchigashi1194\njhuang7158\nhlee5571\nrlopez0441\ncmckinstry0535\nsolsen4673\njornelas3843\ngramosgutierre6486\nmsiebenthal9051\njsy8036\njwang0108"
+    "objectID": "week-02/files-dirs.html#what-is-unix",
+    "href": "week-02/files-dirs.html#what-is-unix",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "What is Unix?",
+    "text": "What is Unix?\n\nUnix is a powerful operating system used in many fields, including data science and computer science.\nUnderstanding its file system is crucial for efficient work."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#unix-file-system-basics",
+    "href": "week-02/files-dirs.html#unix-file-system-basics",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Unix File System Basics",
+    "text": "Unix File System Basics\n\nThe Unix file system is hierarchical.\nIt consists of directories and files organized in a tree-like structure."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#directory-structure",
+    "href": "week-02/files-dirs.html#directory-structure",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Directory Structure",
+    "text": "Directory Structure\n\nThe root directory is the top-level directory.\nHome directories are where users have their own spaces."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#where-am-i",
+    "href": "week-02/files-dirs.html#where-am-i",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Where am I?",
+    "text": "Where am I?\nUsing the File Browser\n\n\n\n\n\n\n\n(a) home\n\n\n\n\nFigure 1:"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#where-am-i-1",
+    "href": "week-02/files-dirs.html#where-am-i-1",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Where am I?",
+    "text": "Where am I?\nUsing the terminal\n\n\n\n\n\n\n\n(a) terminal home\n\n\n\n\nFigure 2:"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#navigating-the-file-system",
+    "href": "week-02/files-dirs.html#navigating-the-file-system",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Navigating the File System",
+    "text": "Navigating the File System\n\nUse ls to list the contents of a directory.\nUse tree to list the hierarchical structure of the directory\nLearn how to change directories using cd."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#ls",
+    "href": "week-02/files-dirs.html#ls",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "ls",
+    "text": "ls\nls lists the contents of the pwd"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#tree",
+    "href": "week-02/files-dirs.html#tree",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "tree",
+    "text": "tree\ntree lists the directory structure/tree of the pwd"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#first-level-tree-of-the-root-system",
+    "href": "week-02/files-dirs.html#first-level-tree-of-the-root-system",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "First level tree of the root system",
+    "text": "First level tree of the root system"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#first-level-tree-of-the-home-directory",
+    "href": "week-02/files-dirs.html#first-level-tree-of-the-home-directory",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "First level tree of the /home directory",
+    "text": "First level tree of the /home directory"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#my-home",
+    "href": "week-02/files-dirs.html#my-home",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "My Home",
+    "text": "My Home"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#all-homes",
+    "href": "week-02/files-dirs.html#all-homes",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "All Home(s)",
+    "text": "All Home(s)"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#clearing-the-terminal",
+    "href": "week-02/files-dirs.html#clearing-the-terminal",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Clearing the terminal",
+    "text": "Clearing the terminal\n\nclear will clear the terminal"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#history",
+    "href": "week-02/files-dirs.html#history",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "history",
+    "text": "history\nTo recall what you have done, use history"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#rerunning-a-command",
+    "href": "week-02/files-dirs.html#rerunning-a-command",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Rerunning a command",
+    "text": "Rerunning a command\nAfter using history you can rerun a command without having to retype it:\n\n\n\n\n\n\n\n(a) recall\n\n\n\n\nFigure 3:"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#tab-completion",
+    "href": "week-02/files-dirs.html#tab-completion",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Tab completion",
+    "text": "Tab completion\nAnother efficiency feature is tab completion:\n\n\n\n\n\n\n\n(a) tab start\n\n\n\n\nFigure 4:"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#paths",
+    "href": "week-02/files-dirs.html#paths",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Paths",
+    "text": "Paths\n\nPaths are used to specify the location of files and directories.\nThere are relative and absolute paths."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#cd-change-directory",
+    "href": "week-02/files-dirs.html#cd-change-directory",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "cd change directory",
+    "text": "cd change directory"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#cd-shortcuts",
+    "href": "week-02/files-dirs.html#cd-shortcuts",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "cd shortcuts",
+    "text": "cd shortcuts\n\n\ncd .. moves up one directory to the parent of the current directory\ncd will move you back to your home"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#creating-and-managing-directories-1",
+    "href": "week-02/files-dirs.html#creating-and-managing-directories-1",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Creating and Managing Directories",
+    "text": "Creating and Managing Directories\n\nLearn how to create directories using mkdir.\nUse rmdir and rm -r to remove directories."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#mkdir",
+    "href": "week-02/files-dirs.html#mkdir",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "mkdir",
+    "text": "mkdir\n\n\n\n\n\n\n\n(a) before\n\n\n\n\nFigure 5:"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#file-operations-1",
+    "href": "week-02/files-dirs.html#file-operations-1",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "File Operations",
+    "text": "File Operations\n\nCreating files with touch.\nCopying, moving, and deleting files."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#creating-a-file-in-a-directory",
+    "href": "week-02/files-dirs.html#creating-a-file-in-a-directory",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Creating a file in a directory",
+    "text": "Creating a file in a directory\ncd handson\ntouch data.txt"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#creating-a-file-in-a-directory-2",
+    "href": "week-02/files-dirs.html#creating-a-file-in-a-directory-2",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Creating a file in a directory (2)",
+    "text": "Creating a file in a directory (2)\nYou can also create a file in the current directory by selecting the + in the toolbar and selecting Markdown File\n\nFigure 6: File Browser"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#creating-a-file-in-a-directory-2-1",
+    "href": "week-02/files-dirs.html#creating-a-file-in-a-directory-2-1",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Creating a file in a directory (2)",
+    "text": "Creating a file in a directory (2)\nYou can also create a file in the current directory by selecting the + in the toolbar and selecting Markdown File\n\nFigure 7: README.md"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#copying-files",
+    "href": "week-02/files-dirs.html#copying-files",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Copying Files",
+    "text": "Copying Files\ncp data.txt data.txt.bak"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#deleting-files",
+    "href": "week-02/files-dirs.html#deleting-files",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Deleting Files",
+    "text": "Deleting Files\nrm data.txt"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#copying-again",
+    "href": "week-02/files-dirs.html#copying-again",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Copying Again",
+    "text": "Copying Again\nLet’s restore our backup"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#copying-between-directories",
+    "href": "week-02/files-dirs.html#copying-between-directories",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Copying Between Directories",
+    "text": "Copying Between Directories"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#moving-files-between-directories",
+    "href": "week-02/files-dirs.html#moving-files-between-directories",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Moving Files Between Directories",
+    "text": "Moving Files Between Directories"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#creating-and-removing-directories",
+    "href": "week-02/files-dirs.html#creating-and-removing-directories",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Creating and Removing Directories",
+    "text": "Creating and Removing Directories"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#creating-and-removing-directories-1",
+    "href": "week-02/files-dirs.html#creating-and-removing-directories-1",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Creating and Removing Directories",
+    "text": "Creating and Removing Directories"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#exercise-0",
+    "href": "week-02/files-dirs.html#exercise-0",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Exercise 0",
+    "text": "Exercise 0\n\nCreate a directory called notes\nIn that directory create a new jupyter notebook and rename it to files.ipynb\nPractice using Markdown in files.ipynb to structure your notes with headings\nPractice taking screenshots and dragging the images into your notebook.\nPractice formatting code in Markdown cells.\n\nYou will use this notebook to take notes on the remaining exercises."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#exercise-2",
+    "href": "week-02/files-dirs.html#exercise-2",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nUsing the File Browser, delete your handson directory and the files living in there"
+  },
+  {
+    "objectID": "week-02/files-dirs.html#exercise-3",
+    "href": "week-02/files-dirs.html#exercise-3",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nUsing a terminal:\n\nCreate a directory called handson in your home directory\nSelect the new directory in the File Browser\nFrom the Launcher create a new Markdown file with the name README.md\nAdd some content (using Markdown) inside the README.md file\nBefore using any unix commands, ask youself what the path is for the README.md file."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#exercise-4",
+    "href": "week-02/files-dirs.html#exercise-4",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nUsing a terminal:\n\nCreate a directory called week_2 inside your handson directory\nCopy the README.md file into the week_2 directory."
+  },
+  {
+    "objectID": "week-02/files-dirs.html#exercise-5",
+    "href": "week-02/files-dirs.html#exercise-5",
+    "title": "Introduction to Unix File System with Jupyter Lab",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nUsing a terminal\n\nCreate a directory called temp in the week_2 directory.\nCreate a file in the temp directory called data.txt\nDelete the directory temp in the week_2 directory"
   },
   {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "GEOG 584",
     "section": "",
-    "text": "Instructor\nSergio Rey\nLecture Meetings\nTue 11:00-12:40\n\n\n\n\n\nThu 11:00-13:40\n\n\nOffice Hours\nThu 12:40-13:40 and by appointment\nClassroom\nSH 324\n\n\nOffice\nPFSA 316G\nCourse LMS\nCanvas\n\n\n\n\n\n\nThis course offers an introduction to open source tools and practices for geographic information system (GIS) applications. Much of today’s world is dominated by “big data”, data science, machine learning, and artificial intelligence, and GIS is no exception. This requires that GIS students have the capacity to understand and analyze quantitative information. At the same time, there are increasing demands for openness and transparency in both GIS applications and GIS in science.\nThis course is designed to equip students with the skills and practices to fully engage with, and contribute to, these developments. It relies on open source software which is essential since it provides access to free, high-quality, cross-platform tools. At the same time, free availability does not necessarily translate into skill acquisition, and a key goal of this course is to flatten the learning curve for students discovering these new tools and practices.\n\n\n\nThe course is structured as a blending of a lecture and studio. In the lecture component of the course, the literature surrounding the course project will be discussed and evaluated to shape the empirical project which will form the key focus of the second half of the semester. In the studio component of the course, students will be exposed to open source tools (software), technologies (github, CI/CD), and practices (collaborative development) in GIS projects.\n\n\n\nBy the end of the semester, students will\n\nacquire competency in using open source software and tools for their own GIS research projects\ngain experience in collaborative open source and open science best practices\napply these skill sets to contribute to a reproducible empirical GIS project\n\n\n\n\nGEOG 484 or equivalent.\n\nCourses numbered 500 through 599 are in the upper division and are also acceptable for advanced degrees when taken by students admitted to graduate standing;\n\nSource\n\n\n\nThis is a 3-unit course. The definition of a unit is one credit hour:\n\nOne hour of direct faculty instruction and a minimum of two hours of out-of-class student work each week for approximately 15 weeks for one semester or equivalent amount of work over a different amount of time;\n\nSource\nAs such, you should allocate six hours of time per week for working on course related materials outside of our in-class meetings.\n\n\n\n\n\nA series of exercises will be assigned that provide opportunities to further develop skills in open source tooling and practices. Each student will be evaluated individually on all four exercises. You can view these exercises as practice for the skills that go into the final project.\n\n\n\nThere will be one exam on week 11 covering the materials from the first part of the course.\n\n\n\nThe last 5 weeks of the course are organized as a studio in which each student will contribute to a final project that requires the application of the various open source technologies, packages, and practices that are introduced.\nRubrics for peer evaluation of project work will be given out in week 11.\n\n\n\nStarting the second week of sessions, quizzes will be given on the assigned reading material. Quizzes will run through week 10 of the semester. Quizzes are graded on a pass/fail basis. Quizzes will be given during the first 5 minutes of a class meeting.\n\n\n\nEach student is provided with three tokens at the beginning of the semester. Tokens can be used in the following ways:\n\nOne token can be used for a one-week extension on an exercise.\nOne token can be used to resubmit an exercise that does not demonstrate competency.\nTwo tokens can be used to request a make-up date for the exam. (Requests have to be submitted by March 14 5pm.)\n\nEach token that remains unused by May 2 will be counted as a passed quiz.\n\n\n\nYour final course grade is determined using specification grading. Your course grade will be based on the quality and quantity of the work that you submit that is evaluated to be of an acceptable level of quality. The acceptable level of quality demonstrates competency in the concepts and methods covered in the course.\nThree is a two-step process for determination of your final course grade at the end of the semester:\n\nUsing your exercises, project and quiz grades, your base grade is determined.\nUsing your exam grade to determine if your base grade is adjusted upwards, downwards or remains as your final grade.\n\nFor Step 1, the base grade is determined as follows\n\n\n\nBase\nHurdles\n\n\n\n\nA\nDemonstrates competency on 4 of 4 exercises\n\n\n\nObtained a valued contributor in evaluation\n\n\n\nPass 90% of the quizzes\n\n\n\nGroup project achieves competency in all 10 areas\n\n\nB\nDemonstrates competency on 3 of 4 exercises\n\n\n\nObtained a team player ranking in evaluation\n\n\n\nPass 80% of the quizzes\n\n\n\nGroup project achieves competency in 8 areas\n\n\nC\nDemonstrates competency on 2 of 4 exercises\n\n\n\nObtained a free rider ranking in evaluation\n\n\n\nPass 70% of the quizzes\n\n\n\nGroup project achieves competency in 6 areas\n\n\nD\nDemonstrates competency on 1 of 4 exercises\n\n\n\nObtained a missing in action ranking in evaluation\n\n\n\nPass 60% of the quizzes\n\n\n\nGroup project achieves competency in 4 areas\n\n\nF\nFailure to clear all D-level hurdles\n\n\n\nYour base grade is the highest grade for which you clear all the hurdles. For example, a student who demonstrated competency on 3 of the four exercises, worked on a group project that achieved competency in 9 of the 10 areas, passed 85% of the quizzes, and obtained a free rider ranking in their peer evaluation would have a C base grade.\nFor Step 2, your final course grade is determined as follows:\n\nIf you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).\nIf you score between 70-85% on the exam, your base grade becomes your course grade.\nIf you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.\nIf you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.\n\n\n\n\n\n\n\n\nWeek\nDates\nTopic\nReadings\n\n\n\n\n1\nJan-18\nCourse Introduction\n\n\n\n2\nJan-23\nAccounts\n\n\n\n\nJan-25\nComputational Environment\n\n\n\n3\nJan-30\nPandas\npandas\n\n\n\nFeb-01\nGeoPandas\ngeopandas I\n\n\n4\nFeb-06\nGeovisualizaiton\nchoropleths\n\n\n\nFeb-08\nExercise 1\n\n\n\n5\nFeb-13\nProjections\nprojections\n\n\n\nFeb-15\nSpatial Joins\nspatial joins\n\n\n6\nFeb-20\nSpatial Inequality\nspatial inequality\n\n\n\nFeb-22\nExercise 2\n\n\n\n7\nFeb-27\nGeoSnap\ngeosnap\n\n\n\nFeb-29\nIsochrones\nisochrones\n\n\n8\nMar-05\nAccessibility\naccessibility\n\n\n\nMar-07\nExercise 3\n\n\n\n9\nMar-12\nClustering\nclustering-clusteringII\n\n\n\nMar-14\nSpatial Clustering\nregionalization\n\n\n10\nMar-19\nGeodemographics\ngeodemographics\n\n\n\nMar-21\nExercise 4\n\n\n\n11\nMar-26\nReview\n\n\n\n\nMar-28\nExam\n\n\n\n\nApr-02\nSpring Break\n\n\n\n\nApr-04\nSpring Break\n\n\n\n12\nApr-09\nStudio: Problem Definition\n\n\n\n\nApr-11\nStudio: Data Identification\n\n\n\n13\nApr-16\nStudio: Data Acquisition\n\n\n\n\nApr-18\nStudio: Data Processing\n\n\n\n14\nApr-23\nStudio: Analysis\n\n\n\n\nApr-25\nStudio: Analysis\n\n\n\n15\nApr-30\nStudio: Drafting\n\n\n\n\nMay-02\nStudio: Final Essay\n\n\n\n16\nMay-03-09\nFinal Exam Week\nPresentations\n\n\n\n\n\n\nAs we are learning Python through GIS, and assuming students already posses an understanding of GIS fundamentals, supplementary readings on Python should be consulted for further understanding:\n“Think Python: How to Think Like a Computer Scientist” is an insightful and approachable guide designed for beginners looking to learn Python programming. Authored by Allen B. Downey, this book simplifies the process of learning Python by breaking down its core concepts into manageable sections, making it ideal for those new to programming. Emphasizing the importance of computational thinking, the book gradually builds from simple topics, like variables and basic operations, to more complex subjects such as data structures, algorithms, and debugging. Throughout the text, Downey encourages a problem-solving approach, reinforcing key programming concepts with practical examples and exercises that challenge the reader to think critically and apply their learning. This book is renowned for its clear, concise, and reader-friendly style, making the often-daunting task of learning a new programming language both manageable and engaging.\nThe book “A Whirlwind Tour of Python” by Jake VanderPlas can also be accessed online for free. . This book is a fast-paced introduction to essential features of the Python language, aimed at researchers and developers who are already familiar with programming in another language.\n\n\n\n\n\nIf you are a student with a disability and are in need of accommodations for this class, please contact Student Ability Success Center at (619) 594-6473 as soon as possible. Please know accommodations are not retroactive, and I cannot provide accommodations based upon disability until I have received an accommodation letter from Student Ability Success Center.\n\n\n\nStudent Privacy and Intellectual Property: The Family Educational Rights and Privacy Act (FERPA) mandates the protection of student information, including contact information, grades, and graded assignments. I will use Canvas to communicate with you, and I will not post grades or leave graded assignments in public places. Students will be notified at the time of an assignment if copies of student work will be retained beyond the end of the semester or used as examples for future students or the wider public. Students maintain intellectual property rights to work products they create as part of this course unless they are formally notified otherwise.\n\n\n\nThe SDSU student academic integrity policy lists violations in detail. These violations fall into eight broad areas that include but are not limited to: cheating, fabrication, plagiarism, facilitating academic misconduct, unauthorized collaboration, interference or sabotage, non-compliance with research regulations and retaliation. For more information about the SDSU student academic integrity policy, please see the following: https://sacd.sdsu.edu/student-rights/academic-dishonesty.\n\n\n\nAs course instructor, I am dedicated to providing a harassment-free learning experience for all students, regardless of gender, sexual orientation, disability, physical appearance, body size, race, religion, or choice of operating system. All course participants are expected to show respect and courtesy to other students throughout the semester. As a learning community we do not tolerate harassment of participants in any form.\n\nAll communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery are not appropriate in this course.\nBe kind to others. Do not insult or put down other students. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for this course.\nStudents violating these rules may be asked to leave the course, and their violations will be reported to the SDSU administration.\n\nThis code of conduct is an adaptation of the SciPy 2018 Code of Conduct.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "Instructor\nSergio Rey\nLecture Meetings\nTue 11:00-12:40\n\n\n\n\n\nThu 11:00-13:40\n\n\nOffice Hours\nThu 12:40-13:40 and by appointment\nClassroom\nSH 324\n\n\nOffice\nPFSA 316G\nCourse LMS\nCanvas\n\n\n\n\n\n\nThis course offers an introduction to open source tools and practices for geographic information system (GIS) applications. Much of today’s world is dominated by “big data”, data science, machine learning, and artificial intelligence, and GIS is no exception. This requires that GIS students have the capacity to understand and analyze quantitative information. At the same time, there are increasing demands for openness and transparency in both GIS applications and GIS in science.\nThis course is designed to equip students with the skills and practices to fully engage with, and contribute to, these developments. It relies on open source software which is essential since it provides access to free, high-quality, cross-platform tools. At the same time, free availability does not necessarily translate into skill acquisition, and a key goal of this course is to flatten the learning curve for students discovering these new tools and practices.\n\n\n\nThe course is structured as a blending of a lecture and studio. In the lecture component of the course, the literature surrounding the course project will be discussed and evaluated to shape the empirical project which will form the key focus of the second half of the semester. In the studio component of the course, students will be exposed to open source tools (software), technologies (github, CI/CD), and practices (collaborative development) in GIS projects.\n\n\n\nBy the end of the semester, students will\n\nacquire competency in using open source software and tools for their own GIS research projects\ngain experience in collaborative open source and open science best practices\napply these skill sets to contribute to a reproducible empirical GIS project\n\n\n\n\nGEOG 484 or equivalent.\n\nCourses numbered 500 through 599 are in the upper division and are also acceptable for advanced degrees when taken by students admitted to graduate standing;\n\nSource\n\n\n\nThis is a 3-unit course. The definition of a unit is one credit hour:\n\nOne hour of direct faculty instruction and a minimum of two hours of out-of-class student work each week for approximately 15 weeks for one semester or equivalent amount of work over a different amount of time;\n\nSource\nAs such, you should allocate six hours of time per week for working on course related materials outside of our in-class meetings.\n\n\n\n\n\nA series of exercises will be assigned that provide opportunities to further develop skills in open source tooling and practices. Each student will be evaluated individually on all four exercises. You can view these exercises as practice for the skills that go into the final project.\n\n\n\nThere will be one exam on week 11 covering the materials from the first part of the course.\n\n\n\nThe last 5 weeks of the course are organized as a studio in which each student will contribute to a final project that requires the application of the various open source technologies, packages, and practices that are introduced.\nRubrics for peer evaluation of project work will be given out in week 11.\n\n\n\nStarting the second week of sessions, quizzes will be given on the assigned reading material. Quizzes will run through week 10 of the semester. Quizzes are graded on a pass/fail basis. Quizzes will be given during the first 5 minutes of a class meeting.\n\n\n\nEach student is provided with three tokens at the beginning of the semester. Tokens can be used in the following ways:\n\nOne token can be used for a one-week extension on an exercise.\nOne token can be used to resubmit an exercise that does not demonstrate competency.\nTwo tokens can be used to request a make-up date for the exam. (Requests have to be submitted by March 14 5pm.)\n\nEach token that remains unused by May 2 will be counted as a passed quiz.\n\n\n\nYour final course grade is determined using specification grading. Your course grade will be based on the quality and quantity of the work that you submit that is evaluated to be of an acceptable level of quality. The acceptable level of quality demonstrates competency in the concepts and methods covered in the course.\nThree is a two-step process for determination of your final course grade at the end of the semester:\n\nUsing your exercises, project and quiz grades, your base grade is determined.\nUsing your exam grade to determine if your base grade is adjusted upwards, downwards or remains as your final grade.\n\nFor Step 1, the base grade is determined as follows\n\n\n\nBase\nHurdles\n\n\n\n\nA\nDemonstrates competency on 4 of 4 exercises\n\n\n\nObtained a valued contributor in evaluation\n\n\n\nPass 90% of the quizzes\n\n\n\nGroup project achieves competency in all 10 areas\n\n\nB\nDemonstrates competency on 3 of 4 exercises\n\n\n\nObtained a team player ranking in evaluation\n\n\n\nPass 80% of the quizzes\n\n\n\nGroup project achieves competency in 8 areas\n\n\nC\nDemonstrates competency on 2 of 4 exercises\n\n\n\nObtained a free rider ranking in evaluation\n\n\n\nPass 70% of the quizzes\n\n\n\nGroup project achieves competency in 6 areas\n\n\nD\nDemonstrates competency on 1 of 4 exercises\n\n\n\nObtained a missing in action ranking in evaluation\n\n\n\nPass 60% of the quizzes\n\n\n\nGroup project achieves competency in 4 areas\n\n\nF\nFailure to clear all D-level hurdles\n\n\n\nYour base grade is the highest grade for which you clear all the hurdles. For example, a student who demonstrated competency on 3 of the four exercises, worked on a group project that achieved competency in 9 of the 10 areas, passed 85% of the quizzes, and obtained a free rider ranking in their peer evaluation would have a C base grade.\nFor Step 2, your final course grade is determined as follows:\n\nIf you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).\nIf you score between 70-85% on the exam, your base grade becomes your course grade.\nIf you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.\nIf you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.\n\n\n\n\n\n\n\n\nWeek\nDates\nTopic\nReadings\n\n\n\n\n1\nJan-18\nCourse Introduction\n\n\n\n2\nJan-23\nAccounts\n\n\n\n\nJan-25\nComputational Environment\n\n\n\n3\nJan-30\nPandas\npandas\n\n\n\nFeb-01\nGeoPandas\ngeopandas I\n\n\n4\nFeb-06\nGeovisualizaiton\nchoropleths\n\n\n\nFeb-08\nExercise 1\n\n\n\n5\nFeb-13\nProjections\nprojections\n\n\n\nFeb-15\nSpatial Joins\nspatial joins\n\n\n6\nFeb-20\nSpatial Inequality\nspatial inequality\n\n\n\nFeb-22\nExercise 2\n\n\n\n7\nFeb-27\nGeoSnap\ngeosnap\n\n\n\nFeb-29\nIsochrones\nisochrones\n\n\n8\nMar-05\nAccessibility\naccessibility\n\n\n\nMar-07\nExercise 3\n\n\n\n9\nMar-12\nClustering\nclustering-clusteringII\n\n\n\nMar-14\nSpatial Clustering\nregionalization\n\n\n10\nMar-19\nGeodemographics\ngeodemographics\n\n\n\nMar-21\nExercise 4\n\n\n\n11\nMar-26\nReview\n\n\n\n\nMar-28\nExam\n\n\n\n\nApr-02\nSpring Break\n\n\n\n\nApr-04\nSpring Break\n\n\n\n12\nApr-09\nStudio: Problem Definition\n\n\n\n\nApr-11\nStudio: Data Identification\n\n\n\n13\nApr-16\nStudio: Data Acquisition\n\n\n\n\nApr-18\nStudio: Data Processing\n\n\n\n14\nApr-23\nStudio: Analysis\n\n\n\n\nApr-25\nStudio: Analysis\n\n\n\n15\nApr-30\nStudio: Drafting\n\n\n\n\nMay-02\nStudio: Final Essay\n\n\n\n16\nMay-03-09\nFinal Exam Week\nPresentations\n\n\n\n\n\n\nAs we are learning Python through GIS, and assuming students already posses an understanding of GIS fundamentals, supplementary readings on Python should be consulted for further understanding:\n“Think Python: How to Think Like a Computer Scientist” is an insightful and approachable guide designed for beginners looking to learn Python programming. Authored by Allen B. Downey, this book simplifies the process of learning Python by breaking down its core concepts into manageable sections, making it ideal for those new to programming. Emphasizing the importance of computational thinking, the book gradually builds from simple topics, like variables and basic operations, to more complex subjects such as data structures, algorithms, and debugging. Throughout the text, Downey encourages a problem-solving approach, reinforcing key programming concepts with practical examples and exercises that challenge the reader to think critically and apply their learning. This book is renowned for its clear, concise, and reader-friendly style, making the often-daunting task of learning a new programming language both manageable and engaging.\nThe book “A Whirlwind Tour of Python” by Jake VanderPlas can also be accessed online for free. . This book is a fast-paced introduction to essential features of the Python language, aimed at researchers and developers who are already familiar with programming in another language.\n\n\n\n\n\nIf you are a student with a disability and are in need of accommodations for this class, please contact Student Ability Success Center at (619) 594-6473 as soon as possible. Please know accommodations are not retroactive, and I cannot provide accommodations based upon disability until I have received an accommodation letter from Student Ability Success Center.\n\n\n\nStudent Privacy and Intellectual Property: The Family Educational Rights and Privacy Act (FERPA) mandates the protection of student information, including contact information, grades, and graded assignments. I will use Canvas to communicate with you, and I will not post grades or leave graded assignments in public places. Students will be notified at the time of an assignment if copies of student work will be retained beyond the end of the semester or used as examples for future students or the wider public. Students maintain intellectual property rights to work products they create as part of this course unless they are formally notified otherwise.\n\n\n\nThe SDSU student academic integrity policy lists violations in detail. These violations fall into eight broad areas that include but are not limited to: cheating, fabrication, plagiarism, facilitating academic misconduct, unauthorized collaboration, interference or sabotage, non-compliance with research regulations and retaliation. For more information about the SDSU student academic integrity policy, please see the following: https://sacd.sdsu.edu/student-rights/academic-dishonesty.\n\n\n\nAs course instructor, I am dedicated to providing a harassment-free learning experience for all students, regardless of gender, sexual orientation, disability, physical appearance, body size, race, religion, or choice of operating system. All course participants are expected to show respect and courtesy to other students throughout the semester. As a learning community we do not tolerate harassment of participants in any form.\n\nAll communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery are not appropriate in this course.\nBe kind to others. Do not insult or put down other students. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for this course.\nStudents violating these rules may be asked to leave the course, and their violations will be reported to the SDSU administration.\n\nThis code of conduct is an adaptation of the SciPy 2018 Code of Conduct."
   },
   {
     "objectID": "syllabus.html#logistics",
     "href": "syllabus.html#logistics",
     "title": "GEOG 584",
     "section": "",
-    "text": "Instructor\nSergio Rey\nLecture Meetings\nTue 11:00-12:40\n\n\n\n\n\nThu 11:00-13:40\n\n\nOffice Hours\nThu 12:40-13:40 and by appointment\nClassroom\nSH 324\n\n\nOffice\nPFSA 316G\nCourse LMS\nCanvas",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "Instructor\nSergio Rey\nLecture Meetings\nTue 11:00-12:40\n\n\n\n\n\nThu 11:00-13:40\n\n\nOffice Hours\nThu 12:40-13:40 and by appointment\nClassroom\nSH 324\n\n\nOffice\nPFSA 316G\nCourse LMS\nCanvas"
   },
   {
     "objectID": "syllabus.html#introduction",
     "href": "syllabus.html#introduction",
     "title": "GEOG 584",
     "section": "",
-    "text": "This course offers an introduction to open source tools and practices for geographic information system (GIS) applications. Much of today’s world is dominated by “big data”, data science, machine learning, and artificial intelligence, and GIS is no exception. This requires that GIS students have the capacity to understand and analyze quantitative information. At the same time, there are increasing demands for openness and transparency in both GIS applications and GIS in science.\nThis course is designed to equip students with the skills and practices to fully engage with, and contribute to, these developments. It relies on open source software which is essential since it provides access to free, high-quality, cross-platform tools. At the same time, free availability does not necessarily translate into skill acquisition, and a key goal of this course is to flatten the learning curve for students discovering these new tools and practices.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "This course offers an introduction to open source tools and practices for geographic information system (GIS) applications. Much of today’s world is dominated by “big data”, data science, machine learning, and artificial intelligence, and GIS is no exception. This requires that GIS students have the capacity to understand and analyze quantitative information. At the same time, there are increasing demands for openness and transparency in both GIS applications and GIS in science.\nThis course is designed to equip students with the skills and practices to fully engage with, and contribute to, these developments. It relies on open source software which is essential since it provides access to free, high-quality, cross-platform tools. At the same time, free availability does not necessarily translate into skill acquisition, and a key goal of this course is to flatten the learning curve for students discovering these new tools and practices."
   },
   {
     "objectID": "syllabus.html#organization",
     "href": "syllabus.html#organization",
     "title": "GEOG 584",
     "section": "",
-    "text": "The course is structured as a blending of a lecture and studio. In the lecture component of the course, the literature surrounding the course project will be discussed and evaluated to shape the empirical project which will form the key focus of the second half of the semester. In the studio component of the course, students will be exposed to open source tools (software), technologies (github, CI/CD), and practices (collaborative development) in GIS projects.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "The course is structured as a blending of a lecture and studio. In the lecture component of the course, the literature surrounding the course project will be discussed and evaluated to shape the empirical project which will form the key focus of the second half of the semester. In the studio component of the course, students will be exposed to open source tools (software), technologies (github, CI/CD), and practices (collaborative development) in GIS projects."
   },
   {
     "objectID": "syllabus.html#learning-outcomes",
     "href": "syllabus.html#learning-outcomes",
     "title": "GEOG 584",
     "section": "",
-    "text": "By the end of the semester, students will\n\nacquire competency in using open source software and tools for their own GIS research projects\ngain experience in collaborative open source and open science best practices\napply these skill sets to contribute to a reproducible empirical GIS project",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "By the end of the semester, students will\n\nacquire competency in using open source software and tools for their own GIS research projects\ngain experience in collaborative open source and open science best practices\napply these skill sets to contribute to a reproducible empirical GIS project"
   },
   {
     "objectID": "syllabus.html#prerequisites",
     "href": "syllabus.html#prerequisites",
     "title": "GEOG 584",
     "section": "",
-    "text": "GEOG 484 or equivalent.\n\nCourses numbered 500 through 599 are in the upper division and are also acceptable for advanced degrees when taken by students admitted to graduate standing;\n\nSource",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "GEOG 484 or equivalent.\n\nCourses numbered 500 through 599 are in the upper division and are also acceptable for advanced degrees when taken by students admitted to graduate standing;\n\nSource"
   },
   {
     "objectID": "syllabus.html#credit-hours-and-course-work",
     "href": "syllabus.html#credit-hours-and-course-work",
     "title": "GEOG 584",
     "section": "",
-    "text": "This is a 3-unit course. The definition of a unit is one credit hour:\n\nOne hour of direct faculty instruction and a minimum of two hours of out-of-class student work each week for approximately 15 weeks for one semester or equivalent amount of work over a different amount of time;\n\nSource\nAs such, you should allocate six hours of time per week for working on course related materials outside of our in-class meetings.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "This is a 3-unit course. The definition of a unit is one credit hour:\n\nOne hour of direct faculty instruction and a minimum of two hours of out-of-class student work each week for approximately 15 weeks for one semester or equivalent amount of work over a different amount of time;\n\nSource\nAs such, you should allocate six hours of time per week for working on course related materials outside of our in-class meetings."
   },
   {
     "objectID": "syllabus.html#grading",
     "href": "syllabus.html#grading",
     "title": "GEOG 584",
     "section": "",
-    "text": "A series of exercises will be assigned that provide opportunities to further develop skills in open source tooling and practices. Each student will be evaluated individually on all four exercises. You can view these exercises as practice for the skills that go into the final project.\n\n\n\nThere will be one exam on week 11 covering the materials from the first part of the course.\n\n\n\nThe last 5 weeks of the course are organized as a studio in which each student will contribute to a final project that requires the application of the various open source technologies, packages, and practices that are introduced.\nRubrics for peer evaluation of project work will be given out in week 11.\n\n\n\nStarting the second week of sessions, quizzes will be given on the assigned reading material. Quizzes will run through week 10 of the semester. Quizzes are graded on a pass/fail basis. Quizzes will be given during the first 5 minutes of a class meeting.\n\n\n\nEach student is provided with three tokens at the beginning of the semester. Tokens can be used in the following ways:\n\nOne token can be used for a one-week extension on an exercise.\nOne token can be used to resubmit an exercise that does not demonstrate competency.\nTwo tokens can be used to request a make-up date for the exam. (Requests have to be submitted by March 14 5pm.)\n\nEach token that remains unused by May 2 will be counted as a passed quiz.\n\n\n\nYour final course grade is determined using specification grading. Your course grade will be based on the quality and quantity of the work that you submit that is evaluated to be of an acceptable level of quality. The acceptable level of quality demonstrates competency in the concepts and methods covered in the course.\nThree is a two-step process for determination of your final course grade at the end of the semester:\n\nUsing your exercises, project and quiz grades, your base grade is determined.\nUsing your exam grade to determine if your base grade is adjusted upwards, downwards or remains as your final grade.\n\nFor Step 1, the base grade is determined as follows\n\n\n\nBase\nHurdles\n\n\n\n\nA\nDemonstrates competency on 4 of 4 exercises\n\n\n\nObtained a valued contributor in evaluation\n\n\n\nPass 90% of the quizzes\n\n\n\nGroup project achieves competency in all 10 areas\n\n\nB\nDemonstrates competency on 3 of 4 exercises\n\n\n\nObtained a team player ranking in evaluation\n\n\n\nPass 80% of the quizzes\n\n\n\nGroup project achieves competency in 8 areas\n\n\nC\nDemonstrates competency on 2 of 4 exercises\n\n\n\nObtained a free rider ranking in evaluation\n\n\n\nPass 70% of the quizzes\n\n\n\nGroup project achieves competency in 6 areas\n\n\nD\nDemonstrates competency on 1 of 4 exercises\n\n\n\nObtained a missing in action ranking in evaluation\n\n\n\nPass 60% of the quizzes\n\n\n\nGroup project achieves competency in 4 areas\n\n\nF\nFailure to clear all D-level hurdles\n\n\n\nYour base grade is the highest grade for which you clear all the hurdles. For example, a student who demonstrated competency on 3 of the four exercises, worked on a group project that achieved competency in 9 of the 10 areas, passed 85% of the quizzes, and obtained a free rider ranking in their peer evaluation would have a C base grade.\nFor Step 2, your final course grade is determined as follows:\n\nIf you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).\nIf you score between 70-85% on the exam, your base grade becomes your course grade.\nIf you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.\nIf you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "A series of exercises will be assigned that provide opportunities to further develop skills in open source tooling and practices. Each student will be evaluated individually on all four exercises. You can view these exercises as practice for the skills that go into the final project.\n\n\n\nThere will be one exam on week 11 covering the materials from the first part of the course.\n\n\n\nThe last 5 weeks of the course are organized as a studio in which each student will contribute to a final project that requires the application of the various open source technologies, packages, and practices that are introduced.\nRubrics for peer evaluation of project work will be given out in week 11.\n\n\n\nStarting the second week of sessions, quizzes will be given on the assigned reading material. Quizzes will run through week 10 of the semester. Quizzes are graded on a pass/fail basis. Quizzes will be given during the first 5 minutes of a class meeting.\n\n\n\nEach student is provided with three tokens at the beginning of the semester. Tokens can be used in the following ways:\n\nOne token can be used for a one-week extension on an exercise.\nOne token can be used to resubmit an exercise that does not demonstrate competency.\nTwo tokens can be used to request a make-up date for the exam. (Requests have to be submitted by March 14 5pm.)\n\nEach token that remains unused by May 2 will be counted as a passed quiz.\n\n\n\nYour final course grade is determined using specification grading. Your course grade will be based on the quality and quantity of the work that you submit that is evaluated to be of an acceptable level of quality. The acceptable level of quality demonstrates competency in the concepts and methods covered in the course.\nThree is a two-step process for determination of your final course grade at the end of the semester:\n\nUsing your exercises, project and quiz grades, your base grade is determined.\nUsing your exam grade to determine if your base grade is adjusted upwards, downwards or remains as your final grade.\n\nFor Step 1, the base grade is determined as follows\n\n\n\nBase\nHurdles\n\n\n\n\nA\nDemonstrates competency on 4 of 4 exercises\n\n\n\nObtained a valued contributor in evaluation\n\n\n\nPass 90% of the quizzes\n\n\n\nGroup project achieves competency in all 10 areas\n\n\nB\nDemonstrates competency on 3 of 4 exercises\n\n\n\nObtained a team player ranking in evaluation\n\n\n\nPass 80% of the quizzes\n\n\n\nGroup project achieves competency in 8 areas\n\n\nC\nDemonstrates competency on 2 of 4 exercises\n\n\n\nObtained a free rider ranking in evaluation\n\n\n\nPass 70% of the quizzes\n\n\n\nGroup project achieves competency in 6 areas\n\n\nD\nDemonstrates competency on 1 of 4 exercises\n\n\n\nObtained a missing in action ranking in evaluation\n\n\n\nPass 60% of the quizzes\n\n\n\nGroup project achieves competency in 4 areas\n\n\nF\nFailure to clear all D-level hurdles\n\n\n\nYour base grade is the highest grade for which you clear all the hurdles. For example, a student who demonstrated competency on 3 of the four exercises, worked on a group project that achieved competency in 9 of the 10 areas, passed 85% of the quizzes, and obtained a free rider ranking in their peer evaluation would have a C base grade.\nFor Step 2, your final course grade is determined as follows:\n\nIf you earn at least 85% on the exam, you will obtain a “+” for your grade. So a B base grade would become a B+ course grade, and so on (Note: SDSU does not record A+ grades).\nIf you score between 70-85% on the exam, your base grade becomes your course grade.\nIf you score between 50% and 69% on the exam, you will obtain a “-” for your grade. So an A base grade becomes an A- course grade, a B base grade becomes a B- course grade, and so on.\nIf you score less than 50% on the exam, your course grade will drop one level: An A base grade becomes a final B course grade."
   },
   {
     "objectID": "syllabus.html#course-schedule-planned",
     "href": "syllabus.html#course-schedule-planned",
     "title": "GEOG 584",
     "section": "",
-    "text": "Week\nDates\nTopic\nReadings\n\n\n\n\n1\nJan-18\nCourse Introduction\n\n\n\n2\nJan-23\nAccounts\n\n\n\n\nJan-25\nComputational Environment\n\n\n\n3\nJan-30\nPandas\npandas\n\n\n\nFeb-01\nGeoPandas\ngeopandas I\n\n\n4\nFeb-06\nGeovisualizaiton\nchoropleths\n\n\n\nFeb-08\nExercise 1\n\n\n\n5\nFeb-13\nProjections\nprojections\n\n\n\nFeb-15\nSpatial Joins\nspatial joins\n\n\n6\nFeb-20\nSpatial Inequality\nspatial inequality\n\n\n\nFeb-22\nExercise 2\n\n\n\n7\nFeb-27\nGeoSnap\ngeosnap\n\n\n\nFeb-29\nIsochrones\nisochrones\n\n\n8\nMar-05\nAccessibility\naccessibility\n\n\n\nMar-07\nExercise 3\n\n\n\n9\nMar-12\nClustering\nclustering-clusteringII\n\n\n\nMar-14\nSpatial Clustering\nregionalization\n\n\n10\nMar-19\nGeodemographics\ngeodemographics\n\n\n\nMar-21\nExercise 4\n\n\n\n11\nMar-26\nReview\n\n\n\n\nMar-28\nExam\n\n\n\n\nApr-02\nSpring Break\n\n\n\n\nApr-04\nSpring Break\n\n\n\n12\nApr-09\nStudio: Problem Definition\n\n\n\n\nApr-11\nStudio: Data Identification\n\n\n\n13\nApr-16\nStudio: Data Acquisition\n\n\n\n\nApr-18\nStudio: Data Processing\n\n\n\n14\nApr-23\nStudio: Analysis\n\n\n\n\nApr-25\nStudio: Analysis\n\n\n\n15\nApr-30\nStudio: Drafting\n\n\n\n\nMay-02\nStudio: Final Essay\n\n\n\n16\nMay-03-09\nFinal Exam Week\nPresentations",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "Week\nDates\nTopic\nReadings\n\n\n\n\n1\nJan-18\nCourse Introduction\n\n\n\n2\nJan-23\nAccounts\n\n\n\n\nJan-25\nComputational Environment\n\n\n\n3\nJan-30\nPandas\npandas\n\n\n\nFeb-01\nGeoPandas\ngeopandas I\n\n\n4\nFeb-06\nGeovisualizaiton\nchoropleths\n\n\n\nFeb-08\nExercise 1\n\n\n\n5\nFeb-13\nProjections\nprojections\n\n\n\nFeb-15\nSpatial Joins\nspatial joins\n\n\n6\nFeb-20\nSpatial Inequality\nspatial inequality\n\n\n\nFeb-22\nExercise 2\n\n\n\n7\nFeb-27\nGeoSnap\ngeosnap\n\n\n\nFeb-29\nIsochrones\nisochrones\n\n\n8\nMar-05\nAccessibility\naccessibility\n\n\n\nMar-07\nExercise 3\n\n\n\n9\nMar-12\nClustering\nclustering-clusteringII\n\n\n\nMar-14\nSpatial Clustering\nregionalization\n\n\n10\nMar-19\nGeodemographics\ngeodemographics\n\n\n\nMar-21\nExercise 4\n\n\n\n11\nMar-26\nReview\n\n\n\n\nMar-28\nExam\n\n\n\n\nApr-02\nSpring Break\n\n\n\n\nApr-04\nSpring Break\n\n\n\n12\nApr-09\nStudio: Problem Definition\n\n\n\n\nApr-11\nStudio: Data Identification\n\n\n\n13\nApr-16\nStudio: Data Acquisition\n\n\n\n\nApr-18\nStudio: Data Processing\n\n\n\n14\nApr-23\nStudio: Analysis\n\n\n\n\nApr-25\nStudio: Analysis\n\n\n\n15\nApr-30\nStudio: Drafting\n\n\n\n\nMay-02\nStudio: Final Essay\n\n\n\n16\nMay-03-09\nFinal Exam Week\nPresentations"
   },
   {
     "objectID": "syllabus.html#additional-readings",
     "href": "syllabus.html#additional-readings",
     "title": "GEOG 584",
     "section": "",
-    "text": "As we are learning Python through GIS, and assuming students already posses an understanding of GIS fundamentals, supplementary readings on Python should be consulted for further understanding:\n“Think Python: How to Think Like a Computer Scientist” is an insightful and approachable guide designed for beginners looking to learn Python programming. Authored by Allen B. Downey, this book simplifies the process of learning Python by breaking down its core concepts into manageable sections, making it ideal for those new to programming. Emphasizing the importance of computational thinking, the book gradually builds from simple topics, like variables and basic operations, to more complex subjects such as data structures, algorithms, and debugging. Throughout the text, Downey encourages a problem-solving approach, reinforcing key programming concepts with practical examples and exercises that challenge the reader to think critically and apply their learning. This book is renowned for its clear, concise, and reader-friendly style, making the often-daunting task of learning a new programming language both manageable and engaging.\nThe book “A Whirlwind Tour of Python” by Jake VanderPlas can also be accessed online for free. . This book is a fast-paced introduction to essential features of the Python language, aimed at researchers and developers who are already familiar with programming in another language.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "As we are learning Python through GIS, and assuming students already posses an understanding of GIS fundamentals, supplementary readings on Python should be consulted for further understanding:\n“Think Python: How to Think Like a Computer Scientist” is an insightful and approachable guide designed for beginners looking to learn Python programming. Authored by Allen B. Downey, this book simplifies the process of learning Python by breaking down its core concepts into manageable sections, making it ideal for those new to programming. Emphasizing the importance of computational thinking, the book gradually builds from simple topics, like variables and basic operations, to more complex subjects such as data structures, algorithms, and debugging. Throughout the text, Downey encourages a problem-solving approach, reinforcing key programming concepts with practical examples and exercises that challenge the reader to think critically and apply their learning. This book is renowned for its clear, concise, and reader-friendly style, making the often-daunting task of learning a new programming language both manageable and engaging.\nThe book “A Whirlwind Tour of Python” by Jake VanderPlas can also be accessed online for free. . This book is a fast-paced introduction to essential features of the Python language, aimed at researchers and developers who are already familiar with programming in another language."
   },
   {
     "objectID": "syllabus.html#policies",
     "href": "syllabus.html#policies",
     "title": "GEOG 584",
     "section": "",
-    "text": "If you are a student with a disability and are in need of accommodations for this class, please contact Student Ability Success Center at (619) 594-6473 as soon as possible. Please know accommodations are not retroactive, and I cannot provide accommodations based upon disability until I have received an accommodation letter from Student Ability Success Center.\n\n\n\nStudent Privacy and Intellectual Property: The Family Educational Rights and Privacy Act (FERPA) mandates the protection of student information, including contact information, grades, and graded assignments. I will use Canvas to communicate with you, and I will not post grades or leave graded assignments in public places. Students will be notified at the time of an assignment if copies of student work will be retained beyond the end of the semester or used as examples for future students or the wider public. Students maintain intellectual property rights to work products they create as part of this course unless they are formally notified otherwise.\n\n\n\nThe SDSU student academic integrity policy lists violations in detail. These violations fall into eight broad areas that include but are not limited to: cheating, fabrication, plagiarism, facilitating academic misconduct, unauthorized collaboration, interference or sabotage, non-compliance with research regulations and retaliation. For more information about the SDSU student academic integrity policy, please see the following: https://sacd.sdsu.edu/student-rights/academic-dishonesty.\n\n\n\nAs course instructor, I am dedicated to providing a harassment-free learning experience for all students, regardless of gender, sexual orientation, disability, physical appearance, body size, race, religion, or choice of operating system. All course participants are expected to show respect and courtesy to other students throughout the semester. As a learning community we do not tolerate harassment of participants in any form.\n\nAll communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery are not appropriate in this course.\nBe kind to others. Do not insult or put down other students. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for this course.\nStudents violating these rules may be asked to leave the course, and their violations will be reported to the SDSU administration.\n\nThis code of conduct is an adaptation of the SciPy 2018 Code of Conduct.",
-    "crumbs": [
-      "Syllabus",
-      "GEOG 584"
-    ]
+    "text": "If you are a student with a disability and are in need of accommodations for this class, please contact Student Ability Success Center at (619) 594-6473 as soon as possible. Please know accommodations are not retroactive, and I cannot provide accommodations based upon disability until I have received an accommodation letter from Student Ability Success Center.\n\n\n\nStudent Privacy and Intellectual Property: The Family Educational Rights and Privacy Act (FERPA) mandates the protection of student information, including contact information, grades, and graded assignments. I will use Canvas to communicate with you, and I will not post grades or leave graded assignments in public places. Students will be notified at the time of an assignment if copies of student work will be retained beyond the end of the semester or used as examples for future students or the wider public. Students maintain intellectual property rights to work products they create as part of this course unless they are formally notified otherwise.\n\n\n\nThe SDSU student academic integrity policy lists violations in detail. These violations fall into eight broad areas that include but are not limited to: cheating, fabrication, plagiarism, facilitating academic misconduct, unauthorized collaboration, interference or sabotage, non-compliance with research regulations and retaliation. For more information about the SDSU student academic integrity policy, please see the following: https://sacd.sdsu.edu/student-rights/academic-dishonesty.\n\n\n\nAs course instructor, I am dedicated to providing a harassment-free learning experience for all students, regardless of gender, sexual orientation, disability, physical appearance, body size, race, religion, or choice of operating system. All course participants are expected to show respect and courtesy to other students throughout the semester. As a learning community we do not tolerate harassment of participants in any form.\n\nAll communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery are not appropriate in this course.\nBe kind to others. Do not insult or put down other students. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for this course.\nStudents violating these rules may be asked to leave the course, and their violations will be reported to the SDSU administration.\n\nThis code of conduct is an adaptation of the SciPy 2018 Code of Conduct."
   }
 ]
