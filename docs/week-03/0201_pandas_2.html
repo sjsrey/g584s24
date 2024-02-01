@@ -1,0 +1,6623 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Geographic Information Systems Applications - Pandas Part II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../week-03/0201_geopandas.html" rel="next">
+<link href="../week-03/pandas.html" rel="prev">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../week-03/pandas.html">Week 3 1/30 2/01</a></li><li class="breadcrumb-item"><a href="../week-03/0201_pandas_2.html">Pandas Part II</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sjsrey/g584s24" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Search"></div>
+</div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Syllabus</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOG 584</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Week 2 1/23 1/25</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-02/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Jupyter Lab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-02/files-dirs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Unix File System with Jupyter Lab</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Week 3 1/30 2/01</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-03/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-03/0201_pandas_2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Pandas Part II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-03/0201_geopandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GeoPandas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reading-external-files-xlsx" id="toc-reading-external-files-xlsx" class="nav-link active" data-scroll-target="#reading-external-files-xlsx">Reading external files (xlsx)</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/sjsrey/g584s24/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pandas Part II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="reading-external-files-xlsx" class="level2">
+<h2 class="anchored" data-anchor-id="reading-external-files-xlsx">Reading external files (xlsx)</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://www.ers.usda.gov/webdocs/DataFiles/48747/PovertyEstimates.xlsx?v=9655.3'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">'PovertyEstimates.xlsx'</span>  <span class="co"># Name of the local copy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_file, <span class="st">'wb'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(response.content)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"File '</span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">' downloaded successfully."</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Optional: Check the content of the downloaded XLSX file</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    wb <span class="op">=</span> load_workbook(output_file)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    sheets <span class="op">=</span> wb.sheetnames</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Excel file contains the following sheets: </span><span class="sc">{</span>sheets<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># You can now work with the Excel file as needed</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Failed to download the file. Status code: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>File 'PovertyEstimates.xlsx' downloaded successfully.
+Excel file contains the following sheets: ['PovertyEstimates', 'Variable Descriptions']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">'PovertyEstimates.xlsx'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>xls <span class="op">=</span> pd.ExcelFile(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xls.sheet_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>['PovertyEstimates', 'Variable Descriptions']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>var_df <span class="op">=</span> pd.read_excel(file_path, <span class="st">'Variable Descriptions'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>var_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Column variable name</th>
+<th data-quarto-table-cell-role="th">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>FIPS_Code</td>
+<td>State-county Federal Information Processing St...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Stabr</td>
+<td>State abbreviation</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Area_name</td>
+<td>Area name</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Rural-urban_Continuum_Code_2003</td>
+<td>Rural-Urban Continuum Code, 2003</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Urban_Influence_Code_2003</td>
+<td>Urban Influence Code, 2003</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>var_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>(34, 2)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>var_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Column variable name</th>
+<th data-quarto-table-cell-role="th">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>FIPS_Code</td>
+<td>State-county Federal Information Processing St...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Stabr</td>
+<td>State abbreviation</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Area_name</td>
+<td>Area name</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Rural-urban_Continuum_Code_2003</td>
+<td>Rural-Urban Continuum Code, 2003</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Urban_Influence_Code_2003</td>
+<td>Urban Influence Code, 2003</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Rural-urban_Continuum_Code_2013</td>
+<td>Rural-Urban Continuum Code, 2013</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Urban_Influence_Code_ 2013</td>
+<td>Urban Influence Code, 2013</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>POVALL_2021</td>
+<td>Estimate of people of all ages in poverty 2021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>CI90LBALL_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>CI90UBALL_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>PCTPOVALL_2021</td>
+<td>Estimated percent of people of all ages in pov...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>CI90LBALLP_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>CI90UBALLP_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>POV017_2021</td>
+<td>Estimate of people age 0-17 in poverty 2021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>CI90LB017_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>CI90UB017_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>PCTPOV017_2021</td>
+<td>Estimated percent of people age 0-17 in povert...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>CI90LB017P_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>CI90UB017P_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>POV517_2021</td>
+<td>Estimate of related children age 5-17 in famil...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>CI90LB517_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>CI90UB517_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>PCTPOV517_2021</td>
+<td>Estimated percent of related children age 5-17...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>CI90LB517P_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>CI90UB517P_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>MEDHHINC_2021</td>
+<td>Estimate of median household income 2021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>CI90LBINC_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>CI90UBINC_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>POV04_2021</td>
+<td>Estimate of children ages 0 to 4 in poverty 20...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>CI90LB04_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>CI90UB04_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>PCTPOV04_2021</td>
+<td>Estimated percent of children ages 0 to 4 in p...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>CI90LB04P_2021</td>
+<td>90 percent confidence interval lower bound of ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>CI90UB04P_2021</td>
+<td>90 percent confidence interval upper bound of ...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(file_path, <span class="st">'PovertyEstimates'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Poverty estimates for U.S., States, and counties, 2021</th>
+<th data-quarto-table-cell-role="th">Unnamed: 1</th>
+<th data-quarto-table-cell-role="th">Unnamed: 2</th>
+<th data-quarto-table-cell-role="th">Unnamed: 3</th>
+<th data-quarto-table-cell-role="th">Unnamed: 4</th>
+<th data-quarto-table-cell-role="th">Unnamed: 5</th>
+<th data-quarto-table-cell-role="th">Unnamed: 6</th>
+<th data-quarto-table-cell-role="th">Unnamed: 7</th>
+<th data-quarto-table-cell-role="th">Unnamed: 8</th>
+<th data-quarto-table-cell-role="th">Unnamed: 9</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Unnamed: 24</th>
+<th data-quarto-table-cell-role="th">Unnamed: 25</th>
+<th data-quarto-table-cell-role="th">Unnamed: 26</th>
+<th data-quarto-table-cell-role="th">Unnamed: 27</th>
+<th data-quarto-table-cell-role="th">Unnamed: 28</th>
+<th data-quarto-table-cell-role="th">Unnamed: 29</th>
+<th data-quarto-table-cell-role="th">Unnamed: 30</th>
+<th data-quarto-table-cell-role="th">Unnamed: 31</th>
+<th data-quarto-table-cell-role="th">Unnamed: 32</th>
+<th data-quarto-table-cell-role="th">Unnamed: 33</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Source: U.S. Department of Commerce, Bureau of...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>For definitions of rural classifications, see ...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>This table was prepared by USDA, Economic Rese...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>FIPS_Code</td>
+<td>Stabr</td>
+<td>Area_name</td>
+<td>Rural-urban_Continuum_Code_2003</td>
+<td>Urban_Influence_Code_2003</td>
+<td>Rural-urban_Continuum_Code_2013</td>
+<td>Urban_Influence_Code_ 2013</td>
+<td>POVALL_2021</td>
+<td>CI90LBALL_2021</td>
+<td>CI90UBALL_2021</td>
+<td>...</td>
+<td>CI90UB517P_2021</td>
+<td>MEDHHINC_2021</td>
+<td>CI90LBINC_2021</td>
+<td>CI90UBINC_2021</td>
+<td>POV04_2021</td>
+<td>CI90LB04_2021</td>
+<td>CI90UB04_2021</td>
+<td>PCTPOV04_2021</td>
+<td>CI90LB04P_2021</td>
+<td>CI90UB04P_2021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>00000</td>
+<td>US</td>
+<td>United States</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>41393176</td>
+<td>41149497</td>
+<td>41636855</td>
+<td>...</td>
+<td>16.3</td>
+<td>69717</td>
+<td>69583</td>
+<td>69851</td>
+<td>3349149</td>
+<td>3299669</td>
+<td>3398629</td>
+<td>18.3</td>
+<td>18</td>
+<td>18.6</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 34 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(file_path, <span class="st">'PovertyEstimates'</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">CI90UB517P_2021</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>US</td>
+<td>United States</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>41393176.0</td>
+<td>41149497.0</td>
+<td>41636855.0</td>
+<td>...</td>
+<td>16.3</td>
+<td>69717.0</td>
+<td>69583.0</td>
+<td>69851.0</td>
+<td>3349149.0</td>
+<td>3299669.0</td>
+<td>3398629.0</td>
+<td>18.3</td>
+<td>18.0</td>
+<td>18.6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1000</td>
+<td>AL</td>
+<td>Alabama</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>800848.0</td>
+<td>782169.0</td>
+<td>819527.0</td>
+<td>...</td>
+<td>22.5</td>
+<td>53990.0</td>
+<td>53218.0</td>
+<td>54762.0</td>
+<td>71220.0</td>
+<td>66888.0</td>
+<td>75552.0</td>
+<td>25.1</td>
+<td>23.6</td>
+<td>26.6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1001</td>
+<td>AL</td>
+<td>Autauga County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>6296.0</td>
+<td>4772.0</td>
+<td>7820.0</td>
+<td>...</td>
+<td>20.4</td>
+<td>66444.0</td>
+<td>60061.0</td>
+<td>72827.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1003</td>
+<td>AL</td>
+<td>Baldwin County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>25526.0</td>
+<td>21599.0</td>
+<td>29453.0</td>
+<td>...</td>
+<td>18.5</td>
+<td>65658.0</td>
+<td>60723.0</td>
+<td>70593.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1005</td>
+<td>AL</td>
+<td>Barbour County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>5089.0</td>
+<td>3773.0</td>
+<td>6405.0</td>
+<td>...</td>
+<td>44.6</td>
+<td>38649.0</td>
+<td>34308.0</td>
+<td>42990.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 34 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>(3195, 34)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>FIPS_Code                            int64
+Stabr                               object
+Area_name                           object
+Rural-urban_Continuum_Code_2003    float64
+Urban_Influence_Code_2003          float64
+Rural-urban_Continuum_Code_2013    float64
+Urban_Influence_Code_ 2013         float64
+POVALL_2021                        float64
+CI90LBALL_2021                     float64
+CI90UBALL_2021                     float64
+PCTPOVALL_2021                     float64
+CI90LBALLP_2021                    float64
+CI90UBALLP_2021                    float64
+POV017_2021                        float64
+CI90LB017_2021                     float64
+CI90UB017_2021                     float64
+PCTPOV017_2021                     float64
+CI90LB017P_2021                    float64
+CI90UB017P_2021                    float64
+POV517_2021                        float64
+CI90LB517_2021                     float64
+CI90UB517_2021                     float64
+PCTPOV517_2021                     float64
+CI90LB517P_2021                    float64
+CI90UB517P_2021                    float64
+MEDHHINC_2021                      float64
+CI90LBINC_2021                     float64
+CI90UBINC_2021                     float64
+POV04_2021                         float64
+CI90LB04_2021                      float64
+CI90UB04_2021                      float64
+PCTPOV04_2021                      float64
+CI90LB04P_2021                     float64
+CI90UB04P_2021                     float64
+dtype: object</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'fips_str'</span>] <span class="op">=</span> df.FIPS_Code.astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.fips_str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>0       00000
+1       01000
+2       01001
+3       01003
+4       01005
+        ...  
+3190    56037
+3191    56039
+3192    56041
+3193    56043
+3194    56045
+Name: fips_str, Length: 3195, dtype: object</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">'FIPS_Code'</span>, <span class="st">'fips_str'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>00000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1000</td>
+<td>01000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1001</td>
+<td>01001</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1003</td>
+<td>01003</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1005</td>
+<td>01005</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3190</td>
+<td>56037</td>
+<td>56037</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3191</td>
+<td>56039</td>
+<td>56039</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3192</td>
+<td>56041</td>
+<td>56041</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3193</td>
+<td>56043</td>
+<td>56043</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3194</td>
+<td>56045</td>
+<td>56045</td>
+</tr>
+</tbody>
+</table>
+
+<p>3195 rows × 2 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>US</td>
+<td>United States</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>41393176.0</td>
+<td>41149497.0</td>
+<td>41636855.0</td>
+<td>...</td>
+<td>69717.0</td>
+<td>69583.0</td>
+<td>69851.0</td>
+<td>3349149.0</td>
+<td>3299669.0</td>
+<td>3398629.0</td>
+<td>18.3</td>
+<td>18.0</td>
+<td>18.6</td>
+<td>00000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1000</td>
+<td>AL</td>
+<td>Alabama</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>800848.0</td>
+<td>782169.0</td>
+<td>819527.0</td>
+<td>...</td>
+<td>53990.0</td>
+<td>53218.0</td>
+<td>54762.0</td>
+<td>71220.0</td>
+<td>66888.0</td>
+<td>75552.0</td>
+<td>25.1</td>
+<td>23.6</td>
+<td>26.6</td>
+<td>01000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1001</td>
+<td>AL</td>
+<td>Autauga County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>6296.0</td>
+<td>4772.0</td>
+<td>7820.0</td>
+<td>...</td>
+<td>66444.0</td>
+<td>60061.0</td>
+<td>72827.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01001</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1003</td>
+<td>AL</td>
+<td>Baldwin County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>25526.0</td>
+<td>21599.0</td>
+<td>29453.0</td>
+<td>...</td>
+<td>65658.0</td>
+<td>60723.0</td>
+<td>70593.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01003</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1005</td>
+<td>AL</td>
+<td>Barbour County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>5089.0</td>
+<td>3773.0</td>
+<td>6405.0</td>
+<td>...</td>
+<td>38649.0</td>
+<td>34308.0</td>
+<td>42990.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01005</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df[df.Stabr<span class="op">==</span><span class="st">'AL'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1000</td>
+<td>AL</td>
+<td>Alabama</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>800848.0</td>
+<td>782169.0</td>
+<td>819527.0</td>
+<td>...</td>
+<td>53990.0</td>
+<td>53218.0</td>
+<td>54762.0</td>
+<td>71220.0</td>
+<td>66888.0</td>
+<td>75552.0</td>
+<td>25.1</td>
+<td>23.6</td>
+<td>26.6</td>
+<td>01000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1001</td>
+<td>AL</td>
+<td>Autauga County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>6296.0</td>
+<td>4772.0</td>
+<td>7820.0</td>
+<td>...</td>
+<td>66444.0</td>
+<td>60061.0</td>
+<td>72827.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01001</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1003</td>
+<td>AL</td>
+<td>Baldwin County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>25526.0</td>
+<td>21599.0</td>
+<td>29453.0</td>
+<td>...</td>
+<td>65658.0</td>
+<td>60723.0</td>
+<td>70593.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01003</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1005</td>
+<td>AL</td>
+<td>Barbour County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>5089.0</td>
+<td>3773.0</td>
+<td>6405.0</td>
+<td>...</td>
+<td>38649.0</td>
+<td>34308.0</td>
+<td>42990.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01005</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1007</td>
+<td>AL</td>
+<td>Bibb County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>4204.0</td>
+<td>3324.0</td>
+<td>5084.0</td>
+<td>...</td>
+<td>48454.0</td>
+<td>42438.0</td>
+<td>54470.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01007</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">64</td>
+<td>1125</td>
+<td>AL</td>
+<td>Tuscaloosa County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>31735.0</td>
+<td>26867.0</td>
+<td>36603.0</td>
+<td>...</td>
+<td>56274.0</td>
+<td>52677.0</td>
+<td>59871.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01125</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">65</td>
+<td>1127</td>
+<td>AL</td>
+<td>Walker County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>12877.0</td>
+<td>10967.0</td>
+<td>14787.0</td>
+<td>...</td>
+<td>46343.0</td>
+<td>41443.0</td>
+<td>51243.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01127</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">66</td>
+<td>1129</td>
+<td>AL</td>
+<td>Washington County</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>3091.0</td>
+<td>2505.0</td>
+<td>3677.0</td>
+<td>...</td>
+<td>49795.0</td>
+<td>43655.0</td>
+<td>55935.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01129</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">67</td>
+<td>1131</td>
+<td>AL</td>
+<td>Wilcox County</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>9.0</td>
+<td>10.0</td>
+<td>3340.0</td>
+<td>2578.0</td>
+<td>4102.0</td>
+<td>...</td>
+<td>30071.0</td>
+<td>26647.0</td>
+<td>33495.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01131</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">68</td>
+<td>1133</td>
+<td>AL</td>
+<td>Winston County</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>4455.0</td>
+<td>3624.0</td>
+<td>5286.0</td>
+<td>...</td>
+<td>47176.0</td>
+<td>41809.0</td>
+<td>52543.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01133</td>
+</tr>
+</tbody>
+</table>
+
+<p>68 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[df.Stabr<span class="op">==</span><span class="st">'CA'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">192</td>
+<td>6000</td>
+<td>CA</td>
+<td>California</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4742405.0</td>
+<td>4689999.0</td>
+<td>4794811.0</td>
+<td>...</td>
+<td>84831.0</td>
+<td>84292.0</td>
+<td>85370.0</td>
+<td>339169.0</td>
+<td>326796.0</td>
+<td>351542.0</td>
+<td>15.8</td>
+<td>15.2</td>
+<td>16.4</td>
+<td>06000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">193</td>
+<td>6001</td>
+<td>CA</td>
+<td>Alameda County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>152654.0</td>
+<td>140318.0</td>
+<td>164990.0</td>
+<td>...</td>
+<td>108971.0</td>
+<td>106170.0</td>
+<td>111772.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06001</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">194</td>
+<td>6003</td>
+<td>CA</td>
+<td>Alpine County</td>
+<td>8.0</td>
+<td>4.0</td>
+<td>8.0</td>
+<td>4.0</td>
+<td>194.0</td>
+<td>148.0</td>
+<td>240.0</td>
+<td>...</td>
+<td>87570.0</td>
+<td>80899.0</td>
+<td>94241.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06003</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">195</td>
+<td>6005</td>
+<td>CA</td>
+<td>Amador County</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>4104.0</td>
+<td>3139.0</td>
+<td>5069.0</td>
+<td>...</td>
+<td>68159.0</td>
+<td>61507.0</td>
+<td>74811.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06005</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">196</td>
+<td>6007</td>
+<td>CA</td>
+<td>Butte County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>33874.0</td>
+<td>30026.0</td>
+<td>37722.0</td>
+<td>...</td>
+<td>62982.0</td>
+<td>60248.0</td>
+<td>65716.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06007</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">197</td>
+<td>6009</td>
+<td>CA</td>
+<td>Calaveras County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6198.0</td>
+<td>5078.0</td>
+<td>7318.0</td>
+<td>...</td>
+<td>68298.0</td>
+<td>61082.0</td>
+<td>75514.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06009</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">198</td>
+<td>6011</td>
+<td>CA</td>
+<td>Colusa County</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>2466.0</td>
+<td>1901.0</td>
+<td>3031.0</td>
+<td>...</td>
+<td>60725.0</td>
+<td>53787.0</td>
+<td>67663.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06011</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">199</td>
+<td>6013</td>
+<td>CA</td>
+<td>Contra Costa County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>100948.0</td>
+<td>92022.0</td>
+<td>109874.0</td>
+<td>...</td>
+<td>110595.0</td>
+<td>107542.0</td>
+<td>113648.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06013</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">200</td>
+<td>6015</td>
+<td>CA</td>
+<td>Del Norte County</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>5368.0</td>
+<td>4316.0</td>
+<td>6420.0</td>
+<td>...</td>
+<td>48108.0</td>
+<td>42824.0</td>
+<td>53392.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06015</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">201</td>
+<td>6017</td>
+<td>CA</td>
+<td>El Dorado County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>16839.0</td>
+<td>14045.0</td>
+<td>19633.0</td>
+<td>...</td>
+<td>87689.0</td>
+<td>80889.0</td>
+<td>94489.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06017</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">202</td>
+<td>6019</td>
+<td>CA</td>
+<td>Fresno County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>193449.0</td>
+<td>179983.0</td>
+<td>206915.0</td>
+<td>...</td>
+<td>63140.0</td>
+<td>61332.0</td>
+<td>64948.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06019</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">203</td>
+<td>6021</td>
+<td>CA</td>
+<td>Glenn County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>4397.0</td>
+<td>3560.0</td>
+<td>5234.0</td>
+<td>...</td>
+<td>56741.0</td>
+<td>50379.0</td>
+<td>63103.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">204</td>
+<td>6023</td>
+<td>CA</td>
+<td>Humboldt County</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>25781.0</td>
+<td>22760.0</td>
+<td>28802.0</td>
+<td>...</td>
+<td>53924.0</td>
+<td>49868.0</td>
+<td>57980.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06023</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">205</td>
+<td>6025</td>
+<td>CA</td>
+<td>Imperial County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>29738.0</td>
+<td>24540.0</td>
+<td>34936.0</td>
+<td>...</td>
+<td>50970.0</td>
+<td>48099.0</td>
+<td>53841.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06025</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">206</td>
+<td>6027</td>
+<td>CA</td>
+<td>Inyo County</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>2382.0</td>
+<td>1903.0</td>
+<td>2861.0</td>
+<td>...</td>
+<td>62381.0</td>
+<td>55355.0</td>
+<td>69407.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06027</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">207</td>
+<td>6029</td>
+<td>CA</td>
+<td>Kern County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>164169.0</td>
+<td>149799.0</td>
+<td>178539.0</td>
+<td>...</td>
+<td>57926.0</td>
+<td>54723.0</td>
+<td>61129.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06029</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">208</td>
+<td>6031</td>
+<td>CA</td>
+<td>Kings County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>24295.0</td>
+<td>20420.0</td>
+<td>28170.0</td>
+<td>...</td>
+<td>60810.0</td>
+<td>57040.0</td>
+<td>64580.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06031</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">209</td>
+<td>6033</td>
+<td>CA</td>
+<td>Lake County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>11196.0</td>
+<td>8683.0</td>
+<td>13709.0</td>
+<td>...</td>
+<td>55801.0</td>
+<td>51767.0</td>
+<td>59835.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06033</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">210</td>
+<td>6035</td>
+<td>CA</td>
+<td>Lassen County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>4805.0</td>
+<td>3867.0</td>
+<td>5743.0</td>
+<td>...</td>
+<td>56923.0</td>
+<td>51387.0</td>
+<td>62459.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06035</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">211</td>
+<td>6037</td>
+<td>CA</td>
+<td>Los Angeles County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1365808.0</td>
+<td>1324191.0</td>
+<td>1407425.0</td>
+<td>...</td>
+<td>77356.0</td>
+<td>76664.0</td>
+<td>78048.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06037</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">212</td>
+<td>6039</td>
+<td>CA</td>
+<td>Madera County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>31044.0</td>
+<td>27214.0</td>
+<td>34874.0</td>
+<td>...</td>
+<td>60241.0</td>
+<td>54963.0</td>
+<td>65519.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06039</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">213</td>
+<td>6041</td>
+<td>CA</td>
+<td>Marin County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>19734.0</td>
+<td>16455.0</td>
+<td>23013.0</td>
+<td>...</td>
+<td>118472.0</td>
+<td>110912.0</td>
+<td>126032.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06041</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">214</td>
+<td>6043</td>
+<td>CA</td>
+<td>Mariposa County</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>2387.0</td>
+<td>1808.0</td>
+<td>2966.0</td>
+<td>...</td>
+<td>60377.0</td>
+<td>54124.0</td>
+<td>66630.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06043</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">215</td>
+<td>6045</td>
+<td>CA</td>
+<td>Mendocino County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>14539.0</td>
+<td>11887.0</td>
+<td>17191.0</td>
+<td>...</td>
+<td>57516.0</td>
+<td>51658.0</td>
+<td>63374.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06045</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">216</td>
+<td>6047</td>
+<td>CA</td>
+<td>Merced County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>61359.0</td>
+<td>55535.0</td>
+<td>67183.0</td>
+<td>...</td>
+<td>54703.0</td>
+<td>51436.0</td>
+<td>57970.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06047</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">217</td>
+<td>6049</td>
+<td>CA</td>
+<td>Modoc County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>1688.0</td>
+<td>1307.0</td>
+<td>2069.0</td>
+<td>...</td>
+<td>49273.0</td>
+<td>44364.0</td>
+<td>54182.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06049</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">218</td>
+<td>6051</td>
+<td>CA</td>
+<td>Mono County</td>
+<td>7.0</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>1278.0</td>
+<td>973.0</td>
+<td>1583.0</td>
+<td>...</td>
+<td>70945.0</td>
+<td>62471.0</td>
+<td>79419.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06051</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">219</td>
+<td>6053</td>
+<td>CA</td>
+<td>Monterey County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>50725.0</td>
+<td>43455.0</td>
+<td>57995.0</td>
+<td>...</td>
+<td>81404.0</td>
+<td>79343.0</td>
+<td>83465.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06053</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">220</td>
+<td>6055</td>
+<td>CA</td>
+<td>Napa County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>11814.0</td>
+<td>9909.0</td>
+<td>13719.0</td>
+<td>...</td>
+<td>94127.0</td>
+<td>88895.0</td>
+<td>99359.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06055</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">221</td>
+<td>6057</td>
+<td>CA</td>
+<td>Nevada County</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>12141.0</td>
+<td>10287.0</td>
+<td>13995.0</td>
+<td>...</td>
+<td>77220.0</td>
+<td>70966.0</td>
+<td>83474.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06057</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">222</td>
+<td>6059</td>
+<td>CA</td>
+<td>Orange County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>309402.0</td>
+<td>290860.0</td>
+<td>327944.0</td>
+<td>...</td>
+<td>100210.0</td>
+<td>98704.0</td>
+<td>101716.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06059</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">223</td>
+<td>6061</td>
+<td>CA</td>
+<td>Placer County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>26816.0</td>
+<td>23108.0</td>
+<td>30524.0</td>
+<td>...</td>
+<td>103588.0</td>
+<td>100310.0</td>
+<td>106866.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06061</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">224</td>
+<td>6063</td>
+<td>CA</td>
+<td>Plumas County</td>
+<td>7.0</td>
+<td>12.0</td>
+<td>7.0</td>
+<td>12.0</td>
+<td>2545.0</td>
+<td>1946.0</td>
+<td>3144.0</td>
+<td>...</td>
+<td>58154.0</td>
+<td>52309.0</td>
+<td>63999.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06063</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">225</td>
+<td>6065</td>
+<td>CA</td>
+<td>Riverside County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>282068.0</td>
+<td>261203.0</td>
+<td>302933.0</td>
+<td>...</td>
+<td>78690.0</td>
+<td>77268.0</td>
+<td>80112.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06065</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">226</td>
+<td>6067</td>
+<td>CA</td>
+<td>Sacramento County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>203413.0</td>
+<td>188841.0</td>
+<td>217985.0</td>
+<td>...</td>
+<td>79611.0</td>
+<td>77617.0</td>
+<td>81605.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06067</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">227</td>
+<td>6069</td>
+<td>CA</td>
+<td>San Benito County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>5899.0</td>
+<td>4633.0</td>
+<td>7165.0</td>
+<td>...</td>
+<td>95187.0</td>
+<td>87067.0</td>
+<td>103307.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06069</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">228</td>
+<td>6071</td>
+<td>CA</td>
+<td>San Bernardino County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>285474.0</td>
+<td>263941.0</td>
+<td>307007.0</td>
+<td>...</td>
+<td>74218.0</td>
+<td>72378.0</td>
+<td>76058.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06071</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">229</td>
+<td>6073</td>
+<td>CA</td>
+<td>San Diego County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>340522.0</td>
+<td>320076.0</td>
+<td>360968.0</td>
+<td>...</td>
+<td>90756.0</td>
+<td>89622.0</td>
+<td>91890.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06073</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">230</td>
+<td>6075</td>
+<td>CA</td>
+<td>San Francisco County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>90898.0</td>
+<td>83583.0</td>
+<td>98213.0</td>
+<td>...</td>
+<td>119776.0</td>
+<td>115563.0</td>
+<td>123989.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06075</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">231</td>
+<td>6077</td>
+<td>CA</td>
+<td>San Joaquin County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>95382.0</td>
+<td>83774.0</td>
+<td>106990.0</td>
+<td>...</td>
+<td>79598.0</td>
+<td>77211.0</td>
+<td>81985.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06077</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">232</td>
+<td>6079</td>
+<td>CA</td>
+<td>San Luis Obispo County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>35120.0</td>
+<td>31122.0</td>
+<td>39118.0</td>
+<td>...</td>
+<td>79688.0</td>
+<td>75932.0</td>
+<td>83444.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06079</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">233</td>
+<td>6081</td>
+<td>CA</td>
+<td>San Mateo County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>49900.0</td>
+<td>43747.0</td>
+<td>56053.0</td>
+<td>...</td>
+<td>131151.0</td>
+<td>127714.0</td>
+<td>134588.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06081</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">234</td>
+<td>6083</td>
+<td>CA</td>
+<td>Santa Barbara County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>65029.0</td>
+<td>59277.0</td>
+<td>70781.0</td>
+<td>...</td>
+<td>83185.0</td>
+<td>79921.0</td>
+<td>86449.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06083</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">235</td>
+<td>6085</td>
+<td>CA</td>
+<td>Santa Clara County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>128955.0</td>
+<td>117767.0</td>
+<td>140143.0</td>
+<td>...</td>
+<td>141161.0</td>
+<td>138832.0</td>
+<td>143490.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06085</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">236</td>
+<td>6087</td>
+<td>CA</td>
+<td>Santa Cruz County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>27132.0</td>
+<td>22485.0</td>
+<td>31779.0</td>
+<td>...</td>
+<td>90370.0</td>
+<td>84679.0</td>
+<td>96061.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06087</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">237</td>
+<td>6089</td>
+<td>CA</td>
+<td>Shasta County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>25141.0</td>
+<td>21256.0</td>
+<td>29026.0</td>
+<td>...</td>
+<td>60187.0</td>
+<td>56764.0</td>
+<td>63610.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06089</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">238</td>
+<td>6091</td>
+<td>CA</td>
+<td>Sierra County</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>8.0</td>
+<td>7.0</td>
+<td>398.0</td>
+<td>300.0</td>
+<td>496.0</td>
+<td>...</td>
+<td>60659.0</td>
+<td>53239.0</td>
+<td>68079.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06091</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">239</td>
+<td>6093</td>
+<td>CA</td>
+<td>Siskiyou County</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>7301.0</td>
+<td>6005.0</td>
+<td>8597.0</td>
+<td>...</td>
+<td>50069.0</td>
+<td>45178.0</td>
+<td>54960.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06093</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">240</td>
+<td>6095</td>
+<td>CA</td>
+<td>Solano County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>44037.0</td>
+<td>37963.0</td>
+<td>50111.0</td>
+<td>...</td>
+<td>87348.0</td>
+<td>84016.0</td>
+<td>90680.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06095</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">241</td>
+<td>6097</td>
+<td>CA</td>
+<td>Sonoma County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>43661.0</td>
+<td>38372.0</td>
+<td>48950.0</td>
+<td>...</td>
+<td>92999.0</td>
+<td>89380.0</td>
+<td>96618.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06097</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">242</td>
+<td>6099</td>
+<td>CA</td>
+<td>Stanislaus County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>76921.0</td>
+<td>67090.0</td>
+<td>86752.0</td>
+<td>...</td>
+<td>73151.0</td>
+<td>70938.0</td>
+<td>75364.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06099</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">243</td>
+<td>6101</td>
+<td>CA</td>
+<td>Sutter County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>15224.0</td>
+<td>12930.0</td>
+<td>17518.0</td>
+<td>...</td>
+<td>63246.0</td>
+<td>58462.0</td>
+<td>68030.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06101</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">244</td>
+<td>6103</td>
+<td>CA</td>
+<td>Tehama County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>10107.0</td>
+<td>8151.0</td>
+<td>12063.0</td>
+<td>...</td>
+<td>53654.0</td>
+<td>47435.0</td>
+<td>59873.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06103</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">245</td>
+<td>6105</td>
+<td>CA</td>
+<td>Trinity County</td>
+<td>8.0</td>
+<td>6.0</td>
+<td>8.0</td>
+<td>6.0</td>
+<td>3010.0</td>
+<td>2307.0</td>
+<td>3713.0</td>
+<td>...</td>
+<td>45508.0</td>
+<td>39960.0</td>
+<td>51056.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06105</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">246</td>
+<td>6107</td>
+<td>CA</td>
+<td>Tulare County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>88367.0</td>
+<td>78219.0</td>
+<td>98515.0</td>
+<td>...</td>
+<td>57398.0</td>
+<td>54157.0</td>
+<td>60639.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06107</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">247</td>
+<td>6109</td>
+<td>CA</td>
+<td>Tuolumne County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>6848.0</td>
+<td>5388.0</td>
+<td>8308.0</td>
+<td>...</td>
+<td>61396.0</td>
+<td>54884.0</td>
+<td>67908.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06109</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">248</td>
+<td>6111</td>
+<td>CA</td>
+<td>Ventura County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>73968.0</td>
+<td>66079.0</td>
+<td>81857.0</td>
+<td>...</td>
+<td>95819.0</td>
+<td>93275.0</td>
+<td>98363.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06111</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">249</td>
+<td>6113</td>
+<td>CA</td>
+<td>Yolo County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>30708.0</td>
+<td>27369.0</td>
+<td>34047.0</td>
+<td>...</td>
+<td>76247.0</td>
+<td>71083.0</td>
+<td>81411.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06113</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">250</td>
+<td>6115</td>
+<td>CA</td>
+<td>Yuba County</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>12784.0</td>
+<td>10305.0</td>
+<td>15263.0</td>
+<td>...</td>
+<td>60764.0</td>
+<td>56731.0</td>
+<td>64797.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>06115</td>
+</tr>
+</tbody>
+</table>
+
+<p>59 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> df[df.fips_str.<span class="bu">str</span>.endswith(<span class="st">'000'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>US</td>
+<td>United States</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>41393176.0</td>
+<td>41149497.0</td>
+<td>41636855.0</td>
+<td>...</td>
+<td>69717.0</td>
+<td>69583.0</td>
+<td>69851.0</td>
+<td>3349149.0</td>
+<td>3299669.0</td>
+<td>3398629.0</td>
+<td>18.3</td>
+<td>18.0</td>
+<td>18.6</td>
+<td>00000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1000</td>
+<td>AL</td>
+<td>Alabama</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>800848.0</td>
+<td>782169.0</td>
+<td>819527.0</td>
+<td>...</td>
+<td>53990.0</td>
+<td>53218.0</td>
+<td>54762.0</td>
+<td>71220.0</td>
+<td>66888.0</td>
+<td>75552.0</td>
+<td>25.1</td>
+<td>23.6</td>
+<td>26.6</td>
+<td>01000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">69</td>
+<td>2000</td>
+<td>AK</td>
+<td>Alaska</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>77736.0</td>
+<td>74178.0</td>
+<td>81294.0</td>
+<td>...</td>
+<td>78437.0</td>
+<td>76456.0</td>
+<td>80418.0</td>
+<td>6633.0</td>
+<td>5796.0</td>
+<td>7470.0</td>
+<td>14.1</td>
+<td>12.3</td>
+<td>15.9</td>
+<td>02000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">100</td>
+<td>4000</td>
+<td>AZ</td>
+<td>Arizona</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>919680.0</td>
+<td>900349.0</td>
+<td>939011.0</td>
+<td>...</td>
+<td>68967.0</td>
+<td>68287.0</td>
+<td>69647.0</td>
+<td>76649.0</td>
+<td>71494.0</td>
+<td>81804.0</td>
+<td>19.7</td>
+<td>18.4</td>
+<td>21.0</td>
+<td>04000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">116</td>
+<td>5000</td>
+<td>AR</td>
+<td>Arkansas</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>471195.0</td>
+<td>458260.0</td>
+<td>484130.0</td>
+<td>...</td>
+<td>52577.0</td>
+<td>51595.0</td>
+<td>53559.0</td>
+<td>45096.0</td>
+<td>42186.0</td>
+<td>48006.0</td>
+<td>25.5</td>
+<td>23.9</td>
+<td>27.1</td>
+<td>05000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">192</td>
+<td>6000</td>
+<td>CA</td>
+<td>California</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4742405.0</td>
+<td>4689999.0</td>
+<td>4794811.0</td>
+<td>...</td>
+<td>84831.0</td>
+<td>84292.0</td>
+<td>85370.0</td>
+<td>339169.0</td>
+<td>326796.0</td>
+<td>351542.0</td>
+<td>15.8</td>
+<td>15.2</td>
+<td>16.4</td>
+<td>06000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">251</td>
+<td>8000</td>
+<td>CO</td>
+<td>Colorado</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>554126.0</td>
+<td>540035.0</td>
+<td>568217.0</td>
+<td>...</td>
+<td>82228.0</td>
+<td>81447.0</td>
+<td>83009.0</td>
+<td>39308.0</td>
+<td>35584.0</td>
+<td>43032.0</td>
+<td>12.8</td>
+<td>11.6</td>
+<td>14.0</td>
+<td>08000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">316</td>
+<td>9000</td>
+<td>CT</td>
+<td>Connecticut</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>355861.0</td>
+<td>344138.0</td>
+<td>367584.0</td>
+<td>...</td>
+<td>83628.0</td>
+<td>82542.0</td>
+<td>84714.0</td>
+<td>24150.0</td>
+<td>21569.0</td>
+<td>26731.0</td>
+<td>13.9</td>
+<td>12.4</td>
+<td>15.4</td>
+<td>09000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">325</td>
+<td>10000</td>
+<td>DE</td>
+<td>Delaware</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>113026.0</td>
+<td>107766.0</td>
+<td>118286.0</td>
+<td>...</td>
+<td>71636.0</td>
+<td>69940.0</td>
+<td>73332.0</td>
+<td>9694.0</td>
+<td>8679.0</td>
+<td>10709.0</td>
+<td>18.6</td>
+<td>16.6</td>
+<td>20.6</td>
+<td>10000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">329</td>
+<td>11000</td>
+<td>DC</td>
+<td>District of Columbia</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>107307.0</td>
+<td>101426.0</td>
+<td>113188.0</td>
+<td>...</td>
+<td>91072.0</td>
+<td>88170.0</td>
+<td>93974.0</td>
+<td>9444.0</td>
+<td>8334.0</td>
+<td>10554.0</td>
+<td>24.3</td>
+<td>21.4</td>
+<td>27.2</td>
+<td>11000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">331</td>
+<td>12000</td>
+<td>FL</td>
+<td>Florida</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2830813.0</td>
+<td>2790138.0</td>
+<td>2871488.0</td>
+<td>...</td>
+<td>63054.0</td>
+<td>62631.0</td>
+<td>63477.0</td>
+<td>212346.0</td>
+<td>200017.0</td>
+<td>224675.0</td>
+<td>19.8</td>
+<td>18.7</td>
+<td>20.9</td>
+<td>12000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">399</td>
+<td>13000</td>
+<td>GA</td>
+<td>Georgia</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1493837.0</td>
+<td>1463589.0</td>
+<td>1524085.0</td>
+<td>...</td>
+<td>66507.0</td>
+<td>65802.0</td>
+<td>67212.0</td>
+<td>135538.0</td>
+<td>128008.0</td>
+<td>143068.0</td>
+<td>22.0</td>
+<td>20.8</td>
+<td>23.2</td>
+<td>13000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">559</td>
+<td>15000</td>
+<td>HI</td>
+<td>Hawaii</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>152656.0</td>
+<td>146272.0</td>
+<td>159040.0</td>
+<td>...</td>
+<td>85547.0</td>
+<td>83548.0</td>
+<td>87546.0</td>
+<td>10150.0</td>
+<td>8658.0</td>
+<td>11642.0</td>
+<td>12.9</td>
+<td>11.0</td>
+<td>14.8</td>
+<td>15000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">565</td>
+<td>16000</td>
+<td>ID</td>
+<td>Idaho</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>202091.0</td>
+<td>193474.0</td>
+<td>210708.0</td>
+<td>...</td>
+<td>66318.0</td>
+<td>64668.0</td>
+<td>67968.0</td>
+<td>17074.0</td>
+<td>15118.0</td>
+<td>19030.0</td>
+<td>15.4</td>
+<td>13.6</td>
+<td>17.2</td>
+<td>16000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">610</td>
+<td>17000</td>
+<td>IL</td>
+<td>Illinois</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1493042.0</td>
+<td>1465135.0</td>
+<td>1520949.0</td>
+<td>...</td>
+<td>72215.0</td>
+<td>71645.0</td>
+<td>72785.0</td>
+<td>120015.0</td>
+<td>114563.0</td>
+<td>125467.0</td>
+<td>17.5</td>
+<td>16.7</td>
+<td>18.3</td>
+<td>17000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">713</td>
+<td>18000</td>
+<td>IN</td>
+<td>Indiana</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>799733.0</td>
+<td>782428.0</td>
+<td>817038.0</td>
+<td>...</td>
+<td>62723.0</td>
+<td>62015.0</td>
+<td>63431.0</td>
+<td>69805.0</td>
+<td>64751.0</td>
+<td>74859.0</td>
+<td>17.7</td>
+<td>16.4</td>
+<td>19.0</td>
+<td>18000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">806</td>
+<td>19000</td>
+<td>IA</td>
+<td>Iowa</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>340626.0</td>
+<td>329373.0</td>
+<td>351879.0</td>
+<td>...</td>
+<td>65645.0</td>
+<td>64876.0</td>
+<td>66414.0</td>
+<td>24541.0</td>
+<td>22373.0</td>
+<td>26709.0</td>
+<td>13.3</td>
+<td>12.1</td>
+<td>14.5</td>
+<td>19000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">906</td>
+<td>20000</td>
+<td>KS</td>
+<td>Kansas</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>332457.0</td>
+<td>322234.0</td>
+<td>342680.0</td>
+<td>...</td>
+<td>64128.0</td>
+<td>63194.0</td>
+<td>65062.0</td>
+<td>27811.0</td>
+<td>25370.0</td>
+<td>30252.0</td>
+<td>16.0</td>
+<td>14.6</td>
+<td>17.4</td>
+<td>20000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1012</td>
+<td>21000</td>
+<td>KY</td>
+<td>Kentucky</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>712023.0</td>
+<td>697813.0</td>
+<td>726233.0</td>
+<td>...</td>
+<td>55532.0</td>
+<td>54838.0</td>
+<td>56226.0</td>
+<td>60772.0</td>
+<td>57134.0</td>
+<td>64410.0</td>
+<td>23.6</td>
+<td>22.2</td>
+<td>25.0</td>
+<td>21000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1133</td>
+<td>22000</td>
+<td>LA</td>
+<td>Louisiana</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>878477.0</td>
+<td>859106.0</td>
+<td>897848.0</td>
+<td>...</td>
+<td>52090.0</td>
+<td>51348.0</td>
+<td>52832.0</td>
+<td>80375.0</td>
+<td>76164.0</td>
+<td>84586.0</td>
+<td>28.8</td>
+<td>27.3</td>
+<td>30.3</td>
+<td>22000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1198</td>
+<td>23000</td>
+<td>ME</td>
+<td>Maine</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>149571.0</td>
+<td>143213.0</td>
+<td>155929.0</td>
+<td>...</td>
+<td>64823.0</td>
+<td>63604.0</td>
+<td>66042.0</td>
+<td>8895.0</td>
+<td>7789.0</td>
+<td>10001.0</td>
+<td>14.7</td>
+<td>12.9</td>
+<td>16.5</td>
+<td>23000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1215</td>
+<td>24000</td>
+<td>MD</td>
+<td>Maryland</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>620829.0</td>
+<td>603853.0</td>
+<td>637805.0</td>
+<td>...</td>
+<td>90129.0</td>
+<td>89087.0</td>
+<td>91171.0</td>
+<td>51970.0</td>
+<td>47916.0</td>
+<td>56024.0</td>
+<td>15.0</td>
+<td>13.8</td>
+<td>16.2</td>
+<td>24000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1240</td>
+<td>25000</td>
+<td>MA</td>
+<td>Massachusetts</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>701700.0</td>
+<td>685529.0</td>
+<td>717871.0</td>
+<td>...</td>
+<td>89577.0</td>
+<td>88330.0</td>
+<td>90824.0</td>
+<td>44332.0</td>
+<td>40364.0</td>
+<td>48300.0</td>
+<td>13.1</td>
+<td>11.9</td>
+<td>14.3</td>
+<td>25000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1255</td>
+<td>26000</td>
+<td>MI</td>
+<td>Michigan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1283086.0</td>
+<td>1261685.0</td>
+<td>1304487.0</td>
+<td>...</td>
+<td>63444.0</td>
+<td>62920.0</td>
+<td>63968.0</td>
+<td>104555.0</td>
+<td>98778.0</td>
+<td>110332.0</td>
+<td>19.5</td>
+<td>18.4</td>
+<td>20.6</td>
+<td>26000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1339</td>
+<td>27000</td>
+<td>MN</td>
+<td>Minnesota</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>519437.0</td>
+<td>507482.0</td>
+<td>531392.0</td>
+<td>...</td>
+<td>77712.0</td>
+<td>76812.0</td>
+<td>78612.0</td>
+<td>36651.0</td>
+<td>33066.0</td>
+<td>40236.0</td>
+<td>11.1</td>
+<td>10.0</td>
+<td>12.2</td>
+<td>27000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1427</td>
+<td>28000</td>
+<td>MS</td>
+<td>Mississippi</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>549710.0</td>
+<td>536691.0</td>
+<td>562729.0</td>
+<td>...</td>
+<td>48871.0</td>
+<td>47663.0</td>
+<td>50079.0</td>
+<td>51862.0</td>
+<td>48648.0</td>
+<td>55076.0</td>
+<td>30.3</td>
+<td>28.4</td>
+<td>32.2</td>
+<td>28000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1510</td>
+<td>29000</td>
+<td>MO</td>
+<td>Missouri</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>765097.0</td>
+<td>748927.0</td>
+<td>781267.0</td>
+<td>...</td>
+<td>61815.0</td>
+<td>61152.0</td>
+<td>62478.0</td>
+<td>63067.0</td>
+<td>58984.0</td>
+<td>67150.0</td>
+<td>18.1</td>
+<td>16.9</td>
+<td>19.3</td>
+<td>29000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1626</td>
+<td>30000</td>
+<td>MT</td>
+<td>Montana</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>129910.0</td>
+<td>124852.0</td>
+<td>134968.0</td>
+<td>...</td>
+<td>63357.0</td>
+<td>61990.0</td>
+<td>64724.0</td>
+<td>9726.0</td>
+<td>8698.0</td>
+<td>10754.0</td>
+<td>17.2</td>
+<td>15.4</td>
+<td>19.0</td>
+<td>30000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1683</td>
+<td>31000</td>
+<td>NE</td>
+<td>Nebraska</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>201627.0</td>
+<td>194607.0</td>
+<td>208647.0</td>
+<td>...</td>
+<td>66949.0</td>
+<td>65911.0</td>
+<td>67987.0</td>
+<td>16432.0</td>
+<td>14419.0</td>
+<td>18445.0</td>
+<td>13.4</td>
+<td>11.8</td>
+<td>15.0</td>
+<td>31000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1777</td>
+<td>32000</td>
+<td>NV</td>
+<td>Nevada</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>433095.0</td>
+<td>420882.0</td>
+<td>445308.0</td>
+<td>...</td>
+<td>66194.0</td>
+<td>65202.0</td>
+<td>67186.0</td>
+<td>36365.0</td>
+<td>33278.0</td>
+<td>39452.0</td>
+<td>21.0</td>
+<td>19.2</td>
+<td>22.8</td>
+<td>32000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1795</td>
+<td>33000</td>
+<td>NH</td>
+<td>New Hampshire</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>99562.0</td>
+<td>94623.0</td>
+<td>104501.0</td>
+<td>...</td>
+<td>88268.0</td>
+<td>86293.0</td>
+<td>90243.0</td>
+<td>5622.0</td>
+<td>4665.0</td>
+<td>6579.0</td>
+<td>9.4</td>
+<td>7.8</td>
+<td>11.0</td>
+<td>33000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1806</td>
+<td>34000</td>
+<td>NJ</td>
+<td>New Jersey</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>925852.0</td>
+<td>905573.0</td>
+<td>946131.0</td>
+<td>...</td>
+<td>89227.0</td>
+<td>88164.0</td>
+<td>90290.0</td>
+<td>76282.0</td>
+<td>70767.0</td>
+<td>81797.0</td>
+<td>15.0</td>
+<td>13.9</td>
+<td>16.1</td>
+<td>34000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1828</td>
+<td>35000</td>
+<td>NM</td>
+<td>New Mexico</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>367050.0</td>
+<td>354401.0</td>
+<td>379699.0</td>
+<td>...</td>
+<td>54304.0</td>
+<td>52878.0</td>
+<td>55730.0</td>
+<td>28231.0</td>
+<td>25602.0</td>
+<td>30860.0</td>
+<td>25.1</td>
+<td>22.8</td>
+<td>27.4</td>
+<td>35000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1862</td>
+<td>36000</td>
+<td>NY</td>
+<td>New York</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2703053.0</td>
+<td>2668539.0</td>
+<td>2737567.0</td>
+<td>...</td>
+<td>74230.0</td>
+<td>73620.0</td>
+<td>74840.0</td>
+<td>207920.0</td>
+<td>197263.0</td>
+<td>218577.0</td>
+<td>19.5</td>
+<td>18.5</td>
+<td>20.5</td>
+<td>36000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1925</td>
+<td>37000</td>
+<td>NC</td>
+<td>North Carolina</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1383626.0</td>
+<td>1357735.0</td>
+<td>1409517.0</td>
+<td>...</td>
+<td>61997.0</td>
+<td>61459.0</td>
+<td>62535.0</td>
+<td>116355.0</td>
+<td>109438.0</td>
+<td>123272.0</td>
+<td>20.2</td>
+<td>19.0</td>
+<td>21.4</td>
+<td>37000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2026</td>
+<td>38000</td>
+<td>ND</td>
+<td>North Dakota</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>82270.0</td>
+<td>78002.0</td>
+<td>86538.0</td>
+<td>...</td>
+<td>67603.0</td>
+<td>65854.0</td>
+<td>69352.0</td>
+<td>6455.0</td>
+<td>5510.0</td>
+<td>7400.0</td>
+<td>12.9</td>
+<td>11.0</td>
+<td>14.8</td>
+<td>38000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2080</td>
+<td>39000</td>
+<td>OH</td>
+<td>Ohio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1523366.0</td>
+<td>1498525.0</td>
+<td>1548207.0</td>
+<td>...</td>
+<td>62286.0</td>
+<td>61832.0</td>
+<td>62740.0</td>
+<td>135658.0</td>
+<td>129038.0</td>
+<td>142278.0</td>
+<td>20.7</td>
+<td>19.7</td>
+<td>21.7</td>
+<td>39000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2169</td>
+<td>40000</td>
+<td>OK</td>
+<td>Oklahoma</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>599003.0</td>
+<td>587366.0</td>
+<td>610640.0</td>
+<td>...</td>
+<td>55829.0</td>
+<td>55210.0</td>
+<td>56448.0</td>
+<td>56598.0</td>
+<td>53190.0</td>
+<td>60006.0</td>
+<td>23.6</td>
+<td>22.2</td>
+<td>25.0</td>
+<td>40000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2247</td>
+<td>41000</td>
+<td>OR</td>
+<td>Oregon</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>507504.0</td>
+<td>493784.0</td>
+<td>521224.0</td>
+<td>...</td>
+<td>71441.0</td>
+<td>70406.0</td>
+<td>72476.0</td>
+<td>29637.0</td>
+<td>26737.0</td>
+<td>32537.0</td>
+<td>14.6</td>
+<td>13.2</td>
+<td>16.0</td>
+<td>41000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2284</td>
+<td>42000</td>
+<td>PA</td>
+<td>Pennsylvania</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1503929.0</td>
+<td>1480307.0</td>
+<td>1527551.0</td>
+<td>...</td>
+<td>68931.0</td>
+<td>68429.0</td>
+<td>69433.0</td>
+<td>116290.0</td>
+<td>109264.0</td>
+<td>123316.0</td>
+<td>17.5</td>
+<td>16.4</td>
+<td>18.6</td>
+<td>42000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2352</td>
+<td>44000</td>
+<td>RI</td>
+<td>Rhode Island</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>126971.0</td>
+<td>121343.0</td>
+<td>132599.0</td>
+<td>...</td>
+<td>73324.0</td>
+<td>71173.0</td>
+<td>75475.0</td>
+<td>9556.0</td>
+<td>8437.0</td>
+<td>10675.0</td>
+<td>18.6</td>
+<td>16.4</td>
+<td>20.8</td>
+<td>44000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2358</td>
+<td>45000</td>
+<td>SC</td>
+<td>South Carolina</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>736098.0</td>
+<td>719691.0</td>
+<td>752505.0</td>
+<td>...</td>
+<td>59447.0</td>
+<td>58606.0</td>
+<td>60288.0</td>
+<td>59011.0</td>
+<td>55007.0</td>
+<td>63015.0</td>
+<td>21.5</td>
+<td>20.0</td>
+<td>23.0</td>
+<td>45000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2405</td>
+<td>46000</td>
+<td>SD</td>
+<td>South Dakota</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>103337.0</td>
+<td>99076.0</td>
+<td>107598.0</td>
+<td>...</td>
+<td>66843.0</td>
+<td>64779.0</td>
+<td>68907.0</td>
+<td>9423.0</td>
+<td>8334.0</td>
+<td>10512.0</td>
+<td>16.5</td>
+<td>14.6</td>
+<td>18.4</td>
+<td>46000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2472</td>
+<td>47000</td>
+<td>TN</td>
+<td>Tennessee</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>934856.0</td>
+<td>915693.0</td>
+<td>954019.0</td>
+<td>...</td>
+<td>59698.0</td>
+<td>58920.0</td>
+<td>60476.0</td>
+<td>75501.0</td>
+<td>70440.0</td>
+<td>80562.0</td>
+<td>19.3</td>
+<td>18.0</td>
+<td>20.6</td>
+<td>47000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2568</td>
+<td>48000</td>
+<td>TX</td>
+<td>Texas</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4122799.0</td>
+<td>4067445.0</td>
+<td>4178153.0</td>
+<td>...</td>
+<td>66959.0</td>
+<td>66448.0</td>
+<td>67470.0</td>
+<td>393888.0</td>
+<td>378420.0</td>
+<td>409356.0</td>
+<td>21.2</td>
+<td>20.4</td>
+<td>22.0</td>
+<td>48000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2823</td>
+<td>49000</td>
+<td>UT</td>
+<td>Utah</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>286086.0</td>
+<td>273709.0</td>
+<td>298463.0</td>
+<td>...</td>
+<td>79449.0</td>
+<td>78242.0</td>
+<td>80656.0</td>
+<td>22873.0</td>
+<td>20451.0</td>
+<td>25295.0</td>
+<td>9.8</td>
+<td>8.8</td>
+<td>10.8</td>
+<td>49000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2853</td>
+<td>50000</td>
+<td>VT</td>
+<td>Vermont</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>63208.0</td>
+<td>59860.0</td>
+<td>66556.0</td>
+<td>...</td>
+<td>72415.0</td>
+<td>70396.0</td>
+<td>74434.0</td>
+<td>3196.0</td>
+<td>2682.0</td>
+<td>3710.0</td>
+<td>11.6</td>
+<td>9.7</td>
+<td>13.5</td>
+<td>50000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2868</td>
+<td>51000</td>
+<td>VA</td>
+<td>Virginia</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>862792.0</td>
+<td>843622.0</td>
+<td>881962.0</td>
+<td>...</td>
+<td>80926.0</td>
+<td>80203.0</td>
+<td>81649.0</td>
+<td>69303.0</td>
+<td>64164.0</td>
+<td>74442.0</td>
+<td>14.4</td>
+<td>13.3</td>
+<td>15.5</td>
+<td>51000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3002</td>
+<td>53000</td>
+<td>WA</td>
+<td>Washington</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>755589.0</td>
+<td>738622.0</td>
+<td>772556.0</td>
+<td>...</td>
+<td>84155.0</td>
+<td>83322.0</td>
+<td>84988.0</td>
+<td>53637.0</td>
+<td>48940.0</td>
+<td>58334.0</td>
+<td>12.7</td>
+<td>11.6</td>
+<td>13.8</td>
+<td>53000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3042</td>
+<td>54000</td>
+<td>WV</td>
+<td>West Virginia</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>291051.0</td>
+<td>282054.0</td>
+<td>300048.0</td>
+<td>...</td>
+<td>51122.0</td>
+<td>50059.0</td>
+<td>52185.0</td>
+<td>21090.0</td>
+<td>19436.0</td>
+<td>22744.0</td>
+<td>24.7</td>
+<td>22.8</td>
+<td>26.6</td>
+<td>54000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3098</td>
+<td>55000</td>
+<td>WI</td>
+<td>Wisconsin</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>622948.0</td>
+<td>610655.0</td>
+<td>635241.0</td>
+<td>...</td>
+<td>67150.0</td>
+<td>66549.0</td>
+<td>67751.0</td>
+<td>44523.0</td>
+<td>41734.0</td>
+<td>47312.0</td>
+<td>14.3</td>
+<td>13.4</td>
+<td>15.2</td>
+<td>55000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3171</td>
+<td>56000</td>
+<td>WY</td>
+<td>Wyoming</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>60226.0</td>
+<td>56527.0</td>
+<td>63925.0</td>
+<td>...</td>
+<td>66508.0</td>
+<td>64077.0</td>
+<td>68939.0</td>
+<td>4455.0</td>
+<td>3781.0</td>
+<td>5129.0</td>
+<td>14.2</td>
+<td>12.0</td>
+<td>16.4</td>
+<td>56000</td>
+</tr>
+</tbody>
+</table>
+
+<p>52 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>counties <span class="op">=</span> df[<span class="op">~</span>df.fips_str.<span class="bu">str</span>.endswith(<span class="st">'000'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>counties.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1001</td>
+<td>AL</td>
+<td>Autauga County</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>6296.0</td>
+<td>4772.0</td>
+<td>7820.0</td>
+<td>...</td>
+<td>66444.0</td>
+<td>60061.0</td>
+<td>72827.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01001</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1003</td>
+<td>AL</td>
+<td>Baldwin County</td>
+<td>4.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>25526.0</td>
+<td>21599.0</td>
+<td>29453.0</td>
+<td>...</td>
+<td>65658.0</td>
+<td>60723.0</td>
+<td>70593.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01003</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1005</td>
+<td>AL</td>
+<td>Barbour County</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>6.0</td>
+<td>5089.0</td>
+<td>3773.0</td>
+<td>6405.0</td>
+<td>...</td>
+<td>38649.0</td>
+<td>34308.0</td>
+<td>42990.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01005</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1007</td>
+<td>AL</td>
+<td>Bibb County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>4204.0</td>
+<td>3324.0</td>
+<td>5084.0</td>
+<td>...</td>
+<td>48454.0</td>
+<td>42438.0</td>
+<td>54470.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01007</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>1009</td>
+<td>AL</td>
+<td>Blount County</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>6992.0</td>
+<td>5516.0</td>
+<td>8468.0</td>
+<td>...</td>
+<td>56894.0</td>
+<td>52632.0</td>
+<td>61156.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01009</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 35 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>counties.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>(3143, 35)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>counties.groupby(by<span class="op">=</span><span class="st">'Stabr'</span>).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">FIPS_Code</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2003</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_2003</th>
+<th data-quarto-table-cell-role="th">Rural-urban_Continuum_Code_2013</th>
+<th data-quarto-table-cell-role="th">Urban_Influence_Code_ 2013</th>
+<th data-quarto-table-cell-role="th">POVALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBALL_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBALL_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOVALL_2021</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">MEDHHINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90LBINC_2021</th>
+<th data-quarto-table-cell-role="th">CI90UBINC_2021</th>
+<th data-quarto-table-cell-role="th">POV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04_2021</th>
+<th data-quarto-table-cell-role="th">PCTPOV04_2021</th>
+<th data-quarto-table-cell-role="th">CI90LB04P_2021</th>
+<th data-quarto-table-cell-role="th">CI90UB04P_2021</th>
+<th data-quarto-table-cell-role="th">fips_str</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">AK</td>
+<td>30</td>
+<td>30</td>
+<td>23</td>
+<td>23</td>
+<td>28</td>
+<td>28</td>
+<td>30</td>
+<td>30</td>
+<td>30</td>
+<td>30</td>
+<td>...</td>
+<td>30</td>
+<td>30</td>
+<td>30</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">AL</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>...</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">AR</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>...</td>
+<td>75</td>
+<td>75</td>
+<td>75</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">AZ</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>...</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CA</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>...</td>
+<td>58</td>
+<td>58</td>
+<td>58</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>58</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">CO</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>...</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>64</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CT</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>...</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">DC</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>...</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">DE</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>...</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">FL</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>...</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">GA</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>...</td>
+<td>159</td>
+<td>159</td>
+<td>159</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>159</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">HI</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>...</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IA</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>...</td>
+<td>99</td>
+<td>99</td>
+<td>99</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>99</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ID</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>...</td>
+<td>44</td>
+<td>44</td>
+<td>44</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>44</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IL</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>...</td>
+<td>102</td>
+<td>102</td>
+<td>102</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>102</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">IN</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>...</td>
+<td>92</td>
+<td>92</td>
+<td>92</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">KS</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>...</td>
+<td>105</td>
+<td>105</td>
+<td>105</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>105</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">KY</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>...</td>
+<td>120</td>
+<td>120</td>
+<td>120</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>120</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">LA</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>...</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MA</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>...</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MD</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>...</td>
+<td>24</td>
+<td>24</td>
+<td>24</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>24</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ME</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>...</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>16</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MI</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>...</td>
+<td>83</td>
+<td>83</td>
+<td>83</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MN</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>...</td>
+<td>87</td>
+<td>87</td>
+<td>87</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>87</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MO</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>...</td>
+<td>115</td>
+<td>115</td>
+<td>115</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>115</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MS</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>...</td>
+<td>82</td>
+<td>82</td>
+<td>82</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>82</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MT</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>...</td>
+<td>56</td>
+<td>56</td>
+<td>56</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NC</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>...</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ND</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>...</td>
+<td>53</td>
+<td>53</td>
+<td>53</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>53</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NE</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>...</td>
+<td>93</td>
+<td>93</td>
+<td>93</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>93</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NH</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>...</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NJ</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>...</td>
+<td>21</td>
+<td>21</td>
+<td>21</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NM</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>...</td>
+<td>33</td>
+<td>33</td>
+<td>33</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NV</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>...</td>
+<td>17</td>
+<td>17</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NY</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>...</td>
+<td>62</td>
+<td>62</td>
+<td>62</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>62</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">OH</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>...</td>
+<td>88</td>
+<td>88</td>
+<td>88</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">OK</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>...</td>
+<td>77</td>
+<td>77</td>
+<td>77</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>77</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">OR</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>...</td>
+<td>36</td>
+<td>36</td>
+<td>36</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>36</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">PA</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>...</td>
+<td>67</td>
+<td>67</td>
+<td>67</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">RI</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>...</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">SC</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>...</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">SD</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>...</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>66</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">TN</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>...</td>
+<td>95</td>
+<td>95</td>
+<td>95</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>95</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">TX</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>...</td>
+<td>254</td>
+<td>254</td>
+<td>254</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>254</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">UT</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>...</td>
+<td>29</td>
+<td>29</td>
+<td>29</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">VA</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>...</td>
+<td>133</td>
+<td>133</td>
+<td>133</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>133</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">VT</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>...</td>
+<td>14</td>
+<td>14</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">WA</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>...</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>39</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WI</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>...</td>
+<td>72</td>
+<td>72</td>
+<td>72</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>72</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">WV</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>...</td>
+<td>55</td>
+<td>55</td>
+<td>55</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WY</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>...</td>
+<td>23</td>
+<td>23</td>
+<td>23</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+
+<p>51 rows × 34 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>counties.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>Index(['FIPS_Code', 'Stabr', 'Area_name', 'Rural-urban_Continuum_Code_2003',
+       'Urban_Influence_Code_2003', 'Rural-urban_Continuum_Code_2013',
+       'Urban_Influence_Code_ 2013', 'POVALL_2021', 'CI90LBALL_2021',
+       'CI90UBALL_2021', 'PCTPOVALL_2021', 'CI90LBALLP_2021',
+       'CI90UBALLP_2021', 'POV017_2021', 'CI90LB017_2021', 'CI90UB017_2021',
+       'PCTPOV017_2021', 'CI90LB017P_2021', 'CI90UB017P_2021', 'POV517_2021',
+       'CI90LB517_2021', 'CI90UB517_2021', 'PCTPOV517_2021', 'CI90LB517P_2021',
+       'CI90UB517P_2021', 'MEDHHINC_2021', 'CI90LBINC_2021', 'CI90UBINC_2021',
+       'POV04_2021', 'CI90LB04_2021', 'CI90UB04_2021', 'PCTPOV04_2021',
+       'CI90LB04P_2021', 'CI90UB04P_2021', 'fips_str'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>counties[[<span class="st">'Stabr'</span>, <span class="st">'Area_name'</span>, <span class="st">'PCTPOVALL_2021'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th">Area_name</th>
+<th data-quarto-table-cell-role="th">PCTPOVALL_2021</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>AL</td>
+<td>Autauga County</td>
+<td>10.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>AL</td>
+<td>Baldwin County</td>
+<td>10.8</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>AL</td>
+<td>Barbour County</td>
+<td>23.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>AL</td>
+<td>Bibb County</td>
+<td>20.6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>AL</td>
+<td>Blount County</td>
+<td>12.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3190</td>
+<td>WY</td>
+<td>Sweetwater County</td>
+<td>9.2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3191</td>
+<td>WY</td>
+<td>Teton County</td>
+<td>5.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3192</td>
+<td>WY</td>
+<td>Uinta County</td>
+<td>9.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3193</td>
+<td>WY</td>
+<td>Washakie County</td>
+<td>10.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3194</td>
+<td>WY</td>
+<td>Weston County</td>
+<td>10.4</td>
+</tr>
+</tbody>
+</table>
+
+<p>3143 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>counties[[<span class="st">'Stabr'</span>, <span class="st">'PCTPOVALL_2021'</span>]].groupby(by<span class="op">=</span><span class="st">'Stabr'</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">PCTPOVALL_2021</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">AK</td>
+<td>13.750000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">AL</td>
+<td>19.455224</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">AR</td>
+<td>18.750667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">AZ</td>
+<td>17.273333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CA</td>
+<td>13.631034</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">CO</td>
+<td>12.567188</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CT</td>
+<td>9.812500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">DC</td>
+<td>16.800000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">DE</td>
+<td>11.700000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">FL</td>
+<td>15.588060</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">GA</td>
+<td>18.422642</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">HI</td>
+<td>11.825000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IA</td>
+<td>10.714141</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ID</td>
+<td>11.970455</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IL</td>
+<td>12.804902</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">IN</td>
+<td>11.515217</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">KS</td>
+<td>11.903810</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">KY</td>
+<td>19.189167</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">LA</td>
+<td>21.618750</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MA</td>
+<td>10.278571</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MD</td>
+<td>10.991667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ME</td>
+<td>12.318750</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MI</td>
+<td>13.059036</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MN</td>
+<td>10.154023</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MO</td>
+<td>14.923478</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MS</td>
+<td>22.253659</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MT</td>
+<td>13.532143</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NC</td>
+<td>15.931000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ND</td>
+<td>12.286792</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NE</td>
+<td>10.847312</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NH</td>
+<td>8.510000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NJ</td>
+<td>9.880952</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NM</td>
+<td>20.169697</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NV</td>
+<td>12.111765</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NY</td>
+<td>12.964516</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">OH</td>
+<td>12.935227</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">OK</td>
+<td>16.790909</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">OR</td>
+<td>13.936111</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">PA</td>
+<td>12.043284</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">RI</td>
+<td>9.760000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">SC</td>
+<td>18.200000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">SD</td>
+<td>14.921212</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">TN</td>
+<td>15.463158</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">TX</td>
+<td>15.837008</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">UT</td>
+<td>10.206897</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">VA</td>
+<td>13.260902</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">VT</td>
+<td>10.435714</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">WA</td>
+<td>12.215385</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WI</td>
+<td>10.695833</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">WV</td>
+<td>18.060000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WY</td>
+<td>10.773913</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>counties[[<span class="st">'Stabr'</span>, <span class="st">'PCTPOVALL_2021'</span>]].groupby(by<span class="op">=</span><span class="st">'Stabr'</span>).<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">PCTPOVALL_2021</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Stabr</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">AK</td>
+<td>30.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">AL</td>
+<td>35.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">AR</td>
+<td>35.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">AZ</td>
+<td>28.4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CA</td>
+<td>21.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">CO</td>
+<td>37.8</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CT</td>
+<td>12.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">DC</td>
+<td>16.8</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">DE</td>
+<td>12.2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">FL</td>
+<td>26.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">GA</td>
+<td>34.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">HI</td>
+<td>14.7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IA</td>
+<td>17.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ID</td>
+<td>17.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IL</td>
+<td>22.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">IN</td>
+<td>21.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">KS</td>
+<td>21.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">KY</td>
+<td>40.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">LA</td>
+<td>39.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MA</td>
+<td>18.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MD</td>
+<td>23.6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ME</td>
+<td>18.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MI</td>
+<td>20.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MN</td>
+<td>18.7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MO</td>
+<td>23.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">MS</td>
+<td>43.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">MT</td>
+<td>25.7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NC</td>
+<td>27.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ND</td>
+<td>42.8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NE</td>
+<td>19.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NH</td>
+<td>12.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NJ</td>
+<td>15.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NM</td>
+<td>30.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NV</td>
+<td>18.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NY</td>
+<td>26.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">OH</td>
+<td>23.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">OK</td>
+<td>27.8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">OR</td>
+<td>20.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">PA</td>
+<td>22.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">RI</td>
+<td>14.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">SC</td>
+<td>35.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">SD</td>
+<td>43.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">TN</td>
+<td>33.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">TX</td>
+<td>34.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">UT</td>
+<td>26.8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">VA</td>
+<td>25.6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">VT</td>
+<td>14.4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">WA</td>
+<td>18.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WI</td>
+<td>24.2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">WV</td>
+<td>31.7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WY</td>
+<td>17.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../week-03/pandas.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Pandas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../week-03/0201_geopandas.html" class="pagination-link">
+        <span class="nav-page-text">GeoPandas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Course material by <a href="https://sergerey.org">Sergio Rey</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

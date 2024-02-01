@@ -54,3 +54,5 @@ website:
       - section: "Week 3 1/30 2/01"
         contents:
           - week-03/pandas.ipynb
+          - week-03/0201_pandas_2.ipynb
+          - week-03/0201_geopandas.ipynb
