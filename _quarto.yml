@@ -56,3 +56,7 @@ website:
           - week-03/pandas.ipynb
           - week-03/0201_pandas_2.ipynb
           - week-03/0201_geopandas.ipynb
+      - section: "Week 4 2/06 2/08"
+        contents:
+          - week-04/0206_choropleths.ipynb
+
