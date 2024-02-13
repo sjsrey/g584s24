@@ -59,4 +59,5 @@ website:
       - section: "Week 4 2/06 2/08"
         contents:
           - week-04/0206_choropleths.ipynb
+          - week-04/0208_choropleths.ipynb
 
