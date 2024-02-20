@@ -60,4 +60,6 @@ website:
         contents:
           - week-04/0206_choropleths.ipynb
           - week-04/0208_choropleths.ipynb
-
+      - section: "Week 5 2/13 2/15"
+        contents:
+          - week-05/00_geoprocessing.ipynb
