@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../week-06/inequality.html">Week 6 2/20</a></li><li class="breadcrumb-item"><a href="../week-06/spatialinequality.html">Regional Inequality Decomposition</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../week-06/inequality.html">Week 6 2/20 2/22</a></li><li class="breadcrumb-item"><a href="../week-06/spatialinequality.html">Regional Inequality Decomposition</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Week 6 2/20</span></a>
+ <span class="menu-text">Week 6 2/20 2/22</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../week-06/inequality.html">Week 6 2/20</a></li><li class="breadcrumb-item"><a href="../week-06/spatialinequality.html">Regional Inequality Decomposition</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../week-06/inequality.html">Week 6 2/20 2/22</a></li><li class="breadcrumb-item"><a href="../week-06/spatialinequality.html">Regional Inequality Decomposition</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Regional Inequality Decomposition</h1>
 </div>
@@ -308,41 +308,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="ef6e27f5-f5e7-484d-9026-a666d2aae104" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> libpysal</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> inequality.theil <span class="im">import</span> Theil</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> f<span class="op">=</span>libpysal.io.<span class="bu">open</span>(libpysal.examples.get_path(<span class="st">"mexico.csv"</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> vnames<span class="op">=</span>[<span class="st">"pcgdp</span><span class="sc">%d</span><span class="st">"</span><span class="op">%</span>dec <span class="cf">for</span> dec <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1940</span>,<span class="dv">2010</span>,<span class="dv">10</span>)]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y<span class="op">=</span>np.array([f.by_col[v] <span class="cf">for</span> v <span class="kw">in</span> vnames]).T</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theil_y<span class="op">=</span>Theil(y)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theil_y.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([0.20894344, 0.15222451, 0.10472941, 0.10194725, 0.09560113,
-       0.10511256, 0.10660832])</code></pre>
+<div id="6da00457-81f0-4351-b83f-c8607a56c7e5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pysal</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mapclassify</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pysal.explore <span class="im">import</span> esda</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pysal.lib <span class="im">import</span> weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/tljh/user/lib/python3.10/site-packages/numba/core/decorators.py:262: NumbaDeprecationWarning: numba.generated_jit is deprecated. Please see the documentation at: https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-generated-jit for more information and advice on a suitable replacement.
+  warnings.warn(msg, NumbaDeprecationWarning)
+/opt/tljh/user/lib/python3.10/site-packages/quantecon/lss.py:20: NumbaDeprecationWarning: The 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
+  def simulate_linear_model(A, x0, v, ts_length):
+/opt/tljh/user/lib/python3.10/site-packages/spaghetti/network.py:40: FutureWarning: The next major release of pysal/spaghetti (2.0.0) will drop support for all ``libpysal.cg`` geometries. This change is a first step in refactoring ``spaghetti`` that is expected to result in dramatically reduced runtimes for network instantiation and operations. Users currently requiring network and point pattern input as ``libpysal.cg`` geometries should prepare for this simply by converting to ``shapely`` geometries.
+  warnings.warn(dep_msg, FutureWarning, stacklevel=1)</code></pre>
 </div>
 </div>
-<div id="34ae0f99-654b-40aa-8c8d-3bfccc6a9ce5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pth <span class="op">=</span> libpysal.examples.get_path(<span class="st">"mexicojoin.shp"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> geopandas.read_file(pth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f86ac0a7-b980-4a80-b36d-eb565e157d9a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pci_df <span class="op">=</span> geopandas.read_file(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"uscountypcincome.gpkg"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>pci_df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/tljh/user/share/proj failed</code></pre>
 </div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>Index(['STATEFP', 'COUNTYFP', 'COUNTYNS', 'GEOID', 'NAME', 'NAMELSAD', 'LSAD',
+       'CLASSFP', 'MTFCC', 'CSAFP', 'CBSAFP', 'METDIVFP', 'FUNCSTAT', 'ALAND',
+       'AWATER', 'INTPTLAT', 'INTPTLON', 'GeoFIPS', 'GeoName', 'Region',
+       'TableName', 'LineCode', 'Descriptio', 'Unit', '1969', '1970', '1971',
+       '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980',
+       '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989',
+       '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998',
+       '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007',
+       '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016',
+       '2017', 'index', 'IndustryCl', 'Descript_1', 'geometry'],
+      dtype='object')</code></pre>
 </div>
-<div id="ab94bd11-635b-439d-b7bc-47b7f53b5644" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdf.plot()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+</div>
+<div id="8756d1f0-1430-480a-b942-9a5853f3a696" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pci_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(3076, 77)</code></pre>
 </div>
 </div>
-</div>
-<div id="f7213e45-7e82-4aa2-b66b-4f70ada231fa" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="05b40915-b0da-4691-9fed-d7fb66d18ce7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pci_df.query(<span class="st">'NAME == "Jackson" &amp; STATEFP == "28"'</span>).loc[</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    :, <span class="st">"1969"</span>:<span class="st">"1979"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 <div>
@@ -352,186 +368,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">POLY_ID</th>
-<th data-quarto-table-cell-role="th">AREA</th>
-<th data-quarto-table-cell-role="th">CODE</th>
-<th data-quarto-table-cell-role="th">NAME</th>
-<th data-quarto-table-cell-role="th">PERIMETER</th>
-<th data-quarto-table-cell-role="th">ACRES</th>
-<th data-quarto-table-cell-role="th">HECTARES</th>
-<th data-quarto-table-cell-role="th">PCGDP1940</th>
-<th data-quarto-table-cell-role="th">PCGDP1950</th>
-<th data-quarto-table-cell-role="th">PCGDP1960</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">GR9000</th>
-<th data-quarto-table-cell-role="th">LPCGDP40</th>
-<th data-quarto-table-cell-role="th">LPCGDP50</th>
-<th data-quarto-table-cell-role="th">LPCGDP60</th>
-<th data-quarto-table-cell-role="th">LPCGDP70</th>
-<th data-quarto-table-cell-role="th">LPCGDP80</th>
-<th data-quarto-table-cell-role="th">LPCGDP90</th>
-<th data-quarto-table-cell-role="th">LPCGDP00</th>
-<th data-quarto-table-cell-role="th">TEST</th>
-<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">1969</th>
+<th data-quarto-table-cell-role="th">1970</th>
+<th data-quarto-table-cell-role="th">1971</th>
+<th data-quarto-table-cell-role="th">1972</th>
+<th data-quarto-table-cell-role="th">1973</th>
+<th data-quarto-table-cell-role="th">1974</th>
+<th data-quarto-table-cell-role="th">1975</th>
+<th data-quarto-table-cell-role="th">1976</th>
+<th data-quarto-table-cell-role="th">1977</th>
+<th data-quarto-table-cell-role="th">1978</th>
+<th data-quarto-table-cell-role="th">1979</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-<td>7.252751e+10</td>
-<td>MX02</td>
-<td>Baja California Norte</td>
-<td>2040312.385</td>
-<td>1.792187e+07</td>
-<td>7252751.376</td>
-<td>22361.0</td>
-<td>20977.0</td>
-<td>17865.0</td>
-<td>...</td>
-<td>0.05</td>
-<td>4.35</td>
-<td>4.32</td>
-<td>4.25</td>
-<td>4.40</td>
-<td>4.47</td>
-<td>4.43</td>
-<td>4.48</td>
-<td>1.0</td>
-<td>MULTIPOLYGON (((-113.13972 29.01778, -113.2405...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>2</td>
-<td>7.225988e+10</td>
-<td>MX03</td>
-<td>Baja California Sur</td>
-<td>2912880.772</td>
-<td>1.785573e+07</td>
-<td>7225987.769</td>
-<td>9573.0</td>
-<td>16013.0</td>
-<td>16707.0</td>
-<td>...</td>
-<td>0.00</td>
-<td>3.98</td>
-<td>4.20</td>
-<td>4.22</td>
-<td>4.39</td>
-<td>4.46</td>
-<td>4.41</td>
-<td>4.42</td>
-<td>2.0</td>
-<td>MULTIPOLYGON (((-111.20612 25.80278, -111.2302...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>3</td>
-<td>2.731957e+10</td>
-<td>MX18</td>
-<td>Nayarit</td>
-<td>1034770.341</td>
-<td>6.750785e+06</td>
-<td>2731956.859</td>
-<td>4836.0</td>
-<td>7515.0</td>
-<td>7621.0</td>
-<td>...</td>
-<td>-0.05</td>
-<td>3.68</td>
-<td>3.88</td>
-<td>3.88</td>
-<td>4.04</td>
-<td>4.13</td>
-<td>4.11</td>
-<td>4.06</td>
-<td>3.0</td>
-<td>MULTIPOLYGON (((-106.62108 21.56531, -106.6475...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>4</td>
-<td>7.961008e+10</td>
-<td>MX14</td>
-<td>Jalisco</td>
-<td>2324727.436</td>
-<td>1.967200e+07</td>
-<td>7961008.285</td>
-<td>5309.0</td>
-<td>8232.0</td>
-<td>9953.0</td>
-<td>...</td>
-<td>0.03</td>
-<td>3.73</td>
-<td>3.92</td>
-<td>4.00</td>
-<td>4.21</td>
-<td>4.32</td>
-<td>4.30</td>
-<td>4.33</td>
-<td>4.0</td>
-<td>POLYGON ((-101.52490 21.85664, -101.58830 21.7...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>5</td>
-<td>5.467030e+09</td>
-<td>MX01</td>
-<td>Aguascalientes</td>
-<td>313895.530</td>
-<td>1.350927e+06</td>
-<td>546702.985</td>
-<td>10384.0</td>
-<td>6234.0</td>
-<td>8714.0</td>
-<td>...</td>
-<td>0.13</td>
-<td>4.02</td>
-<td>3.79</td>
-<td>3.94</td>
-<td>4.21</td>
-<td>4.32</td>
-<td>4.32</td>
-<td>4.44</td>
-<td>5.0</td>
-<td>POLYGON ((-101.84620 22.01176, -101.96530 21.8...</td>
+<td data-quarto-table-cell-role="th">1417</td>
+<td>2957</td>
+<td>3121</td>
+<td>3327</td>
+<td>3939</td>
+<td>4203</td>
+<td>4547</td>
+<td>5461</td>
+<td>5927</td>
+<td>6315</td>
+<td>6619</td>
+<td>6967</td>
 </tr>
 </tbody>
 </table>
 
-<p>5 rows × 35 columns</p>
 </div>
 </div>
 </div>
 </div>
-<div id="6a04a43e-8fba-4491-8616-891405713ba0" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['POLY_ID', 'AREA', 'CODE', 'NAME', 'PERIMETER', 'ACRES', 'HECTARES',
-       'PCGDP1940', 'PCGDP1950', 'PCGDP1960', 'PCGDP1970', 'PCGDP1980',
-       'PCGDP1990', 'PCGDP2000', 'HANSON03', 'HANSON98', 'ESQUIVEL99', 'INEGI',
-       'INEGI2', 'MAXP', 'GR4000', 'GR5000', 'GR6000', 'GR7000', 'GR8000',
-       'GR9000', 'LPCGDP40', 'LPCGDP50', 'LPCGDP60', 'LPCGDP70', 'LPCGDP80',
-       'LPCGDP90', 'LPCGDP00', 'TEST', 'geometry'],
-      dtype='object')</code></pre>
-</div>
-</div>
-<div id="f8585790-3bfd-478e-81d5-76afbc173fdd" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdf.plot(column<span class="op">=</span><span class="st">"PCGDP1940"</span>, k<span class="op">=</span><span class="dv">5</span>, scheme<span class="op">=</span><span class="st">"Quantiles"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"PC GDP 1940"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1001c678-c5d3-40c0-aeb9-b4ee0b01830c" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>seaborn.histplot(x<span class="op">=</span>pci_df[<span class="st">"1969"</span>], kde<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="spatialinequality_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="18b40bfc-9d6d-4512-b7d4-4d96878b04a1" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdf.plot(column<span class="op">=</span><span class="st">"PCGDP2000"</span>, k<span class="op">=</span><span class="dv">5</span>, scheme<span class="op">=</span><span class="st">"Quantiles"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"PC GDP 2000"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="285ff9c5-7fb0-45f7-8141-7dedf70e832d" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pci_df <span class="op">=</span> pci_df.to_crs(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Albers Equal Area North America</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    epsg<span class="op">=</span><span class="dv">5070</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f5fdc22d-e0bb-46d7-be89-a9f41411cb64" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> pci_df.plot(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"1969"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    scheme<span class="op">=</span><span class="st">"Quantiles"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    legend_kwds<span class="op">=</span>{<span class="st">"loc"</span>: <span class="st">"lower left"</span>},</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -540,97 +439,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="9ef4cf4a-3734-4b34-ab45-156c348699af" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdf.plot(column<span class="op">=</span><span class="st">"HANSON98"</span>, categorical<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Regions"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="418d46ad-9967-4a1e-88bf-2c8d7f4fa2d6" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>top20, bottom20 <span class="op">=</span> pci_df[<span class="st">"1969"</span>].quantile([<span class="fl">0.8</span>, <span class="fl">0.2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3b23bb58-1b45-4c33-93d4-3893e63a8a73" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top20<span class="op">/</span>bottom20</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>1.5022494887525562</code></pre>
+</div>
+</div>
+<div id="154f4dac-69f2-4ced-beca-e7942ba91e13" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ineq_20_20(values):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    top20, bottom20 <span class="op">=</span> values.quantile([<span class="fl">0.8</span>, <span class="fl">0.2</span>])</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> top20 <span class="op">/</span> bottom20</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate range of strings from 1969 to 2018</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> numpy.arange(<span class="dv">1969</span>, <span class="dv">2018</span>).astype(<span class="bu">str</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute 20:20 ratio for every year</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>ratio_2020 <span class="op">=</span> pci_df[years].<span class="bu">apply</span>(ineq_20_20, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot evolution of 20:20 ratio</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.plot(years, ratio_2020)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Grab figure generated in the plot</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> plt.gcf()</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace tick labels with every other year</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>plt.xticks(years[::<span class="dv">2</span>])</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Set vertical label</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"20:20 ratio"</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Set horizontal label</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate year labels</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>figure.autofmt_xdate(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="spatialinequality_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="0b88ea38-948c-4057-9c75-c83210b847ba" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Theil?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3721579d-4fac-4539-aa8c-321fc6fbe097" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pysal.explore <span class="im">import</span> inequality</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ed091c4f-9f38-4a39-92c5-4e9e90f556e3" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(pci_df)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>share_of_population <span class="op">=</span> numpy.arange(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b180ceb1-a26f-41bc-8605-80e400d28a68" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>incomes <span class="op">=</span> pci_df[<span class="st">"1969"</span>].sort_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="52cdbc74-9bbf-4d6d-90e2-7864b5c2d585" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>shares <span class="op">=</span> incomes <span class="op">/</span> incomes.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3fc6fb10-9904-4ce6-82f8-b5efc876c3f8" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cumulative_share <span class="op">=</span> shares.cumsum()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="274da984-cd65-4c23-bb09-e05889496fda" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate figure with one axis</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Lorenz Curve</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ax.plot(share_of_population, cumulative_share, label<span class="op">=</span><span class="st">"Lorenz Curve"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot line of perfect equality</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>ax.plot((<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">0</span>, <span class="dv">1</span>), color<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Perfect Equality"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Label horizontal axis</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Share of population"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Label vertical axis</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Share of income"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">Init signature:</span> Theil<span class="ansi-blue-fg">(</span>y<span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>     
-Classic Theil measure of inequality.
-.. math::
-    T = \sum_{i=1}^n
-        \left( \frac{y_i}{\sum_{i=1}^n y_i} \ln
-            \left[ N \frac{y_i}{\sum_{i=1}^n y_i}\right]
-        \right
-    )
-Parameters
-----------
-y : numpy.array
-    An array in the shape :math:`(n,t)` or :math:`(n,)`
-    with :math:`n` taken as the observations across which inequality is
-    calculated.  If ``y`` is :math:`(n,)` then a scalar inequality value is
-    determined. If ``y`` is :math:`(n,t)` then an array of inequality values are
-    determined, one value for each column in ``y``.
-Attributes
-----------
-T : numpy.array
-    An array in the shape :math:`(t,)` or :math:`(1,)`
-    containing Theil's *T* for each column of ``y``.
-Notes
------
-This computation involves natural logs. To prevent ``ln[0]`` from occurring, a
-small value is added to each element of ``y`` before beginning the computation.
-Examples
---------
-&gt;&gt;&gt; import libpysal
-&gt;&gt;&gt; import numpy
-&gt;&gt;&gt; from inequality.theil import Theil
-&gt;&gt;&gt; f = libpysal.io.open(libpysal.examples.get_path('mexico.csv'))
-&gt;&gt;&gt; vnames = [f'pcgdp{dec}' for dec in range(1940, 2010, 10)]
-&gt;&gt;&gt; y = numpy.array([f.by_col[v] for v in vnames]).T
-&gt;&gt;&gt; theil_y = Theil(y)
-&gt;&gt;&gt; theil_y.T
-array([0.20894344, 0.15222451, 0.10472941, 0.10194725, 0.09560113,
-       0.10511256, 0.10660832])
-<span class="ansi-red-fg">File:</span>           /opt/tljh/user/lib/python3.10/site-packages/inequality/theil.py
-<span class="ansi-red-fg">Type:</span>           type
-<span class="ansi-red-fg">Subclasses:</span>     </pre>
+<div>
+<figure class="figure">
+<p><img src="spatialinequality_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
 </div>
-<div id="ced9e772-4160-436b-9db3-3ae662054c7e" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>Index(['POLY_ID', 'AREA', 'CODE', 'NAME', 'PERIMETER', 'ACRES', 'HECTARES',
-       'PCGDP1940', 'PCGDP1950', 'PCGDP1960', 'PCGDP1970', 'PCGDP1980',
-       'PCGDP1990', 'PCGDP2000', 'HANSON03', 'HANSON98', 'ESQUIVEL99', 'INEGI',
-       'INEGI2', 'MAXP', 'GR4000', 'GR5000', 'GR6000', 'GR7000', 'GR8000',
-       'GR9000', 'LPCGDP40', 'LPCGDP50', 'LPCGDP60', 'LPCGDP70', 'LPCGDP80',
-       'LPCGDP90', 'LPCGDP00', 'TEST', 'geometry'],
-      dtype='object')</code></pre>
+<div id="6c56bbdc-9238-463b-8f02-be731ea5f1b2" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lorenz(y):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> numpy.asarray(y)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    incomes <span class="op">=</span> numpy.sort(y)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    income_shares <span class="op">=</span> (incomes <span class="op">/</span> incomes.<span class="bu">sum</span>()).cumsum()</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> y.shape[<span class="dv">0</span>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    pop_shares <span class="op">=</span> numpy.arange(<span class="dv">1</span>, N <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> N</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pop_shares, income_shares</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="c03d366e-82e7-43b7-83e0-ae1d30ac40e9" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">vars</span> <span class="op">=</span> [ <span class="ss">f"PCGDP</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1940</span>, <span class="dv">2010</span>, <span class="dv">10</span>)]</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">vars</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>['PCGDP1940',
- 'PCGDP1950',
- 'PCGDP1960',
- 'PCGDP1970',
- 'PCGDP1980',
- 'PCGDP1990',
- 'PCGDP2000']</code></pre>
-</div>
-</div>
-<div id="f99f39e4-ff72-4074-88ae-5b23a1c9e53e" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> gdf[<span class="bu">vars</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="67db1184-5021-4ed8-8117-c732282fad34" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="48f6efe4-8d3c-48af-a3c5-41268cf0d5a1" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lorenz(pci_df[<span class="st">"1969"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>(array([3.25097529e-04, 6.50195059e-04, 9.75292588e-04, ...,
+        9.99349805e-01, 9.99674902e-01, 1.00000000e+00]),
+ array([1.22486441e-04, 2.52956561e-04, 3.83636778e-04, ...,
+        9.98429316e-01, 9.99176315e-01, 1.00000000e+00]))</code></pre>
+</div>
+</div>
+<div id="602414ea-4f90-427c-8987-6ed9c7b4d056" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>lorenz_curves <span class="op">=</span> pci_df[years].<span class="bu">apply</span>(lorenz, axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="85243bb0-4a76-4f5a-8234-3ebf1e0d6b4d" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up figure with one axis</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot line of perfect equality</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>ax.plot((<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">0</span>, <span class="dv">1</span>), color<span class="op">=</span><span class="st">"r"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over every year in the series</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> lorenz_curves.columns:</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the two arrays or each dimension</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    year_pop_shares, year_inc_shares <span class="op">=</span> lorenz_curves[year].values</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot Lorenz curve for a given year</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    ax.plot(year_pop_shares, year_inc_shares, color<span class="op">=</span><span class="st">"k"</span>, alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spatialinequality_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="524fbd32-c914-4a6f-be08-b8dcc7fe2dfc" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>g69 <span class="op">=</span> inequality.gini.Gini(pci_df[<span class="st">"1969"</span>].values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ced4f424-329e-42fb-83c7-aa4777a8c9e6" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>g69.g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>0.13556175504269904</code></pre>
+</div>
+</div>
+<div id="93c83e16-1f96-4ea5-afca-ac44fdb402f1" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gini_by_col(column):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inequality.gini.Gini(column.values).g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e4cffb7b-e0c5-44ce-8281-6feaf2e21379" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>inequalities <span class="op">=</span> (</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    pci_df[years].<span class="bu">apply</span>(gini_by_col, axis<span class="op">=</span><span class="dv">0</span>).to_frame(<span class="st">"gini"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="60e47ae1-ec09-4234-ac08-a1e0bec8da6b" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>inequalities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 <div>
 
@@ -639,508 +590,29 @@ array([0.20894344, 0.15222451, 0.10472941, 0.10194725, 0.09560113,
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">PCGDP1940</th>
-<th data-quarto-table-cell-role="th">PCGDP1950</th>
-<th data-quarto-table-cell-role="th">PCGDP1960</th>
-<th data-quarto-table-cell-role="th">PCGDP1970</th>
-<th data-quarto-table-cell-role="th">PCGDP1980</th>
-<th data-quarto-table-cell-role="th">PCGDP1990</th>
-<th data-quarto-table-cell-role="th">PCGDP2000</th>
+<th data-quarto-table-cell-role="th">gini</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>22361.0</td>
-<td>20977.0</td>
-<td>17865.0</td>
-<td>25321.0</td>
-<td>29283.0</td>
-<td>26839.0</td>
-<td>29855.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>9573.0</td>
-<td>16013.0</td>
-<td>16707.0</td>
-<td>24384.0</td>
-<td>29038.0</td>
-<td>25842.0</td>
-<td>26103.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>4836.0</td>
-<td>7515.0</td>
-<td>7621.0</td>
-<td>10880.0</td>
-<td>13354.0</td>
-<td>12757.0</td>
-<td>11478.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>5309.0</td>
-<td>8232.0</td>
-<td>9953.0</td>
-<td>16288.0</td>
-<td>20659.0</td>
-<td>20133.0</td>
-<td>21610.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>10384.0</td>
-<td>6234.0</td>
-<td>8714.0</td>
-<td>16078.0</td>
-<td>21022.0</td>
-<td>20787.0</td>
-<td>27782.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>4359.0</td>
-<td>5686.0</td>
-<td>8209.0</td>
-<td>11635.0</td>
-<td>13864.0</td>
-<td>13607.0</td>
-<td>15585.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>11016.0</td>
-<td>5560.0</td>
-<td>7110.0</td>
-<td>14073.0</td>
-<td>20088.0</td>
-<td>22441.0</td>
-<td>26149.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>4414.0</td>
-<td>5194.0</td>
-<td>6399.0</td>
-<td>7767.0</td>
-<td>12391.0</td>
-<td>13091.0</td>
-<td>12348.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>3327.0</td>
-<td>5272.0</td>
-<td>5244.0</td>
-<td>8109.0</td>
-<td>11206.0</td>
-<td>10980.0</td>
-<td>11838.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>3408.0</td>
-<td>4972.0</td>
-<td>9053.0</td>
-<td>17164.0</td>
-<td>20165.0</td>
-<td>18547.0</td>
-<td>16322.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>17816.0</td>
-<td>17119.0</td>
-<td>23174.0</td>
-<td>32386.0</td>
-<td>42028.0</td>
-<td>43810.0</td>
-<td>54349.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>6909.0</td>
-<td>6049.0</td>
-<td>6036.0</td>
-<td>12551.0</td>
-<td>17427.0</td>
-<td>18313.0</td>
-<td>21358.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">12</td>
-<td>6936.0</td>
-<td>8962.0</td>
-<td>10499.0</td>
-<td>13892.0</td>
-<td>16513.0</td>
-<td>17701.0</td>
-<td>18170.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">13</td>
-<td>7990.0</td>
-<td>8428.0</td>
-<td>10067.0</td>
-<td>11665.0</td>
-<td>15239.0</td>
-<td>13979.0</td>
-<td>17509.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">14</td>
-<td>3758.0</td>
-<td>4929.0</td>
-<td>5925.0</td>
-<td>10274.0</td>
-<td>12166.0</td>
-<td>51123.0</td>
-<td>36163.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">15</td>
-<td>3569.0</td>
-<td>6415.0</td>
-<td>6542.0</td>
-<td>9775.0</td>
-<td>13374.0</td>
-<td>11895.0</td>
-<td>15685.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">16</td>
-<td>21965.0</td>
-<td>28747.0</td>
-<td>9677.0</td>
-<td>17046.0</td>
-<td>26695.0</td>
-<td>25049.0</td>
-<td>33442.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">17</td>
-<td>3605.0</td>
-<td>4178.0</td>
-<td>4357.0</td>
-<td>6245.0</td>
-<td>9882.0</td>
-<td>10339.0</td>
-<td>11701.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">18</td>
-<td>2181.0</td>
-<td>3629.0</td>
-<td>4991.0</td>
-<td>6497.0</td>
-<td>8727.0</td>
-<td>9084.0</td>
-<td>11820.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">19</td>
-<td>1892.0</td>
-<td>4538.0</td>
-<td>4140.0</td>
-<td>5230.0</td>
-<td>7730.0</td>
-<td>8465.0</td>
-<td>9010.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">20</td>
-<td>2459.0</td>
-<td>3857.0</td>
-<td>6494.0</td>
-<td>9367.0</td>
-<td>42361.0</td>
-<td>16055.0</td>
-<td>13360.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">21</td>
-<td>2934.0</td>
-<td>4138.0</td>
-<td>5280.0</td>
-<td>7015.0</td>
-<td>16200.0</td>
-<td>8637.0</td>
-<td>8684.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">22</td>
-<td>6399.0</td>
-<td>10345.0</td>
-<td>12134.0</td>
-<td>22662.0</td>
-<td>23181.0</td>
-<td>24784.0</td>
-<td>24068.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">23</td>
-<td>8578.0</td>
-<td>13997.0</td>
-<td>16265.0</td>
-<td>19178.0</td>
-<td>23399.0</td>
-<td>25332.0</td>
-<td>30735.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">24</td>
-<td>8537.0</td>
-<td>9673.0</td>
-<td>12318.0</td>
-<td>20562.0</td>
-<td>25688.0</td>
-<td>26084.0</td>
-<td>28460.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">25</td>
-<td>4840.0</td>
-<td>6663.0</td>
-<td>9613.0</td>
-<td>14477.0</td>
-<td>15312.0</td>
-<td>15823.0</td>
-<td>15242.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">26</td>
-<td>12132.0</td>
-<td>8859.0</td>
-<td>9323.0</td>
-<td>12700.0</td>
-<td>16726.0</td>
-<td>17353.0</td>
-<td>17379.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">27</td>
-<td>3734.0</td>
-<td>6435.0</td>
-<td>5821.0</td>
-<td>7426.0</td>
-<td>8876.0</td>
-<td>11656.0</td>
-<td>11130.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">28</td>
-<td>4372.0</td>
-<td>7533.0</td>
-<td>6440.0</td>
-<td>9721.0</td>
-<td>12691.0</td>
-<td>15436.0</td>
-<td>15866.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">29</td>
-<td>9073.0</td>
-<td>11490.0</td>
-<td>20117.0</td>
-<td>28206.0</td>
-<td>34856.0</td>
-<td>34726.0</td>
-<td>38672.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">30</td>
-<td>7508.0</td>
-<td>8536.0</td>
-<td>8383.0</td>
-<td>17128.0</td>
-<td>21937.0</td>
-<td>19983.0</td>
-<td>23546.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">31</td>
-<td>5203.0</td>
-<td>10143.0</td>
-<td>11404.0</td>
-<td>12240.0</td>
-<td>14252.0</td>
-<td>13796.0</td>
-<td>12191.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</div>
-<div id="97e50e6c-6cec-4552-b5ab-e09842c51cd8" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> Theil(Y.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="0a78425e-6689-4548-adfd-2c1139062eb4" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>res.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>array([0.20894344, 0.15222451, 0.10472941, 0.10194725, 0.09560113,
-       0.10511256, 0.10660832])</code></pre>
-</div>
-</div>
-<div id="ec68ef98-ca76-4e20-884d-45f832f0865c" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="228423e7-cf88-4a0a-8b0d-9217cc955afd" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.plot(res.T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="6509899d-8197-43f9-8ab5-bc41b9c34895" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1940</span>, <span class="dv">2010</span>, <span class="dv">10</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot(years, res.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="2e49b492-11e0-4da9-ba06-7a705778baee" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inequality.theil <span class="im">import</span> TheilD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="527d7d8d-1c73-430c-9f46-3f8e65036dc9" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>TheilD?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">Init signature:</span> TheilD<span class="ansi-blue-fg">(</span>y<span class="ansi-blue-fg">,</span> partition<span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>     
-Decomposition of Theil's *T* based on partitioning of
-observations into exhaustive and mutually exclusive groups.
-Parameters
-----------
-y : numpy.array
-    An array in the shape :math:`(n,t)` or :math:`(n,)`
-    with :math:`n` taken as the observations across which inequality is
-    calculated.  If ``y`` is :math:`(n,)` then a scalar inequality value is
-    determined. If ``y`` is :math:`(n,t)` then an array of inequality values are
-    determined, one value for each column in ``y``.
-partition : numpy.array
-    An array in the shape :math:`(n,)` of elements indicating which partition
-    each observation belongs to. These are assumed to be exhaustive.
-Attributes
-----------
-T : numpy.array
-    An array in the shape :math:`(t,)` or :math:`(1,)`
-    containing the global inequality *T*.
-bg : numpy.array
-    An array in the shape :math:`(n,t)` or :math:`(n,)`
-    representing between group inequality.
-wg : numpy.array
-    An array in the shape :math:`(n,t)` or :math:`(n,)`
-    representing within group inequality.
-Examples
---------
-&gt;&gt;&gt; import libpysal
-&gt;&gt;&gt; import numpy
-&gt;&gt;&gt; from inequality.theil import TheilD
-&gt;&gt;&gt; f = libpysal.io.open(libpysal.examples.get_path('mexico.csv'))
-&gt;&gt;&gt; vnames = [f'pcgdp{dec}' for dec in range(1940, 2010, 10)]
-&gt;&gt;&gt; y = numpy.array([f.by_col[v] for v in vnames]).T
-&gt;&gt;&gt; regimes = numpy.array(f.by_col('hanson98'))
-&gt;&gt;&gt; theil_d = TheilD(y, regimes)
-&gt;&gt;&gt; theil_d.bg
-array([0.0345889 , 0.02816853, 0.05260921, 0.05931219, 0.03205257,
-       0.02963731, 0.03635872])
-&gt;&gt;&gt; theil_d.wg
-array([0.17435454, 0.12405598, 0.0521202 , 0.04263506, 0.06354856,
-       0.07547525, 0.0702496 ])
-<span class="ansi-red-fg">File:</span>           /opt/tljh/user/lib/python3.10/site-packages/inequality/theil.py
-<span class="ansi-red-fg">Type:</span>           type
-<span class="ansi-red-fg">Subclasses:</span>     </pre>
-</div>
-</div>
-</div>
-<div id="b79cf330-b42a-41a7-aec2-d7bf8486c5f8" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>td <span class="op">=</span> TheilD(Y.values, gdf.HANSON98)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="ea6e6d9c-c29c-477d-8238-ddd2f7041755" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>td.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>array([0.20894344, 0.15222451, 0.10472941, 0.10194725, 0.09560113,
-       0.10511256, 0.10660832])</code></pre>
-</div>
-</div>
-<div id="272f853d-d203-4318-a9f7-5109cee66799" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>td.bg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>array([0.0345889 , 0.02816853, 0.05260921, 0.05931219, 0.03205257,
-       0.02963731, 0.03635872])</code></pre>
-</div>
-</div>
-<div id="69900c47-ee3f-4938-9d09-d3a7d39eba36" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>td.wg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
-<pre><code>array([0.17435454, 0.12405598, 0.0521202 , 0.04263506, 0.06354856,
-       0.07547525, 0.0702496 ])</code></pre>
-</div>
-</div>
-<div id="2a45e70e-6b8b-467b-87b0-a442ea1fae8b" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="c96f4c19-04b7-4c9a-9dc2-77fd9306786d" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>years, data<span class="op">=</span>{<span class="st">'T'</span>: td.T, <span class="st">'BG'</span>: td.bg, <span class="st">'WG'</span>: td.wg})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="db564ba9-9875-4a77-82eb-ba1d0fcf631a" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
-<div>
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">T</th>
-<th data-quarto-table-cell-role="th">BG</th>
-<th data-quarto-table-cell-role="th">WG</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1940</td>
-<td>0.208943</td>
-<td>0.034589</td>
-<td>0.174355</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1950</td>
-<td>0.152225</td>
-<td>0.028169</td>
-<td>0.124056</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1960</td>
-<td>0.104729</td>
-<td>0.052609</td>
-<td>0.052120</td>
+<td data-quarto-table-cell-role="th">1969</td>
+<td>0.135562</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1970</td>
-<td>0.101947</td>
-<td>0.059312</td>
-<td>0.042635</td>
+<td>0.130076</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1980</td>
-<td>0.095601</td>
-<td>0.032053</td>
-<td>0.063549</td>
+<td data-quarto-table-cell-role="th">1971</td>
+<td>0.128540</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1972</td>
+<td>0.129126</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1973</td>
+<td>0.142166</td>
 </tr>
 </tbody>
 </table>
@@ -1149,8 +621,25 @@ array([0.17435454, 0.12405598, 0.0521202 , 0.04263506, 0.06354856,
 </div>
 </div>
 </div>
-<div id="d62cf954-281c-424d-94b0-df6fdb43bdfd" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e356ce33-4702-4115-8719-cd2b1181f26b" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>inequalities.plot(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spatialinequality_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="3e953e31-e37d-4a9c-95e8-148914d00dd8" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> theil(column):</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inequality.theil.Theil(column.values).T</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>inequalities[<span class="st">"theil"</span>] <span class="op">=</span> pci_df[years].<span class="bu">apply</span>(theil, axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4fac7d46-b810-4aab-a563-7f70b52d4c62" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> seaborn.regplot(x<span class="op">=</span><span class="st">"theil"</span>, y<span class="op">=</span><span class="st">"gini"</span>, data<span class="op">=</span>inequalities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1159,136 +648,278 @@ array([0.17435454, 0.12405598, 0.0521202 , 0.04263506, 0.06354856,
 </div>
 </div>
 </div>
-<div id="973869b4-9886-4de8-af0c-30c77ea26b1f" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inequality.theil <span class="im">import</span> TheilDSim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="d27fe84e-ac72-4aed-b3fc-a87735a3674f" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>TheilDSim?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">Init signature:</span> TheilDSim<span class="ansi-blue-fg">(</span>y<span class="ansi-blue-fg">,</span> partition<span class="ansi-blue-fg">,</span> permutations<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">99</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>     
-Random permutation based inference on Theil's inequality decomposition.
-Provides for computationally based inference regarding the inequality
-decomposition using random spatial permutations.
-See :cite:`rey_interregional_2010`.
-Parameters
-----------
-y : numpy.array
-    An array in the shape :math:`(n,t)` or :math:`(n,)`
-    with :math:`n` taken as the observations across which inequality is
-    calculated.  If ``y`` is :math:`(n,)` then a scalar inequality value is
-    determined. If ``y`` is :math:`(n,t)` then an array of inequality values are
-    determined, one value for each column in ``y``.
-partition : numpy.array
-    An array in the shape :math:`(n,)` of elements indicating which partition
-    each observation belongs to. These are assumed to be exhaustive.
-permutations : int
-    The number of random spatial permutations for computationally
-    based inference on the decomposition.
-Attributes
-----------
-observed : numpy.array
-    An array in the shape :math:`(n,t)` or :math:`(n,)`
-    representing a ``TheilD`` instance for the observed data.
-bg : numpy.array
-    An array in the shape ``(permutations+1, t)``
-    representing between group inequality.
-bg_pvalue : numpy.array
-    An array in the shape :math:`(t,1)` representing the :math:`p`-value
-    for the between group measure. Measures the percentage of the realized
-    values that were greater than or equal to the observed ``bg`` value.
-    Includes the observed value.
-wg : numpy.array
-    An array in the shape ``(permutations+1)``
-    representing within group inequality. Depending on the
-    shape of ``y``, the array may be 1- or 2-dimensional.
-Examples
---------
-&gt;&gt;&gt; import libpysal
-&gt;&gt;&gt; import numpy
-&gt;&gt;&gt; from inequality.theil import TheilDSim
-&gt;&gt;&gt; f = libpysal.io.open(libpysal.examples.get_path('mexico.csv'))
-&gt;&gt;&gt; vnames = [f'pcgdp{dec}' for dec in range(1940, 2010, 10)]
-&gt;&gt;&gt; y = numpy.array([f.by_col[v] for v in vnames]).T
-&gt;&gt;&gt; regimes = numpy.array(f.by_col('hanson98'))
-&gt;&gt;&gt; numpy.random.seed(10)
-&gt;&gt;&gt; theil_ds = TheilDSim(y, regimes, 999)
-&gt;&gt;&gt; theil_ds.bg_pvalue
-array([0.4  , 0.344, 0.001, 0.001, 0.034, 0.072, 0.032])
-<span class="ansi-red-fg">File:</span>           /opt/tljh/user/lib/python3.10/site-packages/inequality/theil.py
-<span class="ansi-red-fg">Type:</span>           type
-<span class="ansi-red-fg">Subclasses:</span>     </pre>
+<div id="06a41e7b-db95-4f4c-a38d-5e6e469301a9" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>wq <span class="op">=</span> weights.Queen.from_dataframe(pci_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_268899/2833574135.py:1: FutureWarning: `use_index` defaults to False but will default to True in future. Set True/False directly to control this behavior and silence this warning
+  wq = weights.Queen.from_dataframe(pci_df)</code></pre>
 </div>
 </div>
+<div id="79fd4d62-1d8a-4921-b8ac-7bcd177a429d" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moran_by_col(y, w<span class="op">=</span>wq):</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    mo <span class="op">=</span> esda.Moran(y, w<span class="op">=</span>w)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    mo_s <span class="op">=</span> pandas.Series(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"I"</span>: mo.I, <span class="st">"I-P value"</span>: mo.p_sim},</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mo_s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8984c76e-be13-43b0-9282-9daf485a9169" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">12345</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>td <span class="op">=</span> TheilDSim(Y.values, gdf.HANSON98)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="39e64975-141c-4117-8d7e-53b62cdfa972" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>moran_stats <span class="op">=</span> pci_df[years].<span class="bu">apply</span>(moran_by_col, axis<span class="op">=</span><span class="dv">0</span>).T</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>moran_stats.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">I</th>
+<th data-quarto-table-cell-role="th">I-P value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1969</td>
+<td>0.649090</td>
+<td>0.001</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1970</td>
+<td>0.647438</td>
+<td>0.001</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1971</td>
+<td>0.626546</td>
+<td>0.001</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1972</td>
+<td>0.606760</td>
+<td>0.001</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1973</td>
+<td>0.640226</td>
+<td>0.001</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div id="f85130ec-ed38-4d4c-8f48-464c1139617d" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>td.bg.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
-<pre><code>(100, 7)</code></pre>
 </div>
 </div>
-<div id="d6d6db1c-99a4-4c80-923f-1e5e6e2bfeb7" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>td.bg_pvalue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="73">
-<pre><code>array([0.35, 0.37, 0.01, 0.01, 0.06, 0.09, 0.04])</code></pre>
 </div>
+<div id="cf6c8463-17f8-4c8a-b3f4-46596b4c8e70" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>inequalities <span class="op">=</span> inequalities.join(moran_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8ff64db4-d079-43c0-b73c-70626735ab17" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sim <span class="op">=</span> td.bg[<span class="dv">1</span>:,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="6142e0a5-a73f-4f05-909b-31b361d81ee2" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sim.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="75">
-<pre><code>(99, 7)</code></pre>
-</div>
-</div>
-<div id="51afb682-05f0-4a69-9287-ea7697b840f6" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>years, data<span class="op">=</span>{<span class="st">'mean'</span>:sim.mean(axis<span class="op">=</span><span class="dv">0</span>), <span class="st">'std'</span>: sim.std(axis<span class="op">=</span><span class="dv">0</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="a787d144-bad2-4005-a048-9ac6c0fba194" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'bar'</span>, y<span class="op">=</span><span class="st">'mean'</span>, yerr<span class="op">=</span><span class="st">'std'</span>, rot<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7f32f7e1-faf8-4272-8db7-7b7a8cc44a87" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>inequalities[[<span class="st">"I"</span>, <span class="st">"I-P value"</span>]].plot(subplots<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-38-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="spatialinequality_files/figure-html/cell-34-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="268df895-d2c5-42bb-8cf0-06aab392756e" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> df.plot(kind<span class="op">=</span><span class="st">'bar'</span>, y<span class="op">=</span><span class="st">'mean'</span>, yerr<span class="op">=</span><span class="st">'std'</span>, rot<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.plot(years, td.bg[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e850e6c3-3687-43a3-aada-8f8b1e0c7894" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>region_names <span class="op">=</span> {</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="st">"New England"</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>: <span class="st">"Mideast"</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="st">"Great Lakes"</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: <span class="st">"Plains"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: <span class="st">"Southeast"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="st">"Southwest"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>: <span class="st">"Rocky Mountain"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>: <span class="st">"Far West"</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="414c8d30-b568-45d1-9db7-87940347ee26" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> pci_df.assign(Region_Name<span class="op">=</span>pci_df.Region.<span class="bu">map</span>(region_names)).plot(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Region_Name"</span>,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    legend_kwds<span class="op">=</span><span class="bu">dict</span>(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.2</span>, <span class="fl">0.5</span>)),</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-39-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="spatialinequality_files/figure-html/cell-36-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="88d9f1ab-0b05-4555-815b-670ca34ab3bd" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>ax.plot(years, td.bg[<span class="dv">0</span>], <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>ax.fill_between(years, df[<span class="st">'mean'</span>]<span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span>df[<span class="st">'std'</span>], df[<span class="st">'mean'</span>]<span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span>df[<span class="st">'std'</span>], alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>ax.plot(years, df[<span class="st">'mean'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3bebb636-c68e-4f34-92c8-18952daa5331" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>theil_dr <span class="op">=</span> inequality.theil.TheilD(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    pci_df[years].values, pci_df.Region</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8e43c438-5bc1-4b31-bae4-96ad0f436185" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>theil_dr.bg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>array([0.00914353, 0.00822696, 0.00782675, 0.00768201, 0.01022634,
+       0.0081274 , 0.00783943, 0.00572543, 0.00560271, 0.0054971 ,
+       0.00511791, 0.00566001, 0.00486877, 0.00466134, 0.00474425,
+       0.00424528, 0.00428434, 0.00453503, 0.00465829, 0.00456699,
+       0.00467363, 0.00412391, 0.00366334, 0.00342112, 0.00327131,
+       0.00312475, 0.00326071, 0.00359733, 0.00327591, 0.00363014,
+       0.00382409, 0.00436261, 0.00399156, 0.00402506, 0.00397   ,
+       0.00394649, 0.00353368, 0.00362698, 0.00400508, 0.00449814,
+       0.0043533 , 0.00470988, 0.0063954 , 0.00642426, 0.00694236,
+       0.00644971, 0.00591871, 0.00554072, 0.00528702])</code></pre>
+</div>
+</div>
+<div id="bb15eb0b-2805-440f-9f25-4aff36f72a95" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>inequalities[<span class="st">"theil_between"</span>] <span class="op">=</span> theil_dr.bg</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>inequalities[<span class="st">"theil_within"</span>] <span class="op">=</span> theil_dr.wg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8de43e6f-eada-45e3-85c8-d6345efec78d" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>inequalities[<span class="st">"theil_between_share"</span>] <span class="op">=</span> (</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    inequalities[<span class="st">"theil_between"</span>] <span class="op">/</span> inequalities[<span class="st">"theil"</span>]</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fca47719-4b48-421b-9b81-b19d158af221" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>inequalities[</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"theil_between"</span>, <span class="st">"theil_within"</span>, <span class="st">"theil_between_share"</span>]</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>].plot(subplots<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="spatialinequality_files/figure-html/cell-40-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="spatialinequality_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="a751765f-f3ec-424c-973d-53824df0cc18" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>td.bg_pvalue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="80">
-<pre><code>array([0.35, 0.37, 0.01, 0.01, 0.06, 0.09, 0.04])</code></pre>
+<div id="5431ac39-cea8-4f6e-9e4d-7625c76380ec" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>theil_drs <span class="op">=</span> inequality.theil.TheilDSim(</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    pci_df[years].values, pci_df.Region</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="369004ad-fe9a-425d-8e9b-de4092535096" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>theil_drs.bg_pvalue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>array([0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+       0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+       0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+       0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+       0.01, 0.01, 0.01, 0.01, 0.01])</code></pre>
+</div>
+</div>
+<div id="d0afaa51-8de9-4f68-9036-0e32df224b1b" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>sim <span class="op">=</span> theil_drs.bg[<span class="dv">1</span>:,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="34dad534-f42c-4d9f-ad39-3c164bcde4be" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>sim.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>(99, 49)</code></pre>
+</div>
+</div>
+<div id="14033ebc-5d12-4011-abdc-03793cfb49bb" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>years, data<span class="op">=</span>{<span class="st">'mean'</span>:sim.mean(axis<span class="op">=</span><span class="dv">0</span>), <span class="st">'std'</span>: sim.std(axis<span class="op">=</span><span class="dv">0</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e033880c-cac1-4487-b2f5-7e7858b0119a" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'bar'</span>, y<span class="op">=</span><span class="st">'mean'</span>, yerr<span class="op">=</span><span class="st">'std'</span>, rot<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spatialinequality_files/figure-html/cell-47-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="faf8d841-f470-4be0-917e-dd7e14bbc38d" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ax.plot(years, theil_drs.bg[<span class="dv">0</span>], <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>ax.fill_between(years, df[<span class="st">'mean'</span>]<span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span>df[<span class="st">'std'</span>], df[<span class="st">'mean'</span>]<span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span>df[<span class="st">'std'</span>], alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>ax.plot(years, df[<span class="st">'mean'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spatialinequality_files/figure-html/cell-48-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="5e706481-0f6b-4d30-8387-f54cc6305764" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.ticker <span class="im">as</span> mticker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fb818ae8-ba05-4c7f-b56c-ee0853d9fff2" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>myLocator <span class="op">=</span> mticker.MultipleLocator(<span class="dv">5</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_locator(myLocator)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>ax.plot(years, theil_drs.bg[<span class="dv">0</span>], <span class="st">'o'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>ax.fill_between(years, df[<span class="st">'mean'</span>]<span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span>df[<span class="st">'std'</span>], df[<span class="st">'mean'</span>]<span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span>df[<span class="st">'std'</span>], alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>ax.plot(years, df[<span class="st">'mean'</span>])</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>myLocator <span class="op">=</span> mticker.MultipleLocator(<span class="dv">5</span>)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_locator(myLocator)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spatialinequality_files/figure-html/cell-50-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="9c0bb6a6-d952-417f-92ce-cde12d201aec" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>Index(['mean', 'std'], dtype='object')</code></pre>
+</div>
+</div>
+<div id="80872de6-43d7-416e-bc34-2fe56d28f127" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1969</td>
+<td>0.000071</td>
+<td>0.000037</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1970</td>
+<td>0.000067</td>
+<td>0.000034</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1971</td>
+<td>0.000065</td>
+<td>0.000036</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1972</td>
+<td>0.000068</td>
+<td>0.000036</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1973</td>
+<td>0.000084</td>
+<td>0.000046</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 </div>
 
