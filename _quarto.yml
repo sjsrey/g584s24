@@ -63,6 +63,7 @@ website:
       - section: "Week 5 2/13 2/15"
         contents:
           - week-05/00_geoprocessing.ipynb
-      - section: "Week 6 2/20"
+      - section: "Week 6 2/20 2/22"
         contents:
           - week-06/inequality.ipynb
+          - week-06/spatialinequality.ipynb
