@@ -74,3 +74,6 @@ website:
       - section: "Week 8 3/05 3/07"
         contents:
           - week-08/accessibility.ipynb
+      - section: "Week 9 3/12 3/14"
+        contents:
+          - week-09/clustering.ipynb
