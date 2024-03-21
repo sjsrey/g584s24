@@ -79,7 +79,7 @@ website:
           - week-09/clustering.ipynb
       - section: "Week 10 3/19 3/21"
         contents:
-          - week-10/clustering.ipynb
+          - week-10/regionalization.ipynb
           - week-10/exercise4.ipynb
 
 
