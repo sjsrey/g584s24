@@ -116,7 +116,7 @@ submit that is evaluated to be of an acceptable level of quality.
 The acceptable level of quality demonstrates competency in the concepts and
 methods covered in the course.
 
-Three is a two-step process for determination of your final course grade at the
+There is a two-step process for determination of your final course grade at the
 end of the semester:
 
 1. Using your exercises, project and quiz grades, your **base grade** is determined.

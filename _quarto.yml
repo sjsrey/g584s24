@@ -81,5 +81,8 @@ website:
         contents:
           - week-10/regionalization.ipynb
           - week-10/exercise4.ipynb
+      - section: "Week 11 3/26 3/29"
+        contents:
+          - week-11/index.qmd
 
 
