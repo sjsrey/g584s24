@@ -169,40 +169,40 @@ For Step 2, your final course grade is determined as follows:
 
 ## Course Schedule (Planned)
 
-| Week |     Dates | Topic                       | Readings                                              |
-|-----:|----------:|:----------------------------|-------------------------------------------------------|
-|    1 |    Jan-18 | Course Introduction         |                                                       |
-|    2 |    Jan-23 | Jupyter Lab Introduction    |                                                       |
-|      |    Jan-25 | Unix with Jupyter Lab       |                                                       |
-|    3 |    Jan-30 | Pandas                      | [pandas][pandas]                                      |
-|      |    Feb-01 | GeoPandas                   | [geopandas I][geopandas I]                            |
-|    4 |    Feb-06 | Geovisualizaiton            | [choropleths][choropleths]                            |
-|      |    Feb-08 | Exercise 1                  |                                                       |
-|    5 |    Feb-13 | Projections                 | [projections][projections]                            |
-|      |    Feb-15 | Spatial Joins               | [spatial joins][spatial joins]                        |
-|    6 |    Feb-20 | Spatial Inequality          | [spatial inequality][spatial inequality]              |
-|      |    Feb-22 | Exercise 2                  |                                                       |
-|    7 |    Feb-27 | GeoSnap                     | [geosnap][geosnap]                                    |
-|      |    Feb-29 | Isochrones                  | [isochrones][isochrones]                              |
-|    8 |    Mar-05 | Accessibility               | [accessibility][accessibility]                        |
-|      |    Mar-07 | Exercise 3                  |                                                       |
-|    9 |    Mar-12 | Clustering                  | [clustering][clustering]-[clusteringII][clusteringII] |
-|      |    Mar-14 | Spatial Clustering          | [regionalization][regionalization]                    |
-|   10 |    Mar-19 | Geodemographics             | [geodemographics][geodemographics]                    |
-|      |    Mar-21 | Exercise 4                  |                                                       |
-|   11 |    Mar-26 | Review                      |                                                       |
-|      |    Mar-28 | Exam                        |                                                       |
-|      |    Apr-02 | *Spring Break*              |                                                       |
-|      |    Apr-04 | *Spring Break*              |                                                       |
-|   12 |    Apr-09 | Studio: Problem Definition  |                                                       |
-|      |    Apr-11 | Studio: Data Identification |                                                       |
-|   13 |    Apr-16 | Studio: Data Acquisition    |                                                       |
-|      |    Apr-18 | Studio: Data Processing     |                                                       |
-|   14 |    Apr-23 | Studio: Analysis            |                                                       |
-|      |    Apr-25 | Studio: Analysis            |                                                       |
-|   15 |    Apr-30 | Studio: Drafting            |                                                       |
-|      |    May-02 | Studio: Final Essay         |                                                       |
-|   16 | May-03-09 | Final Exam Week             | Presentations                                         |
+| Week |  Dates | Topic                    | Readings                                              |
+|-----:|-------:|:-------------------------|-------------------------------------------------------|
+|    1 | Jan-18 | Course Introduction      |                                                       |
+|    2 | Jan-23 | Jupyter Lab Introduction |                                                       |
+|      | Jan-25 | Unix with Jupyter Lab    |                                                       |
+|    3 | Jan-30 | Pandas                   | [pandas][pandas]                                      |
+|      | Feb-01 | GeoPandas                | [geopandas I][geopandas I]                            |
+|    4 | Feb-06 | Geovisualizaiton         | [choropleths][choropleths]                            |
+|      | Feb-08 | Exercise 1               |                                                       |
+|    5 | Feb-13 | Projections              | [projections][projections]                            |
+|      | Feb-15 | Spatial Joins            | [spatial joins][spatial joins]                        |
+|    6 | Feb-20 | Spatial Inequality       | [spatial inequality][spatial inequality]              |
+|      | Feb-22 | Exercise 2               |                                                       |
+|    7 | Feb-27 | GeoSnap                  | [geosnap][geosnap]                                    |
+|      | Feb-29 | Isochrones               | [isochrones][isochrones]                              |
+|    8 | Mar-05 | Accessibility            | [accessibility][accessibility]                        |
+|      | Mar-07 | Exercise 3               |                                                       |
+|    9 | Mar-12 | Clustering               | [clustering][clustering]-[clusteringII][clusteringII] |
+|      | Mar-14 | Spatial Clustering       | [regionalization][regionalization]                    |
+|   10 | Mar-19 | Geodemographics          | [geodemographics][geodemographics]                    |
+|      | Mar-21 | Exercise 4               |                                                       |
+|   11 | Mar-26 | Review                   |                                                       |
+|      | Mar-28 | Exam                     |                                                       |
+|      | Apr-02 | *Spring Break*           |                                                       |
+|      | Apr-04 | *Spring Break*           |                                                       |
+|   12 | Apr-09 | Projects Portfolio, git  | Project preferences due (midnight)                    |
+|      | Apr-11 | github and remotes       | Project teams defined                                 |
+|   13 | Apr-16 | Project Studio           |                                                       |
+|      | Apr-18 | Project Studio           | Project proposals due (5pm)                           |
+|   14 | Apr-23 | Project Studio           |                                                       |
+|      | Apr-25 | Project Studio           |                                                       |
+|   15 | Apr-30 | Project Studio           |                                                       |
+|      | May-02 | Project Studio           |                                                       |
+|   16 | May-07 | Final Exam Week          | Presentations                                         |
 
 
 
