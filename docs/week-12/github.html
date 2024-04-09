@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Geographic Information Systems Applications – github</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sjsrey/g584s24" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Search"></div>
+</div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Syllabus</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOG 584</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Week 2 1/23 1/25</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-02/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Jupyter Lab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-02/files-dirs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Unix File System with Jupyter Lab</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Week 3 1/30 2/01</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-03/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-03/0201_pandas_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas Part II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-03/0201_geopandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GeoPandas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Week 4 2/06 2/08</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-04/0206_choropleths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geovisualization with PySAL I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-04/0208_choropleths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geovisualization with PySAL II</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Week 5 2/13 2/15</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-05/00_geoprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geoprocessing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Week 6 2/20 2/22</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-06/inequality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regional Inequality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-06/spatialinequality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regional Inequality Decomposition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">Week 7 2/27 2/29</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-07/isochrones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Isochrones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-07/spatial_joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Joins, Overlay, and Interpolation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Week 8 3/05 3/07</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-08/accessibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Accessibility Measures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text">Week 9 3/12 3/14</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-09/clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clustering</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">Week 10 3/19 3/21</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-10/regionalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regionalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-10/exercise4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 4: Geodemographic Analysis of Los Angeles</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+ <span class="menu-text">Week 11 3/26 3/29</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../week-11/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#jumping-around" id="toc-jumping-around" class="nav-link active" data-scroll-target="#jumping-around">jumping around</a></li>
+  <li><a href="#create-a-remote-on-github" id="toc-create-a-remote-on-github" class="nav-link" data-scroll-target="#create-a-remote-on-github">create a remote on github</a></li>
+  <li><a href="#ssh-keys" id="toc-ssh-keys" class="nav-link" data-scroll-target="#ssh-keys">ssh keys</a></li>
+  <li><a href="#adding-a-ssh-agent" id="toc-adding-a-ssh-agent" class="nav-link" data-scroll-target="#adding-a-ssh-agent">Adding a ssh-agent</a></li>
+  <li><a href="#setting-up-ssh-agent" id="toc-setting-up-ssh-agent" class="nav-link" data-scroll-target="#setting-up-ssh-agent">Setting up ssh-agent</a></li>
+  <li><a href="#pulling-from-remotes" id="toc-pulling-from-remotes" class="nav-link" data-scroll-target="#pulling-from-remotes">Pulling from remotes</a></li>
+  <li><a href="#conflicts" id="toc-conflicts" class="nav-link" data-scroll-target="#conflicts">Conflicts</a>
+  <ul class="collapse">
+  <li><a href="#how-to-resolve-a-conflict" id="toc-how-to-resolve-a-conflict" class="nav-link" data-scroll-target="#how-to-resolve-a-conflict">How to resolve a conflict</a></li>
+  </ul></li>
+  <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration">collaboration</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/sjsrey/g584s24/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="jumping-around" class="level2">
+<h2 class="anchored" data-anchor-id="jumping-around">jumping around</h2>
+<pre><code>cd
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ cd
+jupyter-serge584s23@geo-rey-srv2:~$ git clone https://github.com/rupa/z.git
+Cloning into 'z'...
+remote: Enumerating objects: 800, done.
+remote: Counting objects: 100% (18/18), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 800 (delta 8), reused 15 (delta 6), pack-reused 782
+Receiving objects: 100% (800/800), 161.14 KiB | 1.73 MiB/s, done.
+Resolving deltas: 100% (363/363), done.
+
+cp .bashrc .bashrc.bak
+nano .bashrc
+
+# add the line
+. ~/z/z.sh
+
+tail -1 .bashrc
+
+jupyter-serge584s23@geo-rey-srv2:~$ tail -1 .bashrc
+. ~/z/z.sh
+
+source ~/.bashrc</code></pre>
+<p>Now cd around a bunch</p>
+<p>Type <code>z</code> to get a listing of recently visited directories</p>
+<p>To jump to one, type <code>z pattern</code> where <code>pattern</code> should be a substring of the directory you want to jump to.</p>
+<p>No more having to manually type long paths to get to where you want to go.</p>
+<p>Note, this works even after logging out or closing the terminal.</p>
+<p>The data is stored in the file <code>~/.z</code> if you are interested.</p>
+</section>
+<section id="create-a-remote-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-remote-on-github">create a remote on github</h2>
+<p>![[Pasted image 20230220171356.png]]</p>
+<p>![[Pasted image 20230220170657.png]]</p>
+<p>![[Pasted image 20230220171442.png]]</p>
+<p>we will come back to this in a moment. for now lets make sure we are in are local repository directory:</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ pwd
+
+/home/jupyter-serge584s23/work/git/planets
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ ls -al
+
+total 28
+drwxr-xr-x 4 jupyter-serge584s23 jupyter-serge584s23 4096 Feb 16 12:44 .
+drwxr-xr-x 3 jupyter-serge584s23 jupyter-serge584s23 4096 Feb 16 11:20 ..
+-rw-r--r-- 1 jupyter-serge584s23 jupyter-serge584s23    0 Feb 16 12:10 a.dat
+-rw-r--r-- 1 jupyter-serge584s23 jupyter-serge584s23    0 Feb 16 12:10 b.dat
+-rw-r--r-- 1 jupyter-serge584s23 jupyter-serge584s23    0 Feb 16 12:10 c.dat
+drwxr-xr-x 8 jupyter-serge584s23 jupyter-serge584s23 4096 Feb 16 12:44 .git
+-rw-r--r-- 1 jupyter-serge584s23 jupyter-serge584s23   15 Feb 16 12:14 .gitignore
+-rw-r--r-- 1 jupyter-serge584s23 jupyter-serge584s23   91 Feb 16 12:02 mars.txt
+-rw-r--r-- 1 jupyter-serge584s23 jupyter-serge584s23   49 Feb 16 12:44 moon.txt
+drwxr-xr-x 2 jupyter-serge584s23 jupyter-serge584s23 4096 Feb 16 12:10 results
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git status
+
+On branch main
+nothing to commit, working tree clean
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git remote -v
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ </code></pre>
+</section>
+<section id="ssh-keys" class="level2">
+<h2 class="anchored" data-anchor-id="ssh-keys">ssh keys</h2>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/jupyter-serge584s23/.ssh/id_rsa): 
+Created directory '/home/jupyter-serge584s23/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/jupyter-serge584s23/.ssh/id_rsa
+Your public key has been saved in /home/jupyter-serge584s23/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:xRueWRVTnHYxfri6WuEpzXZJHW7E252NikYNpzIB+5o jupyter-serge584s23@geo-rey-srv2
+The key's randomart image is:
++---[RSA 3072]----+
+|      .       +*+|
+|       o .   .o=+|
+|      . . = o o=o|
+|       . + @  o+O|
+|        S B o +==|
+|       o + = *.. |
+|      E   + X o  |
+|         . + o   |
+|          ...    |
++----[SHA256]-----+
+jupyter-serge584s23@geo-rey-srv2:~$ 
+
+ls .ssh
+
+id_rsa  id_rsa.pub
+
+upyter-serge584s23@geo-rey-srv2:~$ ls -al ~/.ssh
+
+total 16
+drwx------  2 jupyter-serge584s23 jupyter-serge584s23 4096 Feb 20 16:47 .
+drwxr-x--- 11 jupyter-serge584s23 jupyter-serge584s23 4096 Feb 20 16:47 ..
+-rw-------  1 jupyter-serge584s23 jupyter-serge584s23 2675 Feb 20 16:47 id_rsa
+-rw-r--r--  1 jupyter-serge584s23 jupyter-serge584s23  586 Feb 20 16:47 id_rsa.pub</code></pre>
+<p>Check if we can authenticate</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~$ ssh -T git@github.com
+The authenticity of host 'github.com (192.30.255.113)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? y
+Please type 'yes', 'no' or the fingerprint: yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+git@github.com: Permission denied (publickey).</code></pre>
+<p>Right, we need to first add our public key on github</p>
+<pre><code>cat ~/.ssh/id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCv4y7kR22zjaNYPIP8L/q/lcfWPtltLOZ86vszqpwqEaMFDWaQ366sGEc0hYRjZMbFKxNSy9d7PJnOq0ozCgoNn69dNmXx+M71TM2E7vlUjCZCo9owEfIuDf6o519uRE4Qf2aKQC1g3M+imZn9gnZtI39cQsKPM1h0Wg417ZgdgyC3k4bep7puxiko3R3gEaXVUEPHtodEfI7hwUsV62J3CWBIx5yQzwAGJz7VtYQIB94/5jNUnIGtRQyHFcplxKJ/weM6LkQt5Uxql9oliVHYqp8KBu63PPxXt8qusKGJrnmkccHd6ox8i3LIp2XRImdm8DittHuMJRgJiLa/HQtr9jyHoIx8voztvvbyRCOCzRwWKe9hZXWw/Xp+xbKsoH826e4Iqgp56LzmVB7NKEYf1jArrLEqO+DQWEJkXl8IidqUGNvJ8I4tFRZrRm6URNClseZ31gSsVMAO/HHwoVlVw7s32tmEQ8c+ISGL+llRU/rI5yKPSBLb28YDckes7jc= jupyter-serge584s23@geo-rey-srv2</code></pre>
+<p>![[Pasted image 20230220165448.png]]</p>
+<p>![[Pasted image 20230220165614.png]]</p>
+<p>![[Pasted image 20230220165800.png]]</p>
+<p>![[Pasted image 20230220165837.png]]</p>
+<p>![[Pasted image 20230220170035.png]]</p>
+<p>![[Pasted image 20230220170132.png]]</p>
+<p>Now try authenticating again, which will prompt you for your passphrase</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~$ ssh -T git@github.com
+Enter passphrase for key '/home/jupyter-serge584s23/.ssh/id_rsa': 
+
+Hi sjsrey! You've successfully authenticated, but GitHub does not provide shell access.
+jupyter-serge584s23@geo-rey-srv2:~$ </code></pre>
+<p>Now we add a new remote (remember your passphrase as they will ask for it)</p>
+<pre><code>git remote add origin git@github.com:sjsrey/planets.git
+git branch -M main
+git push -u origin main
+Enter passphrase for key '/home/jupyter-serge584s23/.ssh/id_rsa': 
+
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (15/15), 1.29 KiB | 1.29 MiB/s, done.
+Total 15 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), done.
+To github.com:sjsrey/planets.git
+ * [new branch]      main -&gt; main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ 
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git remote -v
+
+origin  git@github.com:sjsrey/planets.git (fetch)
+origin  git@github.com:sjsrey/planets.git (push)</code></pre>
+<p>![[Pasted image 20230220171920.png]]</p>
+<p>![[Pasted image 20230220172005.png]]</p>
+</section>
+<section id="adding-a-ssh-agent" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-ssh-agent">Adding a ssh-agent</h2>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~$ eval "$(ssh-agent -s)" 
+Agent pid 327199
+jupyter-serge584s23@geo-rey-srv2:~$ ssh-add ~/.ssh/id_rsa 
+Enter passphrase for /home/jupyter-serge584s23/.ssh/id_rsa: 
+Identity added: /home/jupyter-serge584s23/.ssh/id_rsa (jupyter-serge584s23@geo-rey-srv2)
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ nano README.md
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ ls
+a.dat  b.dat  c.dat  mars.txt  moon.txt  README.md  results
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+        README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git add README.md 
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git commit -m 'Add a README'
+[main 864e428] Add a README
+ 1 file changed, 3 insertions(+)
+ create mode 100644 README.md
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git push origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 375 bytes | 375.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:sjsrey/planets.git
+   68a5f4f..864e428  main -&gt; main
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ </code></pre>
+<p>![[Pasted image 20230220173424.png]]</p>
+</section>
+<section id="setting-up-ssh-agent" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-ssh-agent">Setting up ssh-agent</h2>
+<p>Make a backup of <code>~/.bashrc</code></p>
+<pre><code>cd
+cp .bashrc .bashrc.bak
+nano .bashrc</code></pre>
+<p>At the bottom of the file add the following (<a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases?platform=windows">Source</a>):</p>
+<pre><code>env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" &amp;&amp; . "$env" &gt;| /dev/null ; }
+
+agent_start () {
+    (umask 077; ssh-agent &gt;| "$env")
+    . "$env" &gt;| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+agent_run_state=$(ssh-add -l &gt;| /dev/null 2&gt;&amp;1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add
+elif [ "$SSH_AUTH_SOCK" ] &amp;&amp; [ $agent_run_state = 1 ]; then
+    ssh-add
+fi
+
+unset env</code></pre>
+<p>Write and exit the file. Close the terminal tab.</p>
+<p>Launch a new terminal and you should be prompted for your password.</p>
+<p>![[Pasted image 20230220174112.png]]</p>
+<p>![[Pasted image 20230220174144.png]]</p>
+<p>![[Pasted image 20230220174224.png]]</p>
+<p>From here forward you no longer will be prompted for password when pushing to github. (as long as that terminal stays around)</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ nano README.md 
+cat README.md
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ cat README.md 
+# Planets Project
+
+
+Research on planets
+
+Test after ssh-agent
+
+
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git add README.md 
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git commit -m 'Note on ssh-agent'
+[main be51b2e] Note on ssh-agent
+ 1 file changed, 3 insertions(+)
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 320 bytes | 320.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:sjsrey/planets.git
+   864e428..be51b2e  main -&gt; main
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ </code></pre>
+</section>
+<section id="pulling-from-remotes" class="level2">
+<h2 class="anchored" data-anchor-id="pulling-from-remotes">Pulling from remotes</h2>
+<pre><code>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean</code></pre>
+<p>Create changes on github to the README.md file</p>
+<p>make sure to commit the changes there</p>
+<pre><code>git status
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean</code></pre>
+<p>Fetch will pull any remote changes</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+Unpacking objects: 100% (3/3), 707 bytes | 707.00 KiB/s, done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+From github.com:sjsrey/planets
+   be51b2e..a0279db  main       -&gt; origin/main
+
+
+git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean</code></pre>
+<p>This tells us there are changes on the remote that we don’t have locally. To get them, we follow the helpful suggestions:</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git pull
+Updating be51b2e..a0279db
+Fast-forward
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean</code></pre>
+<p>So good practice is everytime you sit down to do some work on a local repository:</p>
+<ol type="1">
+<li>git fetch # to see if there have been changes on the remote</li>
+<li>git pull # if there have been</li>
+<li>do you work locally and then push to origin when done</li>
+</ol>
+</section>
+<section id="conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="conflicts">Conflicts</h2>
+<p>Now that both repositories, local and remote, are identical, we are going to create a <em>conflict</em>.</p>
+<p>These can arise when working on collaborative projects where multiple people are changing the same files, or on your individual work, where you may be working from different locations and forgot that the past you had changed a file on a remote while current you is happily working on the same part of the file on a local repository.</p>
+<p>To do this, let’s go all Ohio State and on github edit the readme so the title is “The Planets Project”.</p>
+<p>Now on the local repository, edit the same line, but let’s call it “My Planet Project” Locally:</p>
+<pre><code>jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+jupyter-serge584s23@geo-rey-srv2:~/work/git/planets$ </code></pre>
+<p>git pull (to show conflict)</p>
+<section id="how-to-resolve-a-conflict" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-resolve-a-conflict">How to resolve a conflict</h3>
+<p>explain markers</p>
+<p>edit file to reconcile conflict</p>
+<p>git add git commit</p>
+<p>git push</p>
+<p>note conflicts only involve changes to the same line</p>
+</section>
+</section>
+<section id="collaboration" class="level1">
+<h1>collaboration</h1>
+<p>see moleskein for the git flow diagram all team members should have forked the shared repository (except for the person who created it)</p>
+<p>fork if you have not</p>
+<p>https://github.com/raffaelen/Identifying-Regional-Employment-Centers https://github.com/elizabeth-bushnell/15_minute_city_584project https://github.com/rbilchak/Balboa_Park_Mapping https://github.com/hannahsamy/sd_agriculture_project https://github.com/fiendskrah/584-education-inequality</p>
+<p>clone the group project into your jupyter hub account</p>
+<p>make a directory for the 584project cd into 584project clone your fork</p>
+<p>add the upstream remote</p>
+<p>walk them through this for the course project</p>
+<ol type="1">
+<li>fork</li>
+<li>clone</li>
+<li>add upstream</li>
+<li>pull from upstream</li>
+<li>branch on local</li>
+<li>make changes to README.md</li>
+<li>add, commit</li>
+<li>push branch to origin</li>
+<li>PR into upstream from origin</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Course material by <a href="https://sergerey.org">Sergio Rey</a>. Available under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
