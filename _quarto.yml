@@ -84,5 +84,7 @@ website:
       - section: "Week 11 3/26 3/29"
         contents:
           - week-11/index.qmd
-
+      - section: "Week 12 4/09 4/11"
+        contents:
+          - week-12/index.qmd
 
